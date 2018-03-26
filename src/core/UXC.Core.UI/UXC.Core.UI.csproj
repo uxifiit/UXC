@@ -138,7 +138,6 @@
     <Compile Include="ViewModels\Services\IControlServiceViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewServices\InteractionRequestEventArgs.cs" />
-    <Compile Include="ViewModels\Adapters\AdaptersControlViewModel.cs" />
     <Compile Include="ViewModels\Adapters\AdapterViewModel.cs" />
     <Compile Include="ViewModels\Adapters\AdapterViewModelFactory.cs" />
     <Compile Include="ViewModels\AppViewModel.cs" />
