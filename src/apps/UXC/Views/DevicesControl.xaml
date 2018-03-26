@@ -1,0 +1,81 @@
+<UserControl x:Class="UXC.Views.DevicesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:UXC.Core.Controls;assembly=UXC.Core.UI"
+             mc:Ignorable="d" 
+             xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:converters="clr-namespace:UXC.Common.Converters"
+             xmlns:vm="clr-namespace:UXC.Core.ViewModels.Adapters;assembly=UXC.Core.UI"
+             xmlns:svm="clr-namespace:UXC.Sessions.ViewModels;assembly=UXC.Core.Sessions.UI"
+             xmlns:devices="clr-namespace:UXC.Devices.Adapters;assembly=UXC.Core.Interfaces"
+             d:DesignHeight="360" d:DesignWidth="350"
+             Background="White">
+    <UserControl.Resources>
+        <DataTemplate x:Key="SmallAdapterItemTemplate" DataType="{x:Type vm:AdapterViewModel}">
+            <Button Background="{Binding State, Converter={StaticResource DeviceStateToBrushConverter}, Mode=OneWay}" 
+                    PreviewMouseLeftButtonDown="Button_PreviewMouseLeftButtonDown"
+                    BorderThickness="1" Padding="0" FontSize="12"
+                    Height="96" Width="96" 
+                    ToolTip="{Binding Adapter.Code.DeviceType, Converter={StaticResource DeviceTypeToNameConverter}, Mode=OneWay}"
+                    Style="{DynamicResource DeviceButtonStyle}">
+                <Grid Background="#B2FFFFFF">
+                    <Grid Margin="5">
+                        <TextBlock Foreground="Black" Text="{Binding Adapter.Code.DeviceType, Converter={StaticResource DeviceTypeToSymbolConverter}, Mode=OneWay}" 
+                                   FontFamily="Segoe UI Symbol" 
+                                   FontSize="26"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <TextBlock Foreground="Black" Text="{Binding Adapter.Code.DeviceType, Converter={StaticResource DeviceTypeToNameConverter}, Mode=OneWay}" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Top" />
+                        <TextBlock Foreground="Black" Text="{Binding State, Mode=OneWay, Converter={StaticResource DeviceStateToStringConverter}}" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                        <metro:ProgressRing BorderThickness="1"
+                                            Foreground="#CC000000" 
+                                            IsActive="{Binding IsLoading, Mode=OneWay}" 
+                                            Width="51" Height="51" />
+                    </Grid>
+                </Grid>
+
+                <ContextMenuService.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Connect" 
+                                  Command="{Binding ExecuteActionCommand}"
+                                  CommandParameter="{x:Static devices:DeviceAction.Connect}"
+                                  Visibility="{Binding State, Mode=OneWay, Converter={StaticResource DeviceStateToVisibilityConverter}, ConverterParameter=Disconnected}" />
+                        <!--<MenuItem Header="Calibrate" 
+                                  Command="{Binding GoToStateCommand}"
+                                  CommandParameter="{x:Static devices:DeviceState.Ready}" />-->
+                        <!-- TODO use CanCalibrate -->
+                        <MenuItem Header="Disconnect" 
+                                  Command="{Binding ExecuteActionCommand}"
+                                  CommandParameter="{x:Static devices:DeviceAction.Disconnect}"
+                                  Visibility="{Binding State, Mode=OneWay, Converter={StaticResource DeviceStateToVisibilityNegatedConverter}, ConverterParameter=Disconnected}" />
+                    </ContextMenu>
+                </ContextMenuService.ContextMenu>
+            </Button>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <ItemsControl ItemTemplate="{StaticResource SmallAdapterItemTemplate}"
+                      HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                      Grid.Row="1" 
+                      Margin="-4,0,-4,0"
+                      x:Name="DevicesListBox" 
+                      ItemsSource="{Binding Adapters.Adapters, Source={StaticResource ViewModelLocator}}"
+                      ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style TargetType="ContentPresenter">
+                    <Setter Property="Margin" Value="4" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+    </Grid>
+</UserControl>

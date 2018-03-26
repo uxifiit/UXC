@@ -1,0 +1,152 @@
+<Application x:Class="UXC.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:tb="http://www.hardcodet.net/taskbar" 
+             xmlns:local="clr-namespace:UXC" 
+             xmlns:views="clr-namespace:UXC.Views" 
+             xmlns:Converters="clr-namespace:UXC.Common.Converters" 
+             xmlns:CommonConverters="clr-namespace:UXI.Common.Converters;assembly=UXI.Common.UI"
+             xmlns:Commands="clr-namespace:UXC.Common.Commands"
+             xmlns:vms="clr-namespace:UXC.ViewModels" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             ShutdownMode="OnExplicitShutdown">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        
+            <vms:ViewModelLocator x:Key="ViewModelLocator" />
+            <SolidColorBrush x:Key="PageLightBackground" Color="White" />
+
+            <CommonConverters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <CommonConverters:BoolToVisibilityConverter x:Key="BoolToVisibilityNegatedConverter" TrueValue="Collapsed" FalseValue="Visible" />
+
+            <Commands:ShowInExplorerCommand x:Key="ShowInExplorerCommand" />
+            <Commands:OpenDirectoryInExplorerCommand x:Key="OpenDirectoryInExplorerCommand" />
+
+            <SolidColorBrush x:Key="DeviceErrorBrush" Color="Red" />
+            <SolidColorBrush x:Key="DeviceConnectedBrush" Color="#FFFFA200" />
+            <SolidColorBrush x:Key="DeviceDisconnectedBrush" Color="#FFACACAC" />
+            <SolidColorBrush x:Key="DeviceRecordingBrush" Color="#FF129C12" />
+            <SolidColorBrush x:Key="DeviceReadyBrush" Color="#FF129C12" />
+            <!-- #FF0D3883 -->
+
+            <Converters:ControlServiceStateToBrushConverter x:Key="ControlServiceStateToBrushConverter"
+                                                            ErrorBrush="Red" 
+                                                            StoppedBrush="Gray" 
+                                                            RunningBrush="Green" />
+            <Converters:DeviceStateToStringConverter x:Key="DeviceStateToStringConverter" />
+            <Converters:DeviceStateToBrushConverter x:Key="DeviceStateToBrushConverter" 
+                                                    DefaultBrush="Gray" 
+                                                    DisconnectedBrush="{StaticResource DeviceDisconnectedBrush}" 
+                                                    ErrorBrush="{StaticResource DeviceErrorBrush}" 
+                                                    ReadyBrush="{StaticResource DeviceReadyBrush}" 
+                                                    ConnectedBrush="{StaticResource DeviceConnectedBrush}"
+                                                    RecordingBrush="{StaticResource DeviceRecordingBrush}"/>
+            <Converters:BoolToTrayIconUriConverter x:Key="BoolToTrayIconUriConverter" />
+            <Converters:DeviceTypeToNameConverter x:Key="DeviceTypeToNameConverter" />
+            <Converters:DeviceTypeToSymbolConverter x:Key="DeviceTypeToSymbolConverter" />
+            <Converters:DeviceStateToVisibilityConverter x:Key="DeviceStateToVisibilityConverter" />
+            <Converters:DeviceStateToVisibilityConverter x:Key="DeviceStateToVisibilityNegatedConverter" TrueValue="Collapsed" FalseValue="Visible" />
+            <Converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <Converters:CountToVisibiliyConverter x:Key="CountToVisibiliyConverter" />
+
+            <tb:TaskbarIcon x:Key="TaskBarIcon"
+                            ToolTip="UXC" 
+                            IconSource="{Binding Source={StaticResource ViewModelLocator}, Path=UXRNode.IsConnected, Converter={StaticResource BoolToTrayIconUriConverter}}" 
+                            Visibility="Collapsed">
+                <tb:TaskbarIcon.TrayPopup>
+                    <Border BorderBrush="Black" BorderThickness="2">
+                        <views:TrayPopup Width="350" DataContext="{Binding Adapters, Source={StaticResource ViewModelLocator}}" />
+                    </Border>
+                </tb:TaskbarIcon.TrayPopup>
+                <tb:TaskbarIcon.ContextMenu>
+                    <ContextMenu Background="White">
+                        <!--<MenuItem Header="Start recording" />--> <!-- create session --> 
+                        <!--<MenuItem Header="Stop recording" />-->
+                        <MenuItem Header="Quit" Click="TrayiconExit" />
+                    </ContextMenu>
+                </tb:TaskbarIcon.ContextMenu>
+            </tb:TaskbarIcon>
+
+            <Style x:Key="DeviceButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="{DynamicResource FlatButtonBackgroundBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource FlatButtonForegroundBrush}"/>
+                <Setter Property="FontSize" Value="{DynamicResource FlatButtonFontSize}"/>
+                <Setter Property="Padding" Value="10,5"/>
+
+                <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0">
+                                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" TargetName="Border" Value="{DynamicResource FlatButtonPressedBackgroundBrush}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource FlatButtonPressedForegroundBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource AccentColorBrush}" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Foreground" Value="{DynamicResource GrayBrush2}"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="DarkGray"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="DeviceButtonEnabledOnlyStyle" TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="{DynamicResource FlatButtonBackgroundBrush}"/>
+                <Setter Property="Foreground" Value="{DynamicResource FlatButtonForegroundBrush}"/>
+                <Setter Property="FontSize" Value="{DynamicResource FlatButtonFontSize}"/>
+                <Setter Property="Padding" Value="10,5"/>
+
+                <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0">
+                                <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" TargetName="Border" Value="{DynamicResource FlatButtonPressedBackgroundBrush}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource FlatButtonPressedForegroundBrush}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource AccentColorBrush}" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="DarkGray"/>
+                                    <Setter Property="BorderBrush" Value="{DynamicResource AccentColorBrush}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,230 @@
+<UserControl x:Class="UXC.Views.SessionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:UXC.Core.Controls;assembly=UXC.Core.UI"
+             mc:Ignorable="d" 
+             xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:converters="clr-namespace:UXC.Common.Converters"
+             xmlns:vm="clr-namespace:UXC.Core.ViewModels.Adapters;assembly=UXC.Core.UI"
+             xmlns:svm="clr-namespace:UXC.Sessions.ViewModels;assembly=UXC.Core.Sessions.UI"
+             xmlns:devices="clr-namespace:UXC.Core.Devices;assembly=UXC.Core.Interfaces"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:actions="clr-namespace:UXC.Common.Actions"
+             xmlns:behaviors="clr-namespace:UXC.Common.Behaviors" 
+             xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+           
+             d:DesignHeight="360" d:DesignWidth="350"
+             Background="White">
+    <UserControl.Resources>
+        <DataTemplate x:Key="SmallAdapterItemTemplate" DataType="{x:Type vm:AdapterViewModel}">
+            <Grid Height="32" Width="32"
+                  Background="{StaticResource DeviceDisconnectedBrush}"
+                  ToolTip="{Binding Adapter.Code.DeviceType, Converter={StaticResource DeviceTypeToNameConverter}, Mode=OneWay}">
+
+                <Button Background="{StaticResource DeviceDisconnectedBrush}" 
+                        Style="{DynamicResource DeviceButtonEnabledOnlyStyle}"
+                        Command="{Binding Sessions.Definitions.AddDeviceCommand, Source={StaticResource ViewModelLocator}}"
+                        CommandParameter="{Binding Adapter.Code.DeviceType}" />
+
+                <Button Background="{StaticResource DeviceReadyBrush}" 
+                        Style="{DynamicResource DeviceButtonEnabledOnlyStyle}"
+                        Command="{Binding Sessions.Definitions.RemoveDeviceCommand, Source={StaticResource ViewModelLocator}}"
+                        CommandParameter="{Binding Adapter.Code.DeviceType}" />
+                <!--  Use to open large panel:
+                          MouseRightButtonDown="Button_MouseRightButtonDown" -->
+
+                <!--<ContextMenuService.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Connect" 
+                                      Command="{Binding GoToStateCommand}"
+                                      CommandParameter="{x:Static devices:DeviceState.Ready}"
+                                      Visibility="{Binding State, Mode=OneWay, Converter={StaticResource DeviceStateToVisibilityConverter}, ConverterParameter=Disconnected}" />
+                            <MenuItem Header="Disconnect" 
+                                      Command="{Binding GoToStateCommand}"
+                                      CommandParameter="{x:Static devices:DeviceState.Disconnected}"
+                                      Visibility="{Binding State, Mode=OneWay, Converter={StaticResource DeviceStateToVisibilityNegatedConverter}, ConverterParameter=Disconnected}" />
+                        </ContextMenu>
+                    </ContextMenuService.ContextMenu>-->
+
+
+                <Grid Background="#B2FFFFFF" 
+                      IsHitTestVisible="False">
+                    <TextBlock Foreground="Black" 
+                               Text="{Binding Adapter.Code.DeviceType, Converter={StaticResource DeviceTypeToSymbolConverter}, Mode=OneWay}" 
+                               FontFamily="Segoe UI Symbol" 
+                               FontSize="17" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Grid>
+            </Grid>
+
+        </DataTemplate>
+
+        <Style TargetType="TextBlock" x:Key="HeaderTextBlockStyle">
+            <Setter Property="Margin" Value="0,10,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+        </Style>
+
+        <DataTemplate DataType="{x:Type svm:SessionDefinitionViewModel}">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Selected devices" 
+                           Style="{StaticResource HeaderTextBlockStyle}" />
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type svm:CreateSessionViewModel}">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Name"
+                           Style="{StaticResource HeaderTextBlockStyle}" />
+                <TextBox Text="{Binding Name, Mode=TwoWay}"
+                         Margin="0,0,0,0"/>
+
+                <TextBlock Text="Choose devices to record data" 
+                           Style="{StaticResource HeaderTextBlockStyle}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+     <Grid DataContext="{Binding Sessions, Source={StaticResource ViewModelLocator}}">
+
+            <Grid Visibility="{Binding HasActiveSession, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=true}">
+                <StackPanel Orientation="Vertical"
+                            DataContext="{Binding Definitions}">
+                    <TextBlock Text="Choose session" Style="{StaticResource HeaderTextBlockStyle}"  />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <ComboBox Height="28"
+                                  DataContext="{Binding Selection}"
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="Left"
+                                  ItemsSource="{Binding Items}"
+                                  SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                                  DisplayMemberPath="ChoiceName"  />
+                        <StackPanel Orientation="Horizontal"
+                                    Grid.Column="1">
+                            <Button Content="&#xE1C1;"
+                                    FontFamily="Segoe UI Symbol"
+                                    Style="{DynamicResource ChromelessButtonStyle}"
+                                    Padding="10,0,10,0"
+                                    Command="{Binding OpenCommand}" />
+                        
+                            <Button Content="&#xE117;"
+                                    FontFamily="Segoe UI Symbol"
+                                    Style="{DynamicResource ChromelessButtonStyle}"
+                                    Padding="10,0,10,0"
+                                    Command="{Binding RefreshCommand}" />
+                        </StackPanel>
+                        
+                    </Grid>
+                    <!-- Command="{Binding OpenSessionCommand}"
+                                CommandParameter="{Binding SelectedItem, RelativeSource={RelativeSource Self}}" -->
+
+
+                    <ContentPresenter Content="{Binding Selection.SelectedItem}"
+                                      Margin="0" />
+
+
+                    <ItemsControl ItemTemplate="{StaticResource SmallAdapterItemTemplate}"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                                  Grid.Row="1" 
+                                  Margin="-4,0,-4,0"
+                                  x:Name="DevicesListBox" 
+                                  ItemsSource="{Binding Adapters.Adapters, Source={StaticResource ViewModelLocator}}"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                  ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Margin" Value="4" />
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+                    </ItemsControl>
+                </StackPanel>
+
+            <Button Content="Start" 
+                        Width="160" 
+                        VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                        Style="{DynamicResource AccentedSquareButtonStyle}"
+                        Command="{Binding OpenCommand}"
+                        CommandParameter="{Binding Definitions.Selection.SelectedItem}" />
+
+        </Grid>
+            <!-- same in TrayPopup -->
+        <Grid Visibility="{Binding HasActiveSession, Converter={StaticResource BoolToVisibilityConverter}}" >
+            <Grid DataContext="{Binding CurrentRecording}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical"
+                            Margin="0,0,0,10">
+                    <TextBlock Text="{Binding Project}"
+                               FontSize="16"/>
+                    <TextBlock Text="{Binding Name}" />
+                </StackPanel>
+
+                <TextBlock Grid.Row="1" 
+                           Foreground="Black"
+                           Margin="0,0,0,10">
+                    <Run Text="State:" />
+                    <Run Text="{Binding State, Mode=OneWay}" />
+                </TextBlock>
+
+                <Button Content="Skip to next step" 
+                        Grid.Row="2"
+                        Width="160" 
+                        Margin="0,0,0,5"
+                        VerticalAlignment="Top" HorizontalAlignment="Left" 
+                        Style="{DynamicResource AccentedSquareButtonStyle}"
+                        Visibility="{Binding IsTimelineActive, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=true}"
+                        Command="{Binding ContinueCommand}" />
+            </Grid>
+
+            <Button Content="Return to session" 
+                    Width="160" 
+                    VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}"
+                    Command="{Binding ShowSessionCommand}"
+                    Visibility="{Binding CurrentRecording.IsTimelineActive, Converter={StaticResource BoolToVisibilityConverter}}" />
+
+            <Button Content="Stop recording" 
+                Width="160" 
+                VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                Style="{DynamicResource AccentedSquareButtonStyle}" 
+                Command="{Binding ClearCommand}" />
+
+            <Grid Background="White"
+                  DataContext="{Binding CurrentRecording}"
+                  Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityConverter}}">
+                    <TextBlock Text="Opening session..." 
+                               Margin="0,0,0,10"
+                               VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                
+                
+                    <Button Content="Cancel"
+                            Width="160"
+                            Style="{DynamicResource SquareButtonStyle}"
+                            Command="{Binding CloseCommand}"
+                            VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            </Grid>
+        </Grid>
+    </Grid>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:EventTrigger.Actions>
+                <i:InvokeCommandAction Command="{Binding Sessions.Definitions.RefreshCommand, Source={StaticResource ViewModelLocator}}" />
+            </i:EventTrigger.Actions>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+</UserControl>

@@ -1,0 +1,229 @@
+<UserControl x:Class="UXC.Devices.EyeTracker.Views.CalibrationResultControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:controls="clr-namespace:UXC.Core.Controls;assembly=UXC.Core.UI"          
+             xmlns:helpers="clr-namespace:UXI.Common.Converters;assembly=UXI.Common.UI"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UXC.Devices.EyeTracker.Views"
+             xmlns:converters="clr-namespace:UXC.Core.Common.Converters;assembly=UXC.Core.UI"
+             mc:Ignorable="d" 
+             d:DesignWidth="1920" d:DesignHeight="1080">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <DataTemplate x:Key="TruePositionItemTemplate">
+                <Ellipse Stroke="White" 
+                         Margin="-2,-2,0,0"
+                         Width="4" Height="4" />
+            </DataTemplate>
+            
+            <DataTemplate x:Key="MapPositionItemTemplate">
+                <Ellipse Stroke="LimeGreen"
+                         Fill="LimeGreen"
+                         Margin="-2,-2,0,0"
+                         Width="5" Height="5" />
+            </DataTemplate>
+            
+            <converters:ReferenceValueConverter x:Key="LeftPositionConverterReference" />
+            <converters:ReferenceValueConverter x:Key="TopPositionConverterReference" />
+
+            <helpers:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+            <DataTemplate x:Key="MapLineItemTemplate">
+                <Line X1="0" Y1="0" 
+                      X2="{Binding MapRelativeX, Converter={StaticResource LeftPositionConverterReference}}" 
+                      Y2="{Binding MapRelativeY, Converter={StaticResource TopPositionConverterReference}}" 
+                      StrokeThickness="1" Stroke="LimeGreen" />
+            </DataTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="160" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Calibration Result" 
+                   FontSize="40"
+                   FontFamily="Segoe UI Semilight"
+                   Margin="60,60,0,0"/>
+
+        <Grid VerticalAlignment="Center"
+                Margin="10"
+                Grid.Row="1"
+                MaxWidth="1000">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom">
+                <TextBlock FontSize="20"
+                           Margin="0,0,0,10"
+                           FontFamily="Segoe UI Semilight"
+                           HorizontalAlignment="Center">
+                    <Run Text="Left Eye" />
+                    <Run Text="{Binding LeftValidityString, Mode=OneWay}" />
+                </TextBlock>
+                <Border BorderBrush="#FF444444" BorderThickness="2">
+                    <Viewbox Stretch="Uniform" Margin="0,5,5,0">
+                        <Grid Width="320" Height="180">
+                            <controls:PointsDisplayControl x:Name="leftEyeTruePositionsDisplay" 
+                                                           Background="Transparent"
+                                                           VerticalAlignment="Stretch"
+                                                           HorizontalAlignment="Stretch"
+                                                           ItemsSource="{Binding TruePositions}"
+                                                           ItemTemplate="{StaticResource TruePositionItemTemplate}" />
+
+                            <controls:PointsDisplayControl x:Name="leftEyeMapLinesDisplay" 
+                                                           Background="Transparent"
+                                                           VerticalAlignment="Stretch"
+                                                           HorizontalAlignment="Stretch"
+                                                           ItemsSource="{Binding LeftMapLines}"
+                                                           ItemTemplate="{StaticResource MapLineItemTemplate}" />
+
+                            <controls:PointsDisplayControl x:Name="leftEyeMapPositionsDisplay" 
+                                                           Background="Transparent"
+                                                           VerticalAlignment="Stretch"
+                                                           HorizontalAlignment="Stretch"
+                                                           ItemsSource="{Binding LeftMapPositions}"
+                                                           ItemTemplate="{StaticResource MapPositionItemTemplate}"  />
+                        </Grid>
+                    </Viewbox>
+                </Border>
+            </StackPanel>
+
+
+            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom"
+                        Grid.Column="2">
+                <TextBlock                          FontSize="20"
+                           Margin="0,0,0,10"
+                           FontFamily="Segoe UI Semilight"
+                            HorizontalAlignment="Center">
+                    <Run Text="Right Eye" />
+                    <Run Text="{Binding RightValidityString, Mode=OneWay}" />
+                </TextBlock>
+                <Border BorderBrush="#FF444444" BorderThickness="2">
+                    <Viewbox Stretch="Uniform" Margin="0,5,5,0">
+                        <Grid  Width="320" Height="180">
+                            <controls:PointsDisplayControl x:Name="rightEyeTruePositionsDisplay" 
+                                                        Background="Transparent"
+                                                        VerticalAlignment="Stretch"
+                                                        HorizontalAlignment="Stretch"
+                                                        ItemsSource="{Binding TruePositions}"
+                                                        ItemTemplate="{StaticResource TruePositionItemTemplate}" />
+
+                            <controls:PointsDisplayControl x:Name="rightEyeMapLinesDisplay" 
+                                                                Background="Transparent"
+                                                                VerticalAlignment="Stretch"
+                                                                HorizontalAlignment="Stretch"
+                                                                ItemsSource="{Binding RightMapLines}"
+                                                                ItemTemplate="{StaticResource MapLineItemTemplate}" />
+
+                            <controls:PointsDisplayControl x:Name="rightEyeMapPositionsDisplay" 
+                                                        Background="Transparent"
+                                                        VerticalAlignment="Stretch"
+                                                        HorizontalAlignment="Stretch"
+                                                        ItemsSource="{Binding RightMapPositions}"
+                                                        ItemTemplate="{StaticResource MapPositionItemTemplate}"  />
+                        </Grid>
+                    </Viewbox>
+                </Border>
+            </StackPanel>
+
+            <TextBlock Text="{Binding RecommendationString, Mode=OneWay}" 
+                        Margin="0,20,0,0"
+                        FontSize="20"
+                        Grid.Row="1" Grid.ColumnSpan="3"
+                        HorizontalAlignment="Center"/>
+        </Grid>
+
+
+        <StackPanel Grid.Row="2"
+                    Orientation="Vertical"
+                    HorizontalAlignment="Center" VerticalAlignment="Top"
+                    Margin="0,0,0,100"
+                    DataContext="{Binding Calibrator}"
+                    IsEnabled="{Binding CanSaveCalibration}"
+                    Visibility="{Binding SaveCalibrationVisibility}">
+
+            <TextBlock Text="Save profile" 
+                        FontSize="20"
+                        FontFamily="Segoe UI Semilight"
+                        Margin="0,5"/>
+
+            <StackPanel Orientation="Horizontal"
+                        DataContext="{Binding StoredCalibrations}"
+                        Height="38">
+                <TextBox Style="{StaticResource MetroTextBox}"
+                         FontSize="20"
+                         Background="Transparent"
+                         IsReadOnly="{Binding IsSaved}"
+                         metro:TextBoxHelper.Watermark="Profile name"
+                         HorizontalAlignment="Left"
+                         Text="{Binding SaveName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         Width="300" />
+                <Grid Margin="10,0,0,0" Width="82">
+                    <Button Content="Save"
+                            FontSize="20"
+                            Padding="20,5"
+                            Visibility="{Binding IsSaved, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=true}"
+                            Command="{Binding SaveCommand}" />
+
+                    <TextBlock Text="Saved"
+                               Foreground="LimeGreen"
+                               FontSize="20"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Visibility="{Binding IsSaved, Converter={StaticResource BoolToVisibilityConverter}}" />
+                </Grid>
+                
+            </StackPanel>
+        </StackPanel>
+
+     
+        <Button Content="Accept" 
+                VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                Grid.Row="3"
+                Margin="0,0,60,100"
+                DataContext="{Binding Calibrator}" 
+                Command="{Binding SubmitCommand}" 
+                FontSize="25"
+                Padding="20,15"
+                MinWidth="150">
+            <Button.Resources>
+                <SolidColorBrush x:Key="FlatButtonBackgroundBrush" Color="LimeGreen" />
+                <SolidColorBrush x:Key="FlatButtonForegroundBrush" Color="Black" />
+                <SolidColorBrush x:Key="FlatButtonPressedBackgroundBrush" Color="Green" />
+                <SolidColorBrush x:Key="FlatButtonPressedForegroundBrush" Color="White" />
+            </Button.Resources>
+        </Button>
+
+        <Button Content="Retry" 
+                VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                Grid.Row="3"
+                Margin="0,0,0,100"
+                DataContext="{Binding Calibrator}" 
+                Command="{Binding RetryCommand}" 
+                Padding="20,15"
+                FontSize="25" 
+                MinWidth="150" />
+
+    </Grid>
+</UserControl>

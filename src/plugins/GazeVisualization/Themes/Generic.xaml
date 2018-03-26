@@ -1,0 +1,113 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:options="clr-namespace:GazeVisualization"
+                    xmlns:converters="clr-namespace:GazeVisualization.Converters">
+    <converters:TimeSpanToMillisecondsConverter x:Key="TimeSpanToMillisecondsConverter" />
+
+    <ObjectDataProvider x:Key="EyeSelectionStrategyEnumValues" MethodName="GetValues"
+                        ObjectType="{x:Type system:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type xmlns:toolkit="clr-namespace:UXI.GazeToolkit.Selection;assembly=UXI.GazeToolkit"
+                    TypeName="toolkit:EyeSelectionStrategy" />
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider x:Key="NoiseReductionStrategyEnumValues" MethodName="GetValues"
+                        ObjectType="{x:Type system:Enum}">
+        <ObjectDataProvider.MethodParameters>
+            <x:Type xmlns:toolkit="clr-namespace:UXI.GazeToolkit.Smoothing;assembly=UXI.GazeToolkit"
+                    TypeName="toolkit:NoiseReductionStrategy"/>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+    
+    <DataTemplate DataType="{x:Type options:FillInGapsOptions}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Max gap length:" VerticalAlignment="Center" />
+            <controls:NumericUpDown ButtonsAlignment="Right"
+                                    HasDecimals="False"
+                                    Margin="5,0"
+                                    Interval="5"
+                                    Value="{Binding MaxGap, Converter={StaticResource TimeSpanToMillisecondsConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="ms" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type options:EyeSelectionOptions}">
+        <ComboBox ItemsSource="{Binding Source={StaticResource EyeSelectionStrategyEnumValues}}"
+                  SelectedItem="{Binding Strategy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type options:NoiseReductionOptions}">
+        <ComboBox ItemsSource="{Binding Source={StaticResource NoiseReductionStrategyEnumValues}}"
+                  SelectedItem="{Binding Strategy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type options:FixationsClassificationOptions}">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Frequency:" VerticalAlignment="Center" />
+                <controls:NumericUpDown ButtonsAlignment="Right"
+                                        HasDecimals="False"
+                                        Margin="5,0"
+                                        Interval="5"
+                                        Value="{Binding DataFrequency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="Hz" VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Velocity window length:" VerticalAlignment="Center" />
+                <controls:NumericUpDown ButtonsAlignment="Right"
+                                        HasDecimals="False"
+                                        Margin="5,0"
+                                        Interval="5"
+                                        Value="{Binding TimeWindowSide, Converter={StaticResource TimeSpanToMillisecondsConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="ms" VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Velocity threshold:" VerticalAlignment="Center" />
+                <controls:NumericUpDown ButtonsAlignment="Right"
+                                        HasDecimals="False"
+                                        Margin="5,0"
+                                        Interval="5"
+                                        Value="{Binding VelocityThreshold, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="&#x00B0;/s" VerticalAlignment="Center" />
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type options:MergeAdjacentFixationsOptions}">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Max time between fixations:" VerticalAlignment="Center" />
+                <controls:NumericUpDown ButtonsAlignment="Right"
+                                        HasDecimals="False"
+                                        Margin="5,0"
+                                        Interval="5"
+                                        Value="{Binding MaxTimeBetweenFixations, Converter={StaticResource TimeSpanToMillisecondsConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="ms" VerticalAlignment="Center" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Max angle between fixations:" VerticalAlignment="Center" />
+                <controls:NumericUpDown ButtonsAlignment="Right"
+                                        HasDecimals="True"
+                                        Margin="5,0"
+                                        Interval="0.1"
+                                        Value="{Binding MaxAngleBetweenFixations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Text="&#x00B0;" VerticalAlignment="Center" />
+            </StackPanel>
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type options:DiscardShortFixationsOptions}">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Minimum fixation duration:" VerticalAlignment="Center" />
+            <controls:NumericUpDown ButtonsAlignment="Right"
+                                    HasDecimals="False"
+                                    Margin="5,0"
+                                    Interval="5"
+                                    Value="{Binding MinimumFixationDuration, Converter={StaticResource TimeSpanToMillisecondsConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock Text="ms" VerticalAlignment="Center" />
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

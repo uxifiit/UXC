@@ -1,0 +1,29 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:UXC.Devices.EyeTracker.ViewModels"
+                    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:v="clr-namespace:UXC.Devices.EyeTracker.Views">
+
+    <DataTemplate DataType="{x:Type vm:CalibratorViewModel}">
+        <v:CalibratorControl EyesDisplayBackground="Transparent" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:CalibrationViewModel}">
+        <v:CalibrationControl />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:CalibrationResultViewModel}">
+        <v:CalibrationResultControl />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:EyeTrackerSettingsSectionViewModel}">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Eye Tracker device" Foreground="LightGray" FontSize="12" Margin="0,0,0,5" />
+            <ComboBox Width="200"
+                      Controls:TextBoxHelper.ClearTextButton="True"
+                      Controls:TextBoxHelper.Watermark="Any"
+                      ItemsSource="{Binding Drivers}"
+                      SelectedItem="{Binding SelectedDriver, Mode=TwoWay}" />
+        </StackPanel>
+    </DataTemplate>
+</ResourceDictionary>

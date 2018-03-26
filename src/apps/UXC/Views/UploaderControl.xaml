@@ -1,0 +1,122 @@
+<UserControl x:Class="UXC.Views.UploaderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UXC.Views"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:actions="clr-namespace:UXC.Common.Actions"
+             xmlns:commands="clr-namespace:UXC.Common.Commands"
+             xmlns:converters="clr-namespace:UXC.Common.Converters"
+             xmlns:uxiConverters="clr-namespace:UXI.Common.Converters;assembly=UXI.Common.UI"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid DataContext="{Binding UXRUploads, Source={StaticResource ViewModelLocator}}">
+            <Grid Margin="0,5"
+                  IsHitTestVisible="False"
+                  Visibility="{Binding Uploads.Count, Converter={StaticResource CountToVisibiliyConverter}, ConverterParameter=true}">
+                <TextBlock Text="Nothing to upload"
+                           FontSize="12" />
+            </Grid>
+
+            <ListView ItemsSource="{Binding Uploads}"
+                      HorizontalContentAlignment="Stretch"
+                      BorderThickness="0"
+                      Background="Transparent"
+                      Padding="0,0,0,10">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Padding" Value="5,5,5,0" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="#7FF1F1F1">
+                            <Grid Margin="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Text="{Binding SessionName}"
+                                           FontSize="12" />
+
+                                <StackPanel Orientation="Horizontal"
+                                            Grid.Row="1">
+                                    <TextBlock Text="{Binding StartTime, StringFormat='dd/MM/yyyy HH:mm'}"
+                                               FontFamily="Segoe UI Semilight"
+                                               FontSize="9" />
+
+                                    <TextBlock Text="{Binding Status.Step, Mode=OneWay}"
+                                               FontFamily="Segoe UI Semilight"
+                                               Margin="5,0,0,0"
+                                               Foreground="Blue"
+                                               FontSize="9" />
+                                </StackPanel>
+
+                                <metro:MetroProgressBar Height="2"  
+                                            Grid.Row="2"
+                                            Margin="0,2,0,0"
+                                            IsEnabled="{Binding IsWorking}"
+                                            IsIndeterminate="{Binding Status.IsIndeterminate}"
+                                            Value="{Binding Status.Progress, Mode=OneWay}"
+                                            Minimum="0" Maximum="100"
+                                            BorderThickness="0"
+                                            Background="#7FF5F5F5" />
+                            
+                                <ContextMenuService.ContextMenu>
+                                    <ContextMenu>
+                                        <!--<MenuItem Header="Retry" />-->
+                                        <MenuItem Header="Show" Command="{StaticResource ShowInExplorerCommand}" CommandParameter="{Binding Path}"  />
+                                        <MenuItem Header="Delete" />
+                                    </ContextMenu>
+                                </ContextMenuService.ContextMenu>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              DataContext="{Binding UXRUploader, Source={StaticResource ViewModelLocator}}"
+              VerticalAlignment="Bottom" HorizontalAlignment="Right">
+
+            <Button Content="Start" 
+                    HorizontalAlignment="Right"
+                    Width="160" 
+                    Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=true}"
+                    Style="{DynamicResource SquareButtonStyle}"
+                    Command="{Binding StartCommand}" />
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Visibility="{Binding IsEnabled, Converter={StaticResource BoolToVisibilityConverter}}">
+                <Button Content="Restart" 
+                        Width="160" 
+                        Margin="0,0,10,0"
+                        Style="{DynamicResource SquareButtonStyle}"
+                        Command="{Binding RestartCommand}" />
+            
+                <Button Content="Stop" 
+                        Width="160" 
+                        Style="{DynamicResource AccentedSquareButtonStyle}"
+                        Command="{Binding StopCommand}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

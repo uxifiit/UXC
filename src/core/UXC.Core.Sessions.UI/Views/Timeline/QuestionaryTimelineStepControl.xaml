@@ -1,0 +1,55 @@
+<UserControl x:Class="UXC.Sessions.Views.Timeline.QuestionaryTimelineStepControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UXC.Sessions.Views.Timeline"
+             xmlns:vmTimeline="clr-namespace:UXC.Sessions.ViewModels.Timeline"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:controls="clr-namespace:UXC.Sessions.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseDark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="160" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <controls:QuestionaryControl DataContext="{Binding Questionary}"
+                                     QuestionsSource="{Binding Questions}"
+                                     Grid.Row="1"
+                                     HorizontalAlignment="Center" VerticalAlignment="Center" />
+        
+        <Button Content="Continue" 
+                VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                Grid.Row="3"
+                Margin="0,0,60,100"
+                Foreground="Black"
+                Command="{Binding TryCompleteCommand}" 
+                IsTabStop="True"
+                Padding="20,15"
+                FontSize="25" 
+                MinWidth="150">
+            <Button.Resources>
+                <SolidColorBrush x:Key="FlatButtonBackgroundBrush" Color="LimeGreen" />
+                <SolidColorBrush x:Key="FlatButtonForegroundBrush" Color="Black" />
+                <SolidColorBrush x:Key="FlatButtonPressedBackgroundBrush" Color="Green" />
+                <SolidColorBrush x:Key="FlatButtonPressedForegroundBrush" Color="White" />
+            </Button.Resources>
+        </Button>
+    </Grid>
+</UserControl>
