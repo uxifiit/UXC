@@ -8,7 +8,6 @@ using System.Windows.Input;
 using UXC;
 using UXC.Core.Common.Events;
 using UXC.Core.ViewServices;
-//using GazeHook.Models;
 
 namespace UXC.Core.ViewModels
 {
