@@ -1,0 +1,80 @@
+<UserControl x:Class="UXC.Views.RecordingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:local="clr-namespace:UXC.Views"
+             xmlns:commands="clr-namespace:UXC.Common.Commands"
+             mc:Ignorable="d" 
+             Background="White" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid DataContext="{Binding SessionRecordingsData, Source={StaticResource ViewModelLocator}}">
+        <Grid Margin="0,5"
+              IsHitTestVisible="False"
+              Visibility="{Binding HasRecordings, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=true}">
+            <TextBlock Text="No previous recordings"
+                       FontSize="12" />
+        </Grid>
+
+
+        <ListView ItemsSource="{Binding Recordings}"
+                  Visibility="{Binding HasRecordings, Converter={StaticResource BoolToVisibilityConverter}}"
+                  HorizontalContentAlignment="Stretch"
+                  BorderThickness="0"
+                  Background="Transparent"
+                  Padding="0,0,0,10">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Padding" Value="5,5,5,0" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="#7FF1F1F1">
+                        <Grid Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Text="{Binding Name}"
+                                    FontSize="12" />
+
+                            <TextBlock Text="{Binding StartTime, StringFormat='dd MMMM yyyy HH:mm'}"
+                                    FontFamily="Segoe UI Semilight"
+                                    FontSize="9" 
+                                    Grid.Row="1" />
+
+                            <ContextMenuService.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Open" 
+                                              Command="{StaticResource OpenDirectoryInExplorerCommand}" 
+                                              CommandParameter="{Binding Path}"  />
+                                    <!--<MenuItem Header="Upload" />-->
+                                    <Separator />
+                                    <MenuItem Header="Delete" 
+                                              Command="{Binding SessionRecordingsData.DeleteCommand, Source={StaticResource ViewModelLocator}}"
+                                              CommandParameter="{Binding}" />
+                                </ContextMenu>
+                            </ContextMenuService.ContextMenu>
+                        </Grid>
+                        <!-- add double click to open, no such event in grid, use other control -->
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick" SourceObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListViewItem}}">
+                                <i:InvokeCommandAction Command="{StaticResource OpenDirectoryInExplorerCommand}"
+                                                       CommandParameter="{Binding Path}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</UserControl>

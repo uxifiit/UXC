@@ -1,0 +1,84 @@
+<UserControl x:Class="UXC.Sessions.Views.Timeline.EyeTrackerValidationTimelineStepControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:UXC.Core.Controls;assembly=UXC.Core.UI"
+             xmlns:local="clr-namespace:UXC.Sessions.Views.Timeline"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ValidationStates">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition To="IntroductionState">
+                        <Storyboard>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                            </DoubleAnimationUsingKeyFrames>
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="pointControl">
+                                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                                <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="1"/>
+                            </DoubleAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualTransition>
+                </VisualStateGroup.Transitions>
+
+                <VisualState x:Name="StartState" />
+
+                <VisualState x:Name="IntroductionState">
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="textBlock">
+                            <EasingDoubleKeyFrame Value="1"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="pointControl">
+                            <EasingDoubleKeyFrame Value="1"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="ValidationProcessState">
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="pointControl">
+                            <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                        </DoubleAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="LoopShrinkOnTargetPoint" Storyboard.TargetName="pointControl">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <System:Boolean>False</System:Boolean>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="AnimateToTargetPoint" Storyboard.TargetName="pointControl">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <System:Boolean>True</System:Boolean>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <controls:PointAnimationControl x:Name="pointControl"
+                                        DataContext="{Binding Animation}"
+                                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                                        TargetPoint="{Binding TargetPoint}"
+                                        PointFill="{Binding PointFill}"
+                                        AnimateToTargetPoint="False"
+                                        LoopShrinkOnTargetPoint="True" 
+                                        ShrinkOnTargetPoint="True" 
+                                        MovementDuration="800"
+                                        TargetPointReached="pointControl_TargetPointReached" />
+
+        <TextBlock x:Name="textBlock" Text="Follow the green dot"
+                   
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   FontSize="28" FontFamily="Segoe UI Semilight" 
+                   Opacity="0"
+                   Margin="0,0,0,110" />
+    </Grid>
+</UserControl>

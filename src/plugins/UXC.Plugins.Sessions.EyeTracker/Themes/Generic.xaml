@@ -1,0 +1,22 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:UXC.Sessions.ViewModels"
+                    xmlns:vmTimeline="clr-namespace:UXC.Sessions.ViewModels.Timeline"
+                    xmlns:v="clr-namespace:UXC.Sessions.Views"
+                    xmlns:vTimeline="clr-namespace:UXC.Sessions.Views.Timeline">
+
+    <DataTemplate DataType="{x:Type vmTimeline:EyeTrackerCalibrationTimelineStepViewModel}">
+        <vTimeline:EyeTrackerCalibrationTimelineStepControl Foreground="{Binding Foreground}"
+                                                            Background="{Binding Background}"
+                                                            FontSize="{Binding FontSize}"
+                                                            DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vmTimeline:EyeTrackerValidationTimelineStepViewModel}">
+        <vTimeline:EyeTrackerValidationTimelineStepControl Foreground="{Binding Foreground}"
+                                                           Background="{Binding Background}"
+                                                           FontSize="{Binding FontSize}"
+                                                           Cursor="{Binding Cursor}"
+                                                           DataContext="{Binding}"/>
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,35 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:settings="clr-namespace:UXC.ViewModels.Settings">
+    
+    <DataTemplate DataType="{x:Type settings:AppSettingsSectionViewModel}">
+        <StackPanel Orientation="Vertical">
+            <CheckBox IsChecked="{Binding HideOnClose, Mode=TwoWay}" Content="Hide on close" Foreground="LightGray" FontSize="12"/>
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type settings:ServerSettingsSectionViewModel}">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Server port" Foreground="LightGray" FontSize="12" Margin="0,0,0,5" />
+            <!--<TextBox Text="{Binding ServerPort, Mode=TwoWay}" InputScope="Number" HorizontalAlignment="Left" Margin="0,0,0,5" />-->
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,0,0,5">
+                <metro:NumericUpDown HideUpDownButtons="True" 
+                                     HasDecimals="False"
+                                     Value="{Binding ServerPort, Mode=TwoWay}" 
+                                     HorizontalAlignment="Left"
+                                     TextAlignment="Left"
+                                     InterceptArrowKeys="False"
+                                     InterceptMouseWheel="False" />
+                
+                <CheckBox IsChecked="{Binding IsSslEnabled, Mode=TwoWay}" 
+                          Content="SSL" 
+                          Margin="10,0,0,0" />
+            </StackPanel>
+            <!--<TextBlock Text="Restart the application to reflect changes." Foreground="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />-->
+        </StackPanel>
+
+    </DataTemplate>
+
+</ResourceDictionary>

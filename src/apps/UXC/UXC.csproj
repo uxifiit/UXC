@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FAAE9DCD-AED9-4FDA-BE92-3D9B7AFEF6ED}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UXC</RootNamespace>
+    <AssemblyName>UXC</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>UXC.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ClickOnce|AnyCPU'">
+    <OutputPath>bin\ClickOnce\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommandLine, Version=2.0.275.0, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\CommandLineParser.2.1.1-beta\lib\net45\CommandLine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.3.0.19026, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.3.0.19032, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="INIFileParser, Version=2.3.0.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\ini-parser.2.3.0\lib\net20\INIFileParser.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MahApps.Metro, Version=1.5.0.23, Culture=neutral, PublicKeyToken=f4fb5a3c4d1e5b4f, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MahApps.Metro.1.5.0\lib\net45\MahApps.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.SignalR.Owin.1.2.2\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Diagnostics, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.Diagnostics.3.0.1\lib\net45\Microsoft.Owin.Diagnostics.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.FileSystems, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.FileSystems.3.0.1\lib\net45\Microsoft.Owin.FileSystems.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.Host.HttpListener.3.0.1\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.Hosting.3.0.1\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.StaticFiles, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.StaticFiles.3.0.1\lib\net45\Microsoft.Owin.StaticFiles.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.ContextPreservation, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Ninject.Extensions.ContextPreservation.3.2.0.0\lib\net45-full\Ninject.Extensions.ContextPreservation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Extensions.NamedScope, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net45-full\Ninject.Extensions.NamedScope.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.OwinHost, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Ninject.Web.Common.OwinHost.3.2.3.0\lib\net45-full\Ninject.Web.Common.OwinHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.SelfHost, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Ninject.Web.Common.Selfhost.3.2.3.0\lib\net45-full\Ninject.Web.Common.SelfHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Ninject.Web.WebApi.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi.OwinHost, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Ninject.Web.WebApi.OwinHost.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.OwinHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi.SelfHost, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Ninject.Web.WebApi.Selfhost.3.2.4.0\lib\net45-full\Ninject.Web.WebApi.SelfHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Core, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Reactive.Core.3.1.1\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Reactive.Interfaces.3.1.1\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Reactive.Linq.3.1.1\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Reactive.PlatformServices.3.1.1\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Reactive.Windows.Threading.3.1.1\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Cors.5.2.3\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.SelfHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.SelfHost.5.2.3\lib\net45\System.Web.Http.SelfHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\MahApps.Metro.1.5.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UXI.App, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.App.2.1.2-alpha\lib\net45\UXI.App.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UXI.Common, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.Common.2.3.0\lib\net45\UXI.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UXI.Common.UI, Version=2.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.Common.UI.2.3.2\lib\net452\UXI.Common.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UXI.Configuration, Version=2.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.Configuration.2.1.3\lib\net452\UXI.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UXI.Configuration.IniStorage, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.Configuration.IniStorage.2.1.0\lib\net452\UXI.Configuration.IniStorage.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UXI.OwinServer, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.OwinServer.2.3.1\lib\net452\UXI.OwinServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UXI.SystemApi, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.SystemApi.0.2.2\lib\net452\UXI.SystemApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Actions\HideWindowAction.cs" />
+    <Compile Include="Common\Behaviors\DragMoveWindowBehavior.cs" />
+    <Compile Include="Common\Commands\OpenDirectoryInExplorerCommand.cs" />
+    <Compile Include="Common\Converters\ControlServiceStateToBrushConverter.cs" />
+    <Compile Include="Common\Converters\CountToVisibilityConverter.cs" />
+    <Compile Include="Common\Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Sessions\LocalSessionDefinitions.cs" />
+    <Compile Include="ViewModels\Settings\AppSettingsSectionViewModel.cs" />
+    <Compile Include="ViewModels\Settings\ServerSettingsSectionViewModel.cs" />
+    <Compile Include="ViewServices\WindowView.cs" />
+    <Compile Include="Views\HostWindow.xaml.cs">
+      <DependentUpon>HostWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UploaderControl.xaml.cs">
+      <DependentUpon>UploaderControl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Common\Commands\ShowInExplorerCommand.cs" />
+    <Compile Include="Common\Commands\ShutdownAppCommand.cs" />
+    <Compile Include="Common\Converters\DeviceTypeToNameConverter.cs" />
+    <Compile Include="Common\Converters\DeviceTypeToSymbolConverter.cs" />
+    <Compile Include="Common\FileHelper.cs" />
+    <Compile Include="Configuration\AppConfiguration.cs" />
+    <Compile Include="Configuration\Design\DesignAppConfiguration.cs" />
+    <Compile Include="Configuration\IServerConfiguration.cs" />
+    <Compile Include="Configuration\ServerConfiguration.cs" />
+    <Compile Include="Modules\ApplicationModule.cs" />
+    <Compile Include="Modules\UXCAppModule.cs" />
+    <Compile Include="Modules\OwinServerModule.cs" />
+    <Compile Include="Modules\ViewModelsModule.cs" />
+    <Compile Include="Modules\ViewServicesModule.cs" />
+    <Compile Include="Sessions\DefaultSessionDefinitions.cs" />
+    <Compile Include="ViewModels\AdaptersViewModel.cs" />
+    <Compile Include="Configuration\IAppConfiguration.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="ViewServices\FlyoutView.cs" />
+    <Compile Include="ViewServices\ViewsService.cs" />
+    <Compile Include="Services\ServerControlService.cs" />
+    <Compile Include="Services\SessionsControlService.cs" />
+    <Compile Include="Views\DevicesControl.xaml.cs">
+      <DependentUpon>DevicesControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RecordingsControl.xaml.cs">
+      <DependentUpon>RecordingsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SessionControl.xaml.cs">
+      <DependentUpon>SessionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrayPopup.xaml.cs">
+      <DependentUpon>TrayPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\Actions\SetFlyoutOpenAction.cs" />
+    <Compile Include="Common\Converters\DeviceStateToBrushConverter.cs" />
+    <Compile Include="Common\Converters\DeviceStateToIconConverter.cs" />
+    <Compile Include="Common\Converters\DeviceStateToStringConverter.cs" />
+    <Compile Include="Common\Converters\BoolToTrayIconUriConverter.cs" />
+    <Compile Include="Common\Converters\DeviceStateToVisibilityConverter.cs" />
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\DevicesControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HostWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\RecordingsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SessionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\TrayPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UploaderControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Resource Include="Resources\Icon.ico" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Content Include="config.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\core\UXC.Core.Data\UXC.Core.Data.csproj">
+      <Project>{2BAD0840-A3CD-40EF-A5BD-F23EF0CDC644}</Project>
+      <Name>UXC.Core.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\plugins\GazeVisualization\GazeVisualization.csproj">
+      <Project>{ff750146-3e5e-47ef-a77b-80ee1924e0da}</Project>
+      <Name>GazeVisualization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\UXC.Core.Sessions.UI\UXC.Core.Sessions.UI.csproj">
+      <Project>{8f6922b7-d200-40e8-b726-d0e828a84532}</Project>
+      <Name>UXC.Core.Sessions.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\UXC.Core.Sessions\UXC.Core.Sessions.csproj">
+      <Project>{e1343366-81ff-4d8f-a8c9-a13e389d45a3}</Project>
+      <Name>UXC.Core.Sessions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\devices\UXC.Devices.ExternalEvents.Module\UXC.Devices.ExternalEvents.Module.csproj">
+      <Project>{60efe219-3468-4b28-8193-4ccd9415c954}</Project>
+      <Name>UXC.Devices.ExternalEvents.Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\devices\UXC.Devices.ExternalEvents\UXC.Devices.ExternalEvents.csproj">
+      <Project>{aedae266-1546-4e65-ab2c-935d70fe5e76}</Project>
+      <Name>UXC.Devices.ExternalEvents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\devices\UXC.Devices.EyeTracker.Driver.Simulator\UXC.Devices.EyeTracker.Driver.Simulator.csproj">
+      <Project>{380c181d-1cc9-4506-b5df-800cf0de6d76}</Project>
+      <Name>UXC.Devices.EyeTracker.Driver.Simulator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\devices\UXC.Devices.EyeTracker.Driver.TobiiPro\UXC.Devices.EyeTracker.Driver.TobiiPro.csproj">
+      <Project>{8f033199-b1ba-4f3d-b390-fe211c138de8}</Project>
+      <Name>UXC.Devices.EyeTracker.Driver.TobiiPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\devices\UXC.Devices.EyeTracker.Module\UXC.Devices.EyeTracker.Module.csproj">
+      <Project>{5b65555c-1483-47ba-b10e-5f017025a1bc}</Project>
+      <Name>UXC.Devices.EyeTracker.Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\devices\UXC.Devices.EyeTracker.Calibration.UI.Module\UXC.Devices.EyeTracker.Calibration.UI.Module.csproj">
+      <Project>{B991D77A-5E9F-474F-93A6-4F12F4F03D52}</Project>
+      <Name>UXC.Devices.EyeTracker.Calibration.UI.Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\devices\UXC.Devices.EyeTracker.Calibration.UI\UXC.Devices.EyeTracker.Calibration.UI.csproj">
+      <Project>{4AEDA336-EC7F-47BA-9376-C820D2284CC9}</Project>
+      <Name>UXC.Devices.EyeTracker.Calibration.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\UXC.Core.Interfaces\UXC.Core.Interfaces.csproj">
+      <Project>{7b1faa72-4344-4473-865d-c130fa51c6b1}</Project>
+      <Name>UXC.Core.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\UXC.Core.Plugins\UXC.Core.Plugins.csproj">
+      <Project>{E0BFF42C-D68C-4BFE-A3DF-D7B9CD301C11}</Project>
+      <Name>UXC.Core.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\UXC.Core.UI\UXC.Core.UI.csproj">
+      <Project>{DA1BE9D9-A997-4387-BE22-46DAB2A0996A}</Project>
+      <Name>UXC.Core.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\UXC.Core\UXC.Core.csproj">
+      <Project>{f06e551b-665a-46e3-a785-8485fa67ff2b}</Project>
+      <Name>UXC.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\devices\UXC.Devices.KeyboardMouse.Module\UXC.Devices.KeyboardMouse.Module.csproj">
+      <Project>{6f5e9c1f-b3da-432e-886f-8698067a9c17}</Project>
+      <Name>UXC.Devices.KeyboardMouse.Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\devices\UXC.Devices.KeyboardMouse\UXC.Devices.KeyboardMouse.csproj">
+      <Project>{4af3d4dc-f023-487e-beed-ca86994fd42b}</Project>
+      <Name>UXC.Devices.KeyboardMouse</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\devices\UXC.Devices.Streamers.Module\UXC.Devices.Streamers.Module.csproj">
+      <Project>{1e5736f9-1c75-43b7-ab9b-618ebc524851}</Project>
+      <Name>UXC.Devices.Streamers.Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\devices\UXC.Devices.Streamers\UXC.Devices.Streamers.csproj">
+      <Project>{e3fb4b97-0774-41e7-a570-87f5807ff1c1}</Project>
+      <Name>UXC.Devices.Streamers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\core\UXC.Core.Design\UXC.Core.Design.csproj">
+      <Project>{d54b9632-5137-4290-b610-8ca6ec4f90be}</Project>
+      <Name>UXC.Core.Design</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\plugins\UXC.Plugins.DefaultAPI\UXC.Plugins.DefaultAPI.csproj">
+      <Project>{dc737138-099c-41c5-928b-5c8bc729d84e}</Project>
+      <Name>UXC.Plugins.DefaultAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\plugins\UXC.Plugins.GazeAccess\UXC.Plugins.GazeAccess.csproj">
+      <Project>{2588BA97-7FAF-45CE-881B-D8D81DE2EED8}</Project>
+      <Name>UXC.Plugins.GazeAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\plugins\UXC.Plugins.Sessions.EyeTracker\UXC.Plugins.Sessions.EyeTracker.csproj">
+      <Project>{5c66f0ee-de8d-4f2f-a480-071c49ecbb6b}</Project>
+      <Name>UXC.Plugins.Sessions.EyeTracker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\plugins\UXC.Plugins.Sessions.Fixations\UXC.Plugins.Sessions.Fixations.csproj">
+      <Project>{d2623d29-00cd-4769-84ee-b4a3234382ca}</Project>
+      <Name>UXC.Plugins.Sessions.Fixations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\plugins\UXC.Plugins.SessionsAPI\UXC.Plugins.SessionsAPI.csproj">
+      <Project>{1825a02b-7171-4a6a-a41a-c33a2bc1a56b}</Project>
+      <Name>UXC.Plugins.SessionsAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\plugins\UXC.Plugins.UXR\UXC.Plugins.UXR.csproj">
+      <Project>{15455202-7e7b-444e-b23f-5350847fbbea}</Project>
+      <Name>UXC.Plugins.UXR</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Green.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Grey.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Orange.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Red.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\Extensions\" />
+    <Folder Include="Images\" />
+    <Folder Include="Server\Controllers\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
