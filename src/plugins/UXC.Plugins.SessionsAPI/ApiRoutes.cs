@@ -56,6 +56,10 @@ namespace UXC.Plugins.SessionsAPI
             // POST api/session/recording/continue
             public const string ACTION_CONTINUE = "continue";
 
+
+            // POST api/session/recording/continue/step
+            public const string ACTION_CONTINUE_STEP = "continue/step";
+
             // POST api/session/recording/open/
             public const string ACTION_OPEN_EXISTING = "open/" + Definition.PARAM_DEFINITION_ID;
 

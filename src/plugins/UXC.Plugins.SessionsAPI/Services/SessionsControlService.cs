@@ -10,6 +10,7 @@ using UXC.Plugins.SessionsAPI.Entities;
 using UXC.Plugins.SessionsAPI.Recording;
 using UXC.Sessions;
 using UXC.Sessions.Recording.Local;
+using UXC.Sessions.Timeline;
 using UXI.Common.Extensions;
 
 namespace UXC.Plugins.SessionsAPI.Services
@@ -52,6 +53,19 @@ namespace UXC.Plugins.SessionsAPI.Services
 
             return false;
         }
+
+
+        public bool Continue(SessionStep step)
+        {
+            var recording = _control.CurrentRecording;
+            if (recording != null)
+            {
+                return recording.Continue(step);
+            }
+
+            return false;
+        }
+
 
         //public bool Start()
         //{
