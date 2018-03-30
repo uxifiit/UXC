@@ -168,9 +168,14 @@ namespace UXC.Sessions
         public IEnumerable<string> SelectedRecorders => RecorderConfigurations.Keys;
 
 
+        private static bool IsStepValid(SessionStep step)
+        {
+            return step != null && step.Action != null && step.Completion != null;
+        }
+
         private static IEnumerable<SessionStep> ValidateSteps(IEnumerable<SessionStep> steps)
         {
-            return steps?.Where(s => s != null && s.Action != null && s.Completion != null)
+            return steps?.Where(s => IsStepValid(s))
                 ?? Enumerable.Empty<SessionStep>();
         }
 
@@ -257,6 +262,19 @@ namespace UXC.Sessions
             {
                 _stateMachine.Fire(SessionAction.Complete);
                 return true;
+            }
+
+            return false;
+        }
+
+        public bool Continue(SessionStep step)
+        {
+            if (IsStepValid(step))
+            {
+                _currentSteps = _currentSteps ?? new Queue<SessionStep>();
+                _currentSteps.Enqueue(step);
+
+                return Continue();
             }
 
             return false;
