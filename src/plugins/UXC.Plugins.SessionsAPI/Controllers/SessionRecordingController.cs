@@ -53,26 +53,6 @@ namespace UXC.Plugins.SessionsAPI.Controllers
 
 
         [HttpPost]
-        [Route(ApiRoutes.Recording.ACTION_CONTINUE)]
-        public IHttpActionResult Continue()
-        {
-            _service.Continue();
-            return Ok();
-        }
-
-
-
-        [HttpPost]
-        [Route(ApiRoutes.Recording.ACTION_CONTINUE_STEP)]
-        public IHttpActionResult ContinueStep([FromBody] SessionStep step)
-        {
-            _service.Continue(step);
-            return Ok();
-        }
-
-
-
-        [HttpPost]
         [Route(ApiRoutes.Recording.ACTION_OPEN_EXISTING)]
         [ResponseType(typeof(SessionRecordingInfo))]
         public IHttpActionResult OpenExistingSession(int definitionId)

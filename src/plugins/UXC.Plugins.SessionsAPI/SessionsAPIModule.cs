@@ -96,7 +96,7 @@ namespace UXC.Plugins.SessionsAPI
                                             .InSingletonScope();
 
             Bind<SessionsControlService>().ToSelf()
-                                           .WhenInjectedExactlyInto(typeof(SessionRecordingController), typeof(SessionRecordingHub))
+                                           .WhenInjectedExactlyInto(typeof(SessionRecordingController), typeof(SessionRecordingTimelineController), typeof(SessionRecordingHub))
                                            .InSingletonScope();
 
             Bind<SessionRecordingResultsService>().ToSelf()
@@ -111,6 +111,7 @@ namespace UXC.Plugins.SessionsAPI
 
             Bind<SessionDefinitionController>().ToSelf();
             Bind<SessionRecordingController>().ToSelf();
+            Bind<SessionRecordingTimelineController>().ToSelf();
             Bind<SessionRecordingDataController>().ToSelf();
             Bind<SessionRecordingSettingsController>().ToSelf();
 
