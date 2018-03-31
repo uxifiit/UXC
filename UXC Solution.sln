@@ -90,6 +90,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Plugins.Sessions.EyeTra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Devices.EyeTracker.Calibration", "src\devices\UXC.Devices.EyeTracker.Calibration\UXC.Devices.EyeTracker.Calibration.csproj", "{1CADE10A-B109-450D-B231-7F8995F1CDBB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C6518294-AA0E-477D-B296-ACF55C24AC18}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		ClickOnce|Any CPU = ClickOnce|Any CPU

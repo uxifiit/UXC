@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
 using UXC.Plugins.SessionsAPI.Entities;
 using UXC.Plugins.SessionsAPI.Services;
+using UXC.Sessions.Timeline;
 
 namespace UXC.Plugins.SessionsAPI.Hubs
 {
@@ -37,6 +38,11 @@ namespace UXC.Plugins.SessionsAPI.Hubs
         //}
 
         public bool Continue()
+        {
+            return _service.Continue();
+        }
+
+        public bool ContinueStep(SessionStep step)
         {
             return _service.Continue();
         }

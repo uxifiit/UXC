@@ -10,6 +10,7 @@ using UXC.Core.Devices;
 using UXC.Plugins.SessionsAPI.Entities;
 using UXC.Plugins.SessionsAPI.Services;
 using UXC.Sessions;
+using UXC.Sessions.Timeline;
 
 namespace UXC.Plugins.SessionsAPI.Controllers
 {
@@ -60,6 +61,17 @@ namespace UXC.Plugins.SessionsAPI.Controllers
         }
 
 
+
+        [HttpPost]
+        [Route(ApiRoutes.Recording.ACTION_CONTINUE_STEP)]
+        public IHttpActionResult ContinueStep([FromBody] SessionStep step)
+        {
+            _service.Continue(step);
+            return Ok();
+        }
+
+
+
         [HttpPost]
         [Route(ApiRoutes.Recording.ACTION_OPEN_EXISTING)]
         [ResponseType(typeof(SessionRecordingInfo))]
@@ -69,7 +81,7 @@ namespace UXC.Plugins.SessionsAPI.Controllers
             {
                 _service.Open(definitionId);
 
-                return Ok(_service.GetCurrentRecording()); // TODO this will take too long to respond
+                return Ok(_service.GetCurrentRecording()); 
             }
             catch (ArgumentException)
             {
