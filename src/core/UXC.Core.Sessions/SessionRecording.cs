@@ -271,8 +271,7 @@ namespace UXC.Sessions
         {
             if (IsStepValid(step))
             {
-                _currentSteps = _currentSteps ?? new Queue<SessionStep>();
-                _currentSteps.Enqueue(step);
+                CurrentStep = new SessionStepExecution(step, DateTime.Now);
 
                 return Continue();
             }
