@@ -53,12 +53,6 @@ namespace UXC.Plugins.SessionsAPI
             // GET api/session/recording/id
             public const string ACTION_ID = "id";
 
-            // POST api/session/recording/continue
-            public const string ACTION_CONTINUE = "continue";
-
-
-            // POST api/session/recording/continue/step
-            public const string ACTION_CONTINUE_STEP = "continue/step";
 
             // POST api/session/recording/open/
             public const string ACTION_OPEN_EXISTING = "open/" + Definition.PARAM_DEFINITION_ID;
@@ -72,6 +66,17 @@ namespace UXC.Plugins.SessionsAPI
             //// GET api/session/recording/list/
             //public const string ACTION_LIST = "list";
 
+
+            public static class Timeline
+            {
+                public const string PREFIX = Recording.PREFIX + "/timeline";
+
+                // POST api/session/recording/timeline/continue
+                public const string ACTION_CONTINUE = "continue";
+                
+                // POST api/session/recording/timeline/step
+                public const string ACTION_STEP = "step";
+            }
 
             public static class Settings
             {
