@@ -23,7 +23,10 @@ namespace UXC.Plugins.DefaultAPI.Services
 
         public List<DeviceStatusInfo> GetList()
         {
-            return _devices.Devices.Select(d => _mapper.Map<DeviceStatusInfo>(d)).ToList();
+            return _devices.Devices
+                           .OrderBy(d => d.DeviceType.Code)
+                           .Select(d => _mapper.Map<DeviceStatusInfo>(d))
+                           .ToList();
         }
 
 
