@@ -95,6 +95,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{65743359-6FF2-4A18-A6D0-83BF311DC6DE}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\UXC.Core.Data.nuspec = .nuget\UXC.Core.Data.nuspec
+		.nuget\UXC.Core.Data.Serialization.Json.nuspec = .nuget\UXC.Core.Data.Serialization.Json.nuspec
+		.nuget\UXC.Core.Data.Serialization.nuspec = .nuget\UXC.Core.Data.Serialization.nuspec
+		.nuget\UXC.Core.Interfaces.nuspec = .nuget\UXC.Core.Interfaces.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		ClickOnce|Any CPU = ClickOnce|Any CPU
