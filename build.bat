@@ -22,6 +22,7 @@ mkdir Build
 for %%p in (
     UXC.Core.Interfaces
     UXC.Core.Data
+    UXC.Core.Data.Serialization
     UXC.Core.Data.Serialization.Json
 ) do (
  	call "%nuget%" pack ".nuget\%%p.nuspec" -symbols -o Build -p Configuration=%config% 
