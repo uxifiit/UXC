@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>UXC.Core.Data</id>
+    <version>1.0.0</version>
+    <title>UXC.Core.Data</title>
+    <authors>UXI Dev</authors>
+    <owners>UXI FIIT STUBA</owners>
+    <projectUrl>https://github.com/uxifiit/UXC</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Recording data classes of UXC.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright &#x00A9; 2018 UXI FIIT STUBA</copyright>
+    <tags>Gaze Mouse Keyboard</tags>
+    <dependencies>
+      <dependency id="UXC.Core.Interfaces" version="1.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\src\core\UXC.Core.Data\bin\Release\UXC.Core.Data.dll" target="lib\net452" />
+  </files>
+</package>
