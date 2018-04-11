@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>UXC.Core.Interfaces</id>
+    <version>1.0.0</version>
+    <title>UXC.Core.Interfaces</title>
+    <authors>UXI Dev</authors>
+    <owners>UXI FIIT STUBA</owners>
+    <projectUrl>https://github.com/uxifiit/UXC</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Main interfaces of the UXC client app.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright &#x00A9; 2018 UXI FIIT STUBA</copyright>
+    <tags>Devices Managers Observers Configuration ViewModels</tags>
+    <dependencies>
+      <dependency id="UXI.Common" version="2.3.0" />
+      <dependency id="UXI.Configuration" version="2.1.3" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\src\core\UXC.Core.Interfaces\bin\Release\UXC.Core.Interfaces.dll" target="lib\net452" />
+  </files>
+</package>

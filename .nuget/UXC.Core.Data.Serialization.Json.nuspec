@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>UXC.Core.Data.Serialization.Json</id>
+    <version>1.0.0</version>
+    <title>UXC.Core.Data.Serialization.Json</title>
+    <authors>UXI Dev</authors>
+    <owners>UXI FIIT STUBA</owners>
+    <projectUrl>https://github.com/uxifiit/UXI.Libs</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>JSON serialization of UXC.Core.Data classes.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright &#x00A9; 2018 UXI FIIT STUBA</copyright>
+    <tags>UXC Data DataReader DataWriter</tags>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="9.0.1" />
+      <dependency id="UXI.Common" version="2.3.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\src\core\UXC.Core.Data.Serialization.Json\bin\Release\UXC.Core.Data.Serialization.Json.dll" target="lib\net452" />
+  </files>
+</package>
