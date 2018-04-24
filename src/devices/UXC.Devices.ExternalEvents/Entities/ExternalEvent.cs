@@ -20,7 +20,7 @@ namespace UXC.Devices.ExternalEvents.Entities
         [DataMember(Name = "Data")]
         public JRaw Data { get; set; }
 
-        [DataMember(Name = "TimeStamp", IsRequired = false)]
+        [DataMember(Name = "Timestamp", IsRequired = false)]
         public long? Timestamp { get; set; }
 
         [DataMember(Name = "ValidTill", IsRequired = false)]
