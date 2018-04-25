@@ -60,12 +60,9 @@ namespace UXC.Plugins.UXR.Models
         {
             get
             {
-                if (String.IsNullOrWhiteSpace(nodeName))
-                {
-                    return _configuration.NodeName ?? String.Empty;
-                }
-
-                return nodeName;
+                return String.IsNullOrWhiteSpace(nodeName)
+                     ? Environment.MachineName
+                     : nodeName;
             }
             set
             {
