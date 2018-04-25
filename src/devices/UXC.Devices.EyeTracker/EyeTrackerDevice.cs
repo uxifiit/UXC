@@ -157,7 +157,7 @@ namespace UXC.Devices.EyeTracker
             {
                 Log?.Invoke(this, new Core.LogMessage(Core.LogLevel.Info, LogTags.Info, $"Device name: {tracker.Name}"));
                 Log?.Invoke(this, new Core.LogMessage(Core.LogLevel.Info, LogTags.Info, $"ProductId: {tracker.ProductId}"));
-                Log?.Invoke(this, new Core.LogMessage(Core.LogLevel.Info, LogTags.Info, $"Manufacturer: {tracker.FamilyName}"));
+                Log?.Invoke(this, new Core.LogMessage(Core.LogLevel.Info, LogTags.Info, $"Family: {tracker.FamilyName}"));
                 Log?.Invoke(this, new Core.LogMessage(Core.LogLevel.Info, LogTags.Info, "TrackBox", tracker.TrackBox));
                 Log?.Invoke(this, new Core.LogMessage(Core.LogLevel.Info, LogTags.Info, "DisplayArea", tracker.DisplayArea));
             }
