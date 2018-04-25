@@ -110,6 +110,11 @@ namespace UXC.Sessions.ViewModels
 
         private void SessionRecording_StateChanged(object sender, SessionState state)
         {
+            if (state == SessionState.Preparing)
+            {
+                _views.MainWindow?.Hide();
+            }
+
             OnPropertyChanged(nameof(HasActiveSession));
         }
 
@@ -122,15 +127,7 @@ namespace UXC.Sessions.ViewModels
             {
                 if (isTimelineActive)
                 {
-                    if (hostWindow.IsClosed)
-                    {
-                        hostWindow.Show();
-                    }
-                    else
-                    {
-                        hostWindow.MakeVisible();
-                        hostWindow.Activate();
-                    }
+                    ShowSession(hostWindow);
 
                     hostWindow.Navigation?.NavigateToObject(CurrentRecording);
                 }
@@ -212,12 +209,24 @@ namespace UXC.Sessions.ViewModels
 
         private RelayCommand showSessionCommand = null; // opens session window from the app main window
         public RelayCommand ShowSessionCommand => showSessionCommand
-            ?? (showSessionCommand = new RelayCommand(ShowSession, () => CurrentRecording != null && CurrentRecording.IsTimelineActive == true));
+            ?? (showSessionCommand = new RelayCommand(() => ShowSession(_sessionHostWindow), () => CurrentRecording != null && CurrentRecording.IsTimelineActive == true));
 
-        private void ShowSession()
+        private void ShowSession(IView hostWindow)
         {
-            _sessionHostWindow?.Activate();
-            _views.MainWindow?.Hide();
+            if (hostWindow != null)
+            {
+                _views.MainWindow?.Hide();
+
+                if (hostWindow.IsClosed)
+                {
+                    hostWindow.Show();
+                }
+                else
+                {
+                    hostWindow.MakeVisible();
+                }
+                hostWindow.Activate();
+            }
         }
     }
 }

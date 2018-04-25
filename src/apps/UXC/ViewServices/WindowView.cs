@@ -56,7 +56,10 @@ namespace UXC.ViewServices
 
         public void Activate()
         {
-            _window.Activate();            
+            _window.Activate();
+            _window.Topmost = true;
+            _window.Topmost = false;
+            _window.Focus();
         }
 
 
@@ -76,7 +79,10 @@ namespace UXC.ViewServices
 
         public void Show()
         {
+            _window.Topmost = true;
             _window.Show();
+            _window.Topmost = false;
+
             IsClosed = false;
         }
 
