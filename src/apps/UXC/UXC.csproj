@@ -269,6 +269,7 @@
     <Compile Include="Common\Converters\ControlServiceStateToBrushConverter.cs" />
     <Compile Include="Common\Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Common\Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="Server\ProtectedData.cs" />
     <Compile Include="Sessions\LocalSessionDefinitions.cs" />
     <Compile Include="ViewModels\Settings\AppSettingsSectionViewModel.cs" />
     <Compile Include="ViewModels\Settings\ServerSettingsSectionViewModel.cs" />
