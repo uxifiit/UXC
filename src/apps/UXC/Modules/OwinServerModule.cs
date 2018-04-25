@@ -25,6 +25,8 @@ namespace UXC.Modules
 
         public override void Load()
         {
+            Bind<Microsoft.AspNet.SignalR.Infrastructure.IProtectedData>().To<Server.ProtectedData>();
+
             if (Kernel.GetBindings(typeof(IServerConfiguration)).Any() == false)
             {
                 Bind<IServerConfiguration>().To<ServerConfiguration>().InSingletonScope();
