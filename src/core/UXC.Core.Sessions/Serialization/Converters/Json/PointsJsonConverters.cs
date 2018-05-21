@@ -6,20 +6,33 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using UXC.Core.Data;
+using UXC.Sessions.Common;
 
-namespace UXC.Core.Data.Serialization.Converters.Json
+namespace UXC.Sessions.Serialization.Converters.Json
 {
-    public static class PointsJsonConverters
+    public class PointsJsonConverters : IEnumerable<JsonConverter>
     {
-        public static readonly IEnumerable<JsonConverter> Converters = new JsonConverterCollection()
+        public static IEnumerable<JsonConverter> Converters { get; } = new JsonConverterCollection()
         {
             new Point2Converter(),
             new Point3Converter(),
         };
+
+
+        public IEnumerator<JsonConverter> GetEnumerator()
+        {
+            return Converters.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 
 
-    class Point2Converter : JsonConverter<Point2>
+    public class Point2Converter : JsonConverter<Point2>
     {
         protected override Point2 Convert(JToken token, JsonSerializer serializer)
         {
@@ -45,7 +58,7 @@ namespace UXC.Core.Data.Serialization.Converters.Json
     }
 
 
-    class Point3Converter : JsonConverter<Point3>
+    public class Point3Converter : JsonConverter<Point3>
     {
         protected override Point3 Convert(JToken token, JsonSerializer serializer)
         {

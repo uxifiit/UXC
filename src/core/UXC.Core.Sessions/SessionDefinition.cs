@@ -55,7 +55,6 @@ namespace UXC.Sessions
         /// </summary>
         public bool StrictStart { get; set; } = true;
 
-        //public bool CanChangeDevices { get; set; } = true;
 
         private List<SessionDeviceDefinition> devices;
         public List<SessionDeviceDefinition> Devices
@@ -67,6 +66,8 @@ namespace UXC.Sessions
             }
         }
 
+
+        [Newtonsoft.Json.JsonIgnore]
         public IEnumerable<DeviceType> SelectedDeviceTypes => Devices?.Select(d => d.Device) ?? Enumerable.Empty<DeviceType>();
 
         public WelcomeActionSettings Welcome { get; set; } = new WelcomeActionSettings();
@@ -79,7 +80,6 @@ namespace UXC.Sessions
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        // after session steps - process data, show some visualization        
 
         public SessionDefinition Clone()
         {

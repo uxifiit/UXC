@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace UXC.Core.Data.Serialization.Converters.Json
+namespace UXC.Sessions.Common
 {
     sealed class RelayJsonConverter<T> : JsonConverter<T>
     {

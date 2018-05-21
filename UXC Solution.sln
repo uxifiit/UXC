@@ -72,8 +72,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC", "src\apps\UXC\UXC.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Plugins.DefaultAPI", "src\plugins\UXC.Plugins.DefaultAPI\UXC.Plugins.DefaultAPI.csproj", "{DC737138-099C-41C5-928B-5C8BC729D84E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Core.Data.Serialization.Json", "src\core\UXC.Core.Data.Serialization.Json\UXC.Core.Data.Serialization.Json.csproj", "{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Plugins.SessionsAPI.Test", "test\UXC.Plugins.SessionsAPI.Test\UXC.Plugins.SessionsAPI.Test.csproj", "{09FB5FDB-1521-4979-928F-03F1B785B641}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Plugins.Sessions.Fixations", "src\plugins\UXC.Plugins.Sessions.Fixations\UXC.Plugins.Sessions.Fixations.csproj", "{D2623D29-00CD-4769-84EE-B4A3234382CA}"
@@ -865,30 +863,6 @@ Global
 		{DC737138-099C-41C5-928B-5C8BC729D84E}.Release|x64.Build.0 = Release|Any CPU
 		{DC737138-099C-41C5-928B-5C8BC729D84E}.Release|x86.ActiveCfg = Release|Any CPU
 		{DC737138-099C-41C5-928B-5C8BC729D84E}.Release|x86.Build.0 = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.ClickOnce|Any CPU.ActiveCfg = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.ClickOnce|Any CPU.Build.0 = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.ClickOnce|ARM.ActiveCfg = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.ClickOnce|ARM.Build.0 = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.ClickOnce|x64.ActiveCfg = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.ClickOnce|x64.Build.0 = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.ClickOnce|x86.ActiveCfg = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.ClickOnce|x86.Build.0 = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Debug|ARM.Build.0 = Debug|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Debug|x64.Build.0 = Debug|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Debug|x86.Build.0 = Debug|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Release|ARM.ActiveCfg = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Release|ARM.Build.0 = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Release|x64.ActiveCfg = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Release|x64.Build.0 = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Release|x86.ActiveCfg = Release|Any CPU
-		{35BE099A-B2BD-4CB0-8251-C1DB933C77A6}.Release|x86.Build.0 = Release|Any CPU
 		{09FB5FDB-1521-4979-928F-03F1B785B641}.ClickOnce|Any CPU.ActiveCfg = Release|Any CPU
 		{09FB5FDB-1521-4979-928F-03F1B785B641}.ClickOnce|Any CPU.Build.0 = Release|Any CPU
 		{09FB5FDB-1521-4979-928F-03F1B785B641}.ClickOnce|ARM.ActiveCfg = Release|Any CPU

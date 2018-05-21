@@ -25,6 +25,9 @@ namespace UXC.Sessions.ViewModels.Timeline
             : base(settings, resolver)
         {
             _settings = settings;
+            Description = _settings.Description?.Lines != null && _settings.Description.Lines.Any()
+                        ? String.Join(Environment.NewLine, _settings.Description.Lines)
+                        : String.Empty;
         }
 
 
@@ -36,7 +39,7 @@ namespace UXC.Sessions.ViewModels.Timeline
         public Visibility DescriptionVisibility => _settings.HideDescription ? Visibility.Collapsed : Visibility.Visible;
 
 
-        public string Description => _settings.Description;
+        public string Description { get; }
 
 
         public Visibility DevicesListVisibility => _settings.HideDevices ? Visibility.Collapsed : Visibility.Visible;

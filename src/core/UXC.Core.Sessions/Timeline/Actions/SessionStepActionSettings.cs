@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using UXC.Core.Data;
+using UXC.Sessions.Serialization.Converters.Json;
 using UXI.Common.Extensions;
 
 namespace UXC.Sessions.Timeline.Actions
@@ -30,7 +33,7 @@ namespace UXC.Sessions.Timeline.Actions
 
             Types.TryAdd(name.ToLower(), type);
         }
-
+ 
 
         public static bool TryResolve(string name, out Type type)
         {
@@ -57,11 +60,11 @@ namespace UXC.Sessions.Timeline.Actions
 
 
 
-
     public class ShowDesktopActionSettings : SessionStepActionSettings
     {
         public bool MinimizeAll { get; set; }
     }
+
 
 
     public class LaunchProgramActionSettings : SessionStepActionSettings
@@ -76,6 +79,7 @@ namespace UXC.Sessions.Timeline.Actions
 
         public bool RunInBackground { get; set; }
     }
+
 
 
     public class QuestionaryActionSettings : ContentActionSettinsBase
@@ -95,6 +99,7 @@ namespace UXC.Sessions.Timeline.Actions
     }
 
 
+
     public abstract class QuestionActionSettings : SessionStepActionSettings
     {
         public string Id { get; set; }
@@ -110,6 +115,7 @@ namespace UXC.Sessions.Timeline.Actions
             return (QuestionActionSettings)this.MemberwiseClone();
         }
     }
+
 
 
     public class ChooseQuestionAnswerActionSettings : QuestionActionSettings
@@ -129,18 +135,45 @@ namespace UXC.Sessions.Timeline.Actions
     }
 
 
+
     public class WriteQuestionAnswerActionSettings : QuestionActionSettings
     {
         public string ValidAnswerRegexPattern { get; set; }
     }
 
 
+
     public class InstructionsActionSettings : ContentActionSettinsBase
     {
-        public string Instructions { get; set; }
+        public Text Instructions { get; set; }
 
         public bool ShowContinue { get; set; }
     }
+
+
+
+    public class Text : IEnumerable<string>
+    {
+        public List<string> Lines { get; set; }
+
+        public IEnumerator<string> GetEnumerator()
+        {
+            return Lines.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public override string ToString()
+        {
+            return Lines != null && Lines.Any()
+                 ? String.Join(Environment.NewLine, Lines)
+                 : String.Empty;
+        }
+    }
+
 
 
     public class WelcomeActionSettings : QuestionaryActionSettings
@@ -151,12 +184,13 @@ namespace UXC.Sessions.Timeline.Actions
 
         public bool HideDescription { get; set; }
 
-        public string Description { get; set; }
+        public Text Description { get; set; }
 
         public bool HideDevices { get; set; }
     }
 
-    
+   
+     
     public abstract class ContentActionSettinsBase : SessionStepActionSettings
     {
         public string Background { get; set; }

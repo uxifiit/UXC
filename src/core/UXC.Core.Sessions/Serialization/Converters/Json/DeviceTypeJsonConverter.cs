@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UXC.Core.Devices;
 
-namespace UXC.Sessions.Serialization
+namespace UXC.Sessions.Serialization.Converters.Json
 {
-    class DeviceTypeJsonConverter : JsonConverter
+    public class DeviceTypeJsonConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
         {

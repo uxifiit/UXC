@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -92,13 +92,23 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\InheritedObjectJsonConverter`1.cs" />
+    <Compile Include="Common\JsonConverter`1.cs" />
+    <Compile Include="Common\RelayJsonConverter`1.cs" />
     <Compile Include="ILocalSessionDefinitionsService.cs" />
     <Compile Include="LocalSessionDefinitionsService.cs" />
     <Compile Include="Recording\Local\Configuration\LocalSessionRecorderConfiguration.cs" />
-    <Compile Include="Serialization\DeviceTypeJsonConverter.cs" />
-    <Compile Include="Serialization\SessionDefintionJsonConverters.cs" />
-    <Compile Include="Serialization\SessionStepActionSettingsJsonConverter.cs" />
-    <Compile Include="Serialization\WelcomeStepActionSettingsJsonConverter.cs" />
+    <Compile Include="Serialization\Converters\Json\DataJsonConverters.cs" />
+    <Compile Include="Serialization\Converters\Json\SingleOrArrayConverter`1.cs" />
+    <Compile Include="Serialization\Converters\Json\TextJsonConverter.cs" />
+    <Compile Include="Serialization\Data\JsonDataReader.cs" />
+    <Compile Include="Serialization\Data\JsonDataWriter.cs" />
+    <Compile Include="Serialization\Data\JsonSerializationFactory.cs" />
+    <Compile Include="Serialization\Converters\Json\DeviceTypeJsonConverter.cs" />
+    <Compile Include="Serialization\Converters\Json\PointsJsonConverters.cs" />
+    <Compile Include="Serialization\Converters\Json\SessionDefintionJsonConverters.cs" />
+    <Compile Include="Serialization\Converters\Json\SessionStepActionSettingsJsonConverter.cs" />
+    <Compile Include="Serialization\Converters\Json\WelcomeStepActionSettingsJsonConverter.cs" />
     <Compile Include="SessionDeviceDefinition.cs" />
     <Compile Include="SessionRecordingSettings.cs" />
     <Compile Include="Timeline\Actions\SessionStepActionSettings.cs" />
@@ -136,10 +146,6 @@
     <Compile Include="Timeline\SessionStepExecution.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UXC.Core.Data.Serialization.Json\UXC.Core.Data.Serialization.Json.csproj">
-      <Project>{35be099a-b2bd-4cb0-8251-c1db933c77a6}</Project>
-      <Name>UXC.Core.Data.Serialization.Json</Name>
-    </ProjectReference>
     <ProjectReference Include="..\UXC.Core.Data.Serialization\UXC.Core.Data.Serialization.csproj">
       <Project>{7c6c4c53-0543-4f60-b95a-34f0452a1e26}</Project>
       <Name>UXC.Core.Data.Serialization</Name>
@@ -157,6 +163,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

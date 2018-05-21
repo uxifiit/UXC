@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UXC.Core.Data.Serialization.Json.Converters;
+using UXC.Sessions.Common;
 using UXC.Sessions.Timeline.Actions;
 
-namespace UXC.Sessions.Serialization
+namespace UXC.Sessions.Serialization.Converters.Json
 {
-    class SessionStepActionSettingsJsonConverter : InheritedObjectJsonConverter<SessionStepActionSettings>
+    public class SessionStepActionSettingsJsonConverter : InheritedObjectJsonConverter<SessionStepActionSettings>
     {
         protected override Type ResolveType(JObject jObject)
         {

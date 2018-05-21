@@ -67,28 +67,6 @@ namespace UXC.Plugins.SessionsAPI.Services
         }
 
 
-        //public bool Start()
-        //{
-        //    if (_control.CurrentRecording != null && _control.CurrentRecording.CanStart())
-        //    {
-        //        _control.CurrentRecording.Start();
-        //        return true;
-        //    }
-        //    return false;
-        //}
-
-
-        //public bool Stop()
-        //{
-        //    if (_control.CurrentRecording != null && _control.CurrentRecording.CanCancel())
-        //    {
-        //        _control.CurrentRecording.Cancel();
-        //        return true;
-        //    }
-        //    return false;
-        //}
-
-
         public void Open(int definitionId)
         {
             SessionDefinition definition;
@@ -107,6 +85,11 @@ namespace UXC.Plugins.SessionsAPI.Services
             session.ThrowIfNull(nameof(session));
 
             var definition = _mapper.Map<SessionDefinition>(session);
+
+            if (definition.Recorders.Any(r => r.Name.Equals("Local", StringComparison.CurrentCultureIgnoreCase)) == false)
+            {
+                definition.Recorders.Add(new SessionRecorderDefinition("Local"));
+            }
 
             if (session.Save)
             {

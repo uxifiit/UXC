@@ -8,24 +8,51 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using UXC.Core.Data;
-using UXC.Core.Data.Serialization.Extensions;
+using UXC.Sessions.Common;
 
-namespace UXC.Core.Data.Serialization.Converters.Json
+namespace UXC.Sessions.Serialization.Converters.Json
 {
-    public static class DataJsonConverters 
+    public class DataJsonConverters : IEnumerable<JsonConverter>
     {
-        public static readonly IEnumerable<JsonConverter> Converters = new List<JsonConverter>(PointsJsonConverters.Converters)
+        public static IEnumerable<JsonConverter> Converters { get; } = new List<JsonConverter>(PointsJsonConverters.Converters)
         {
             new StringEnumConverter(camelCaseText: false),
-            new EyeGazeDataConverter(),
-            new GazeDataConverter(),
-            new ExternalEventDataConverter(),
+            new EyeGazeDataJsonConverter(),
+            new GazeDataJsonConverter(),
+            new ExternalEventDataConverter()
         };
+
+
+        public IEnumerator<JsonConverter> GetEnumerator()
+        {
+            return Converters.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 
 
+    public class GazeDataJsonConverter : JsonConverter<GazeData>
+    {
+        protected override GazeData Convert(JToken token, JsonSerializer serializer)
+        {
+            var jObject = (JObject)token;
 
-    class EyeGazeDataConverter : JsonConverter<EyeGazeData>
+            var validity = jObject[nameof(GazeData.Validity)].ToObject<GazeDataValidity>(serializer);
+            var trackerTicks = jObject[nameof(GazeData.TrackerTicks)].ToObject<long>(serializer);
+            var leftEye = jObject[nameof(GazeData.LeftEye)].ToObject<EyeGazeData>(serializer);
+            var rightEye = jObject[nameof(GazeData.RightEye)].ToObject<EyeGazeData>(serializer);
+            var timestamp = jObject[nameof(GazeData.Timestamp)].ToObject<DateTime>(serializer);
+
+            return new GazeData(validity, leftEye, rightEye, trackerTicks, timestamp);
+        }
+    }
+
+
+    public class EyeGazeDataJsonConverter : JsonConverter<EyeGazeData>
     {
         protected override EyeGazeData Convert(JToken token, JsonSerializer serializer)
         {
@@ -51,24 +78,7 @@ namespace UXC.Core.Data.Serialization.Converters.Json
     }
 
 
-    class GazeDataConverter : JsonConverter<GazeData>
-    {
-        protected override GazeData Convert(JToken token, JsonSerializer serializer)
-        {
-            var jObject = (JObject)token;
-
-            var validity = jObject[nameof(GazeData.Validity)].ToObject<GazeDataValidity>(serializer);
-            var trackerTicks = jObject[nameof(GazeData.TrackerTicks)].ToObject<long>(serializer);
-            var leftEye = jObject[nameof(GazeData.LeftEye)].ToObject<EyeGazeData>(serializer);
-            var rightEye = jObject[nameof(GazeData.RightEye)].ToObject<EyeGazeData>(serializer);
-            var timestamp = jObject[nameof(GazeData.Timestamp)].ToObject<DateTime>(serializer);
-
-            return new GazeData(validity, leftEye, rightEye, trackerTicks, timestamp);
-        }
-    }
-
-
-    class ExternalEventDataConverter : JsonConverter<ExternalEventData>
+    public class ExternalEventDataConverter : JsonConverter<ExternalEventData>
     {
         protected override ExternalEventData Convert(JToken token, JsonSerializer serializer)
         {

@@ -22,6 +22,9 @@ namespace UXC.Sessions.ViewModels.Timeline
             : base(settings)
         {
             _settings = settings;
+            Instructions = _settings.Instructions.Lines != null && _settings.Instructions.Lines.Any()
+                         ? String.Join(Environment.NewLine, _settings.Instructions.Lines)
+                         : String.Empty;
 
             if (settings.ShowContinue)
             {
@@ -30,7 +33,7 @@ namespace UXC.Sessions.ViewModels.Timeline
         }
 
 
-        public string Instructions => _settings.Instructions;
+        public string Instructions { get; }
 
 
         public Visibility ContinueButtonVisibility => _settings.ShowContinue ? Visibility.Visible : Visibility.Collapsed;

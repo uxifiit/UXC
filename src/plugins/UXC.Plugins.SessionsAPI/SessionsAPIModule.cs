@@ -14,6 +14,7 @@ using UXC.Plugins.SessionsAPI.Recording;
 using UXC.Plugins.SessionsAPI.Services;
 using UXC.Sessions;
 using UXC.Sessions.Recording;
+using UXC.Sessions.Serialization.Converters.Json;
 
 namespace UXC.Plugins.SessionsAPI
 {
@@ -83,7 +84,6 @@ namespace UXC.Plugins.SessionsAPI
 
             Bind<Newtonsoft.Json.JsonConverter>().To<SingleOrArrayConverter<SessionDeviceDefinitionInfo>>();
             Bind<Newtonsoft.Json.JsonConverter>().To<SingleOrArrayConverter<SessionRecorderDefinitionInfo>>();
-            //Bind<Newtonsoft.Json.JsonConverter>().To<SessionDeviceDefinitionInfoJsonConverter>();
 
             Bind<ISessionDefinitionsSource, ExternalSessionDefinitions>().To<ExternalSessionDefinitions>().InSingletonScope();
 

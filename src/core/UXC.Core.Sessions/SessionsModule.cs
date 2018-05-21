@@ -5,11 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Ninject.Modules;
 using UXC.Core.Data.Serialization;
-using UXC.Core.Data.Serialization.Converters.Json;
-//using UXC.Core.Data.Serialization.Csv.ClassMaps;
 using UXC.Sessions.Recording;
 using UXC.Sessions.Recording.Local;
-using UXC.Sessions.Serialization;
+using UXC.Sessions.Serialization.Converters.Json;
 using UXC.Sessions.Timeline.Actions;
 
 namespace UXC.Sessions
@@ -18,16 +16,18 @@ namespace UXC.Sessions
     {
         public override void Load()
         {
-           // BindCsvSerialization();
-
             Bind<ISessionsConfiguration>().To<SessionsConfiguration>().InSingletonScope();
 
             Bind<ISessionRecorderFactory>().To<LocalSessionRecorderFactory>().InTransientScope();
             Bind<SessionRecorderFactoryLocator>().ToSelf().InSingletonScope();
 
             Bind<SessionDefinitionsSource>().ToSelf().InSingletonScope();
-
             Bind<ISessionsControl>().To<SessionsControl>().InSingletonScope();
+
+            foreach (var converter in SessionDefinitionJsonConverters.Converters)
+            {
+                Bind<Newtonsoft.Json.JsonConverter>().ToConstant(converter);
+            }
 
             BindDataJsonSerialization();
             BindLocalSessionDefinitions();
@@ -44,17 +44,11 @@ namespace UXC.Sessions
             SessionStepActionSettings.Register(typeof(ChooseQuestionAnswerActionSettings));
             SessionStepActionSettings.Register(typeof(WriteQuestionAnswerActionSettings));
             SessionStepActionSettings.Register(typeof(InstructionsActionSettings));
-            //SessionStepActionSettings.Register(typeof(WelcomeActionSettings));
         }
 
 
         private void BindLocalSessionDefinitions()
         {
-            foreach (var converter in SessionDefinitionJsonConverters.Converters)
-            {
-                Bind<Newtonsoft.Json.JsonConverter>().ToConstant(converter);
-            }
-
             Bind<ILocalSessionDefinitionsService>().To<LocalSessionDefinitionsService>().InSingletonScope();
         }
 

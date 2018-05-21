@@ -5,12 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UXC.Core.Data.Serialization.Converters.Json;
+using UXC.Sessions.Common;
 using UXC.Sessions.Timeline.Actions;
 
-namespace UXC.Sessions.Serialization
+namespace UXC.Sessions.Serialization.Converters.Json
 {
-    class WelcomeStepActionSettingsJsonConverter : JsonConverter<WelcomeActionSettings>
+    public class WelcomeStepActionSettingsJsonConverter : JsonConverter<WelcomeActionSettings>
     {
         protected override WelcomeActionSettings Convert(JToken token, JsonSerializer serializer)
         {

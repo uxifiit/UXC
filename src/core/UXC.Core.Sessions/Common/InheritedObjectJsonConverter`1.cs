@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace UXC.Core.Data.Serialization.Json.Converters
+namespace UXC.Sessions.Common
 {
     public abstract class InheritedObjectJsonConverter<T> : JsonConverter
     {

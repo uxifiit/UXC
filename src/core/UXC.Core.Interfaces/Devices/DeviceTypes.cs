@@ -111,12 +111,10 @@ namespace UXC.Core.Devices
             code.ThrowIfNull(String.IsNullOrWhiteSpace, nameof(code));
 
             DeviceType deviceType;
-            if (DeviceType.TryResolveExistingType(code, out deviceType) == false)
-            {
-                deviceType = new DeviceType(code);
-            }
 
-            return deviceType;
+            return TryResolveExistingType(code, out deviceType)
+                 ? deviceType
+                 : new DeviceType(code);
         }
 
 

@@ -6,16 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using UXC.Core.Data.Serialization.Converters.Json;
 
-namespace UXC.Sessions.Serialization
+namespace UXC.Sessions.Serialization.Converters.Json
 {
-    class SessionDefinitionJsonConverters : IEnumerable<JsonConverter>
+    public class SessionDefinitionJsonConverters : IEnumerable<JsonConverter>
     {
-        public static readonly IEnumerable<JsonConverter> Converters = new List<JsonConverter>(PointsJsonConverters.Converters)
+        public static IEnumerable<JsonConverter> Converters { get; } = new List<JsonConverter>(PointsJsonConverters.Converters)
         {
             new StringEnumConverter(camelCaseText: false),
             new DeviceTypeJsonConverter(),
+            new TextJsonConverter(),
             new WelcomeStepActionSettingsJsonConverter(),
             new SessionStepActionSettingsJsonConverter()
         };
