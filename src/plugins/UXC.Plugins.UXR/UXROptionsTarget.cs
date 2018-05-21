@@ -23,9 +23,9 @@ namespace UXC.Plugins.UXR
         public void ReceiveOptions(object options)
         {
             var uxrOptions = options as UXROptions;
-            if (uxrOptions != null)
+            if (uxrOptions != null && String.IsNullOrWhiteSpace(uxrOptions.NodeName) == false)
             {
-                _node.NodeName = uxrOptions.NodeName ?? String.Empty;
+                _node.NodeName = uxrOptions.NodeName;
             }                               
         }
     }

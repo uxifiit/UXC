@@ -14,7 +14,8 @@ namespace UXC.Plugins.UXR.Models
 
         internal UXRNodeContext(IUXRConfiguration configuration)
         {
-            _configuration = configuration;     
+            _configuration = configuration;
+            NodeName = configuration.NodeName;  
         }
 
         private bool isConnected = false;

@@ -102,7 +102,7 @@ namespace UXC.Plugins.UXR.Models
 
                 if (definition.Welcome != null && definition.Welcome.Ignore == false)
                 {
-                    definition.Welcome.Description = sessionInfo.Description;
+                    definition.Welcome.Description = new Text() { Lines = sessionInfo.Description?.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList() };
                 }
 
                 if (definition.Recorders.Any(r => r.Name.Equals("Local", StringComparison.CurrentCultureIgnoreCase)) == false)
@@ -140,7 +140,7 @@ namespace UXC.Plugins.UXR.Models
                 return;
             }
 
-            var sessions = await _client.GetCurrentSessionsAsync();
+            IEnumerable<SessionInfo> sessions = await _client.GetCurrentSessionsAsync();
 
             cancellationToken.ThrowIfCancellationRequested();
 
