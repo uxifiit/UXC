@@ -73,8 +73,6 @@ namespace UXC.Devices.EyeTracker.Driver.Simulator
 
         public Point3 EyePosition { get; } = new Point3(0, 50, 634);
         public Point3 RelativeEyePosition { get; } = new Point3(0.427537739276886, 0.35594475269317627, 0.62007302045822144);
-        //public double PupillaryDistance { get; } = 60d;
-        //public double GazePointDistance { get; } = 10d;
 
         public double PupilDilation { get; } = 2.6d;
     }

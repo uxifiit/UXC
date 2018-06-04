@@ -9,12 +9,14 @@ namespace UXC.Devices.EyeTracker.Driver.Simulator
 {
     class GazePointGenerator
     {
-        private readonly SimulatorConfig _config = new SimulatorConfig();
+        private readonly SimulatorConfig _config;
         private readonly Point3 _height;
         private readonly Point3 _width;
 
-        public GazePointGenerator()
+        public GazePointGenerator(SimulatorConfig config)
         {
+            _config = config;
+
             _width = (_config.DisplayArea.TopRight - _config.DisplayArea.TopLeft);
             _height = (_config.DisplayArea.BottomLeft - _config.DisplayArea.TopLeft);
         }

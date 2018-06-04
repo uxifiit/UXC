@@ -26,7 +26,8 @@ namespace UXC.Devices.EyeTracker.Driver.Simulator
         private readonly ScreenParametersProvider _screen;
         private readonly MouseCoordinatesHook _hook;
 
-        private readonly GazePointGenerator _dataGenerator = new GazePointGenerator();
+        private readonly SimulatorConfig _config;
+        private readonly GazePointGenerator _dataGenerator;
 
         private readonly ReplaySubject<IObservable<GazeData>> _gazeSources = new ReplaySubject<IObservable<GazeData>>();
         private IObservable<GazeData> GazeSource => _gazeSources.Switch();
@@ -35,6 +36,12 @@ namespace UXC.Devices.EyeTracker.Driver.Simulator
 
         public SimulatorTracker(ScreenParametersProvider screen, MouseCoordinatesHook hook)
         {
+            _config = new SimulatorConfig();
+            _dataGenerator = new GazePointGenerator(_config);
+
+            trackBox = _config.TrackBox;
+            displayArea = _config.DisplayArea;
+
             _screen = screen;
             _hook = hook;
         }
@@ -232,58 +239,6 @@ namespace UXC.Devices.EyeTracker.Driver.Simulator
                  : null;
         }
 
-
-        //private int i = 0;
-        //private int max = 1000;
-        //private int step = 1;
-
-        /// <summary>
-        /// Maps Gaze Data from the simulator to the <see cref="UXC.Core.Data.GazeData"/> class.
-        /// </summary>
-        /// <param name="gazeDataItem">Gaze Data from the tracker</param>
-        /// <returns>Gaze Data in our format</returns>
-        public GazeData CreateGazeData(Point2 relativeCursorPosition, bool isValidPosition)
-        {
-            Func<double, double> deviateX = x => x;// + (0.5 - _random.NextDouble()) / 10;
-            Func<double, double> deviateY = y => y;// + (0.5 - _random.NextDouble()) / 100;
-
-
-            //i = (i + step) % max;
-            Func<double> randomRelativePosition = () => 0.5; //(double)i / max;
-                                                             // - (_random.NextDouble() / 10);
-
-            var validity = isValidPosition ? GazeDataValidity.Both : GazeDataValidity.None;
-
-            var gaze = new GazeData
-            (
-                validity,
-                new EyeGazeData
-                (
-                    validity.GetLeftEyeValidity(),
-                    new Point2(deviateX(relativeCursorPosition.X), deviateY(relativeCursorPosition.Y)),
-                    new Point3(randomRelativePosition(), randomRelativePosition(), randomRelativePosition()),
-                    new Point3(randomRelativePosition(), randomRelativePosition(), randomRelativePosition()),
-                    new Point3(randomRelativePosition(), randomRelativePosition(), randomRelativePosition()),
-                    randomRelativePosition()
-                ),
-                new EyeGazeData
-                (
-                    validity.GetRightEyeValidity(),
-                    new Point2(deviateX(relativeCursorPosition.X), deviateY(relativeCursorPosition.Y)),
-                    new Point3(randomRelativePosition(), randomRelativePosition(), randomRelativePosition()),
-                    new Point3(randomRelativePosition(), randomRelativePosition(), randomRelativePosition()),
-                    new Point3(randomRelativePosition(), randomRelativePosition(), randomRelativePosition()),
-                    randomRelativePosition()
-                ),
-                DateTime.Now.Ticks,
-                DateTime.Now
-            );
-
-            return gaze;
-        }
-
-
-   
 
 
         #region IDisposable Members
