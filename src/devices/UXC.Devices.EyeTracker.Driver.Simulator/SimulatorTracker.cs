@@ -18,13 +18,15 @@ using System.Reactive.Subjects;
 using UXI.SystemApi.Screen;
 using UXC.Devices.EyeTracker.Driver.Simulator.Extensions;
 
-namespace UXC.Devices.EyeTracker.Simulator
+namespace UXC.Devices.EyeTracker.Driver.Simulator
 {
     class SimulatorTracker : DisposableBase, IEyeTrackerDriver
     {
         private readonly Random _random = new Random();
         private readonly ScreenParametersProvider _screen;
         private readonly MouseCoordinatesHook _hook;
+
+        private readonly GazePointGenerator _dataGenerator = new GazePointGenerator();
 
         private readonly ReplaySubject<IObservable<GazeData>> _gazeSources = new ReplaySubject<IObservable<GazeData>>();
         private IObservable<GazeData> GazeSource => _gazeSources.Switch();
@@ -117,11 +119,11 @@ namespace UXC.Devices.EyeTracker.Simulator
                                                 y: (cursorPosition.Y - screen.Top) / (double)screen.Height
                                             );
 
-                            gaze = CreateGazeData(point, true);
+                            gaze = _dataGenerator.CreateValidData(point);
                         }
                         else
                         {
-                            gaze = CreateGazeData(new Point2(), false);
+                            gaze = _dataGenerator.CreateInvalidData();
                         }
 
                         s.OnNext(gaze);
@@ -279,6 +281,9 @@ namespace UXC.Devices.EyeTracker.Simulator
 
             return gaze;
         }
+
+
+   
 
 
         #region IDisposable Members

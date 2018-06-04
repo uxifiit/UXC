@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using UXI.SystemApi.Screen;
 using UXI.SystemApi.Mouse;
 
-namespace UXC.Devices.EyeTracker.Simulator
+namespace UXC.Devices.EyeTracker.Driver.Simulator
 {
     public class SimulatorFinder : ITrackerFinder
     {
