@@ -53,10 +53,11 @@ namespace UXC.Sessions.Views.Timeline
             {
                 VisualStateManager.GoToElementState((FrameworkElement)this.Content, nameof(IntroductionState), true);
 
-                await Task.Delay(validation.InstructionsDuration ?? TimeSpan.FromMilliseconds(3000)); // TODO REFACTOR InstructionsDuration -> propdp
+                await Task.Delay(validation.InstructionsDuration ?? TimeSpan.FromSeconds(3)); // TODO REFACTOR InstructionsDuration -> propdp
 
                 VisualStateManager.GoToElementState((FrameworkElement)this.Content, nameof(ValidationProcessState), true);
-                await Task.Delay(300);
+
+                await Task.Delay(300); // wait till the instrucstions fade out completes
 
                 validation?.Animation?.Start();
             }
