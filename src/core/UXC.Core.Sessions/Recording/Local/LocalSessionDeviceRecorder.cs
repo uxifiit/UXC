@@ -47,7 +47,6 @@ namespace UXC.Sessions.Recording.Local
             _sessionRecordingEvents = _sessionEvents.FirstOrDefaultAsync(e => e.State == SessionState.Processing || e.State == SessionState.Completed);
         }
 
-        // TODO CHECK if works
         public IDisposable Connect(IObservableDevice device)
         {
             string extension = _writerFactory.FileExtension;

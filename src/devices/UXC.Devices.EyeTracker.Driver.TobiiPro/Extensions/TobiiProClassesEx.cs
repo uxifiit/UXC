@@ -17,7 +17,7 @@ namespace UXC.Devices.EyeTracker.TobiiPro
                                                   .Select(p => p.ToCalibrationPointResult())
                        ?? Enumerable.Empty<CalibrationPointResult>();
 
-            var status = result.Status.ToCalibrationStatus(); 
+            var status = result.Status.ToCalibrationStatus();
 
             return new CalibrationResult(points, status);
         }
