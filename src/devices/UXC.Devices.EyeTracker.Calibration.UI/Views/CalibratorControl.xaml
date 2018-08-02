@@ -8,7 +8,7 @@
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:converters="clr-namespace:UXI.Common.Converters;assembly=UXI.Common.UI"
              mc:Ignorable="d"
-             d:DesignWidth="1920" d:DesignHeight="1080"
+             d:DesignWidth="1920" d:DesignHeight="1200"
              Name="control">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -28,6 +28,42 @@
             </ResourceDictionary.MergedDictionaries>
 
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+            <DataTemplate x:Key="EyeItemTemplate">
+                <Ellipse Fill="{Binding Foreground, Source={x:Reference control}}" 
+                         Width="10" Height="10"
+                         Opacity="0">
+                    <Ellipse.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Visibility}">
+                                    <DataTrigger.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DataTrigger.Value>
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="0:0:0.1" 
+                                                                 Storyboard.TargetProperty="Opacity" 
+                                                                 To="1" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Duration="0:0:0.1" 
+                                                                 Storyboard.TargetProperty="Opacity" 
+                                                                 To="0" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Ellipse.Style>
+                </Ellipse>
+            </DataTemplate>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -40,7 +76,10 @@
                                      To="0" Duration="0:0:0.5"
                                      AutoReverse="False"/>
                     <DoubleAnimation Storyboard.TargetProperty="Opacity"
-                                     Storyboard.TargetName="HeadPositioning"
+                                     Storyboard.TargetName="EyesDisplay"
+                                     To="1" Duration="0:0:0.5" />
+                    <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                                     Storyboard.TargetName="EyeDistanceCanvas"
                                      To="1" Duration="0:0:0.5" />
                 </Storyboard>
             </BeginStoryboard>
@@ -51,7 +90,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="160" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="400" />
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Vertical"
@@ -67,121 +106,91 @@
                 <Run Text="{Binding Name}" />
             </TextBlock>
         </StackPanel>
-        
-        
+
+
 
 
         <Grid DataContext="{Binding HeadPosition}"
-                HorizontalAlignment="Center"
-                Grid.Row="1">
+              HorizontalAlignment="Center" VerticalAlignment="Center"
+              Grid.Row="1">
 
-            <TextBlock x:Name="IntroTextBlock"
-                    Text="These are your eyes"
-                    FontSize="25"
-                    FontFamily="Segoe UI Semilight"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" />
-
-            <Grid x:Name="HeadPositioning">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Border BorderBrush="#FF444444"
-                        BorderThickness="2"
-                        Grid.Column="1">
-                    <Viewbox Stretch="UniformToFill">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="#FF444444"
+                    BorderThickness="2">
+                <Grid>
+                    <Viewbox x:Name="EyesDisplay"
+                             Stretch="Uniform" 
+                             MaxWidth="1000"
+                             StretchDirection="Both" 
+                             Opacity="0">
                         <controls:PointsDisplayControl
-                                Background="{Binding EyesDisplayBackground, ElementName=control}"
-                                x:Name="gazePreview"
-                                Width="320"
-                                Height="180"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"
-                                ItemsSource="{Binding}">
-                            <controls:PointsDisplayControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Ellipse Fill="White" 
-                                            Width="10" Height="10"
-                                            Opacity="0">
-                                        <Ellipse.Style>
-                                            <Style>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Visibility}">
-                                                        <DataTrigger.Value>
-                                                            <Visibility>Visible</Visibility>
-                                                        </DataTrigger.Value>
-                                                        <DataTrigger.EnterActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetProperty="Opacity" To="1" />
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </DataTrigger.EnterActions>
-                                                        <DataTrigger.ExitActions>
-                                                            <BeginStoryboard>
-                                                                <Storyboard>
-                                                                    <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetProperty="Opacity" To="0" />
-                                                                </Storyboard>
-                                                            </BeginStoryboard>
-                                                        </DataTrigger.ExitActions>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Ellipse.Style>
-                                    </Ellipse>
-                                </DataTemplate>
-                            </controls:PointsDisplayControl.ItemTemplate>
-                        </controls:PointsDisplayControl>
+                            Background="{Binding EyesDisplayBackground, ElementName=control}"
+                            Width="320"
+                            Height="180"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            ItemsSource="{Binding}"
+                            ItemTemplate="{StaticResource EyeItemTemplate}" />
                     </Viewbox>
-                </Border>
 
-                <Grid SizeChanged="EyeDistanceCanvas_SizeChanged" 
-                      Grid.Column="2" 
-                      HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                    <Grid.Resources>
-                        <converters:RelativeToAbsolutePositionConverter x:Key="DistanceCaretPositionConverter" />
-                    </Grid.Resources>
-                    <Grid Width="10">
-                        <Grid.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="Red"/>
-                                <GradientStop Color="LimeGreen" Offset="0.2"/>
-                                <GradientStop Color="LimeGreen" Offset="0.8"/>
-                                <GradientStop Color="Red" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Grid.Background>
-                    </Grid>
-                    <Canvas HorizontalAlignment="Left" VerticalAlignment="Stretch"
-                            RenderTransformOrigin="0.5,0.5">
-                        <Canvas.RenderTransform>
+                    <TextBlock x:Name="IntroTextBlock"
+                               Text="These are your eyes"
+                               FontSize="25"
+                               FontFamily="Segoe UI Semilight"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Grid>
+            </Border>
+
+            <Grid SizeChanged="EyeDistanceCanvas_SizeChanged" 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                <Grid.Resources>
+                    <converters:RelativeToAbsolutePositionConverter x:Key="DistanceCaretPositionConverter" />
+                </Grid.Resources>
+                <Grid Width="10">
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="Red"/>
+                            <GradientStop Color="LimeGreen" Offset="0.2"/>
+                            <GradientStop Color="LimeGreen" Offset="0.8"/>
+                            <GradientStop Color="Red" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                </Grid>
+                <Canvas HorizontalAlignment="Left" VerticalAlignment="Stretch"
+                        RenderTransformOrigin="0.5,0.5"
+                        Opacity="0"
+                        Name="EyeDistanceCanvas">
+                    <Canvas.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleY="-1" ScaleX="1"/>
+                            <SkewTransform AngleY="0" AngleX="0"/>
+                            <RotateTransform Angle="0"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Canvas.RenderTransform>
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="10,-5,0,0" 
+                                Canvas.Top="{Binding RelativeDistance, Mode=OneWay, Converter={StaticResource DistanceCaretPositionConverter}}" RenderTransformOrigin="0.5,0.5">
+                        <StackPanel.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleY="-1" ScaleX="1"/>
                                 <SkewTransform AngleY="0" AngleX="0"/>
                                 <RotateTransform Angle="0"/>
                                 <TranslateTransform/>
                             </TransformGroup>
-                        </Canvas.RenderTransform>
-                        <StackPanel Orientation="Horizontal" 
-                                    Margin="10,-5,0,0" 
-                                    Canvas.Top="{Binding RelativeDistance, Mode=OneWay, Converter={StaticResource DistanceCaretPositionConverter}}" RenderTransformOrigin="0.5,0.5">
-                            <StackPanel.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform ScaleY="-1" ScaleX="1"/>
-                                    <SkewTransform AngleY="0" AngleX="0"/>
-                                    <RotateTransform Angle="0"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </StackPanel.RenderTransform>
-                            <Polygon Points="0,5.5 9,0 9,11" Fill="LightGray" />
-                            <TextBlock Margin="4,-4" FontSize="13" VerticalAlignment="Top"
-                                       Visibility="{Binding ShowRelativeDistance, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
-                                <Run Text="{Binding Distance, Mode=OneWay, FallbackValue='?'}" />
-                                <Run Text="cm" />
-                            </TextBlock>
-                        </StackPanel>
-                    </Canvas>
-                </Grid>
+                        </StackPanel.RenderTransform>
+                        <Polygon Points="0,5.5 9,0 9,11" Fill="{Binding Foreground, ElementName=control}" Opacity="0.6" />
+                        <TextBlock Margin="4,-4" FontSize="13" VerticalAlignment="Top"
+                                   Visibility="{Binding ShowRelativeDistance, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}">
+                            <Run Text="{Binding Distance, Mode=OneWay, FallbackValue='?'}" />
+                            <Run Text="cm" />
+                        </TextBlock>
+                    </StackPanel>
+                </Canvas>
 
 
                 <!--<Slider Orientation="Vertical" 
@@ -218,55 +227,51 @@
                 </Button.Resources>
             </Button>
 
-            <StackPanel Orientation="Horizontal" Margin="0,30">
-                <Line Stroke="DarkGray" 
-                        Opacity="0.4" 
-                        StrokeThickness="2"
-                        VerticalAlignment="Center"
-                        X2="250" />
-
-                <TextBlock Text="OR" Margin="10" FontSize="15" FontWeight="SemiBold" Foreground="DarkGray" Opacity="0.4" />
-
-                <Line Stroke="DarkGray" 
-                        Opacity="0.4" 
-                        VerticalAlignment="Center"
-                        StrokeThickness="2"
-                        X2="250" />
-            </StackPanel>
-
             <StackPanel Orientation="Vertical"
-                    HorizontalAlignment="Center">
-                <TextBlock Text="Load existing profile" 
-                        FontSize="20"
-                        FontFamily="Segoe UI Semilight"
-                        Margin="0,5"/>
+                        Visibility="{Binding ProfileStorageVisibility}">
+                <StackPanel Orientation="Horizontal" Margin="0,30">
+                    <Line Stroke="DarkGray" 
+                          Opacity="0.4" 
+                          StrokeThickness="2"
+                          VerticalAlignment="Center"
+                          X2="250" />
 
-                <StackPanel Orientation="Horizontal"
-                            DataContext="{Binding StoredCalibrations}"
-                            Height="38">
-                    <ComboBox ItemsSource="{Binding Calibrations}"
-                              SelectedItem="{Binding SelectedCalibration, Mode=TwoWay}"
-                              DisplayMemberPath="Name" 
-                              Foreground="{Binding Foreground, ElementName=control}"
-                              Background="Transparent"
-                              FontSize="20"
-                              metro:TextBoxHelper.Watermark="Choose profile"
-                              HorizontalAlignment="Left"
-                              Width="300" />
-                    <Button Margin="10,0,0,0"
-                            Content="Load"
-                            FontSize="20"
-                            Padding="20,5"
-                            Command="{Binding LoadCommand}" />
-                     <!--<Button.Resources>
-                            <SolidColorBrush x:Key="FlatButtonBackgroundBrush" Color="DeepSkyBlue" />
-                            <SolidColorBrush x:Key="FlatButtonForegroundBrush" Color="Black" />
-                            <SolidColorBrush x:Key="FlatButtonPressedBackgroundBrush" Color="{DynamicResource AccentColor}" />
-                            <SolidColorBrush x:Key="FlatButtonPressedForegroundBrush" Color="White" />
-                        </Button.Resources>-->
+                    <TextBlock Text="OR" Margin="10" FontSize="15" FontWeight="SemiBold" Foreground="DarkGray" Opacity="0.4" />
 
+                    <Line Stroke="DarkGray" 
+                          Opacity="0.4" 
+                          VerticalAlignment="Center"
+                          StrokeThickness="2"
+                          X2="250" />
                 </StackPanel>
 
+                <StackPanel Orientation="Vertical"
+                            IsEnabled="{Binding IsProfileStorageEnabled}"
+                            HorizontalAlignment="Center">
+                    <TextBlock Text="Load existing profile"
+                               FontSize="20"
+                               FontFamily="Segoe UI Semilight"
+                               Margin="0,5"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                DataContext="{Binding StoredCalibrations}"
+                                Height="38">
+                        <ComboBox ItemsSource="{Binding Calibrations}"
+                                  SelectedItem="{Binding SelectedCalibration, Mode=TwoWay}"
+                                  DisplayMemberPath="Name" 
+                                  Foreground="{Binding Foreground, ElementName=control}"
+                                  Background="Transparent"
+                                  FontSize="20"
+                                  metro:TextBoxHelper.Watermark="Choose profile"
+                                  HorizontalAlignment="Left"
+                                  Width="300" />
+                        <Button Margin="10,0,0,0"
+                                Content="Load"
+                                FontSize="20"
+                                Padding="20,5"
+                                Command="{Binding LoadCommand}" />
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
 

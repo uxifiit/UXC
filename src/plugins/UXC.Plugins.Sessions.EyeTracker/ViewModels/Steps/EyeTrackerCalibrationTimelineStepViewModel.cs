@@ -129,14 +129,8 @@ namespace UXC.Sessions.ViewModels.Timeline
 
                 var calibratorViewModel = (CalibratorViewModel)_resolver.Create(calibrator);
 
-                // reset plan to custom if specified in the step settings
-                if (_settings.CustomPlan != null && _settings.CustomPlan.Any())
-                {
-                    var plan = new CalibrationPlan(_settings.CustomPlan);
-                    calibratorViewModel.PlansSelection.Items.Insert(0, plan);
-                    calibratorViewModel.PlansSelection.SelectedIndex = 0;
-                }
-
+                ApplySettings(calibratorViewModel);
+              
                 Navigation.NavigateToObject(calibratorViewModel);
 
                 await CalibrateAsync(calibrator);
@@ -145,6 +139,21 @@ namespace UXC.Sessions.ViewModels.Timeline
             {
                 Complete();
             }
+        }
+
+
+        private void ApplySettings(CalibratorViewModel calibratorViewModel)
+        {
+            // reset plan to custom if specified in the step settings
+            if (_settings.CustomPlan != null && _settings.CustomPlan.Any())
+            {
+                var plan = new CalibrationPlan(_settings.CustomPlan);
+                calibratorViewModel.PlansSelection.Items.Insert(0, plan);
+                calibratorViewModel.PlansSelection.SelectedIndex = 0;
+            }
+
+            // enable or disable load/save options for calibration profiles
+            calibratorViewModel.IsProfileStorageEnabled = _settings.IsProfileEnabled;
         }
 
         private async Task CalibrateAsync(ICalibrator calibrator)
