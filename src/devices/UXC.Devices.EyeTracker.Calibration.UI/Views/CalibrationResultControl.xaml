@@ -62,9 +62,9 @@
                    Margin="60,60,0,0"/>
 
         <Grid VerticalAlignment="Center"
-                Margin="10"
-                Grid.Row="1"
-                MaxWidth="1000">
+              Margin="10"
+              Grid.Row="1"
+              MaxWidth="1000">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition Width="20" />
@@ -113,16 +113,16 @@
 
             <StackPanel Orientation="Vertical" VerticalAlignment="Bottom"
                         Grid.Column="2">
-                <TextBlock                          FontSize="20"
+                <TextBlock FontSize="20"
                            Margin="0,0,0,10"
                            FontFamily="Segoe UI Semilight"
-                            HorizontalAlignment="Center">
+                           HorizontalAlignment="Center">
                     <Run Text="Right Eye" />
                     <Run Text="{Binding RightValidityString, Mode=OneWay}" />
                 </TextBlock>
                 <Border BorderBrush="#FF444444" BorderThickness="2">
                     <Viewbox Stretch="Uniform" Margin="0,5,5,0">
-                        <Grid  Width="320" Height="180">
+                        <Grid Width="320" Height="180">
                             <controls:PointsDisplayControl x:Name="rightEyeTruePositionsDisplay" 
                                                         Background="Transparent"
                                                         VerticalAlignment="Stretch"
@@ -165,9 +165,9 @@
                     Visibility="{Binding SaveCalibrationVisibility}">
 
             <TextBlock Text="Save profile" 
-                        FontSize="20"
-                        FontFamily="Segoe UI Semilight"
-                        Margin="0,5"/>
+                       FontSize="20"
+                       FontFamily="Segoe UI Semilight"
+                       Margin="0,5"/>
 
             <StackPanel Orientation="Horizontal"
                         DataContext="{Binding StoredCalibrations}"
