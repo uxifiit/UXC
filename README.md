@@ -1,7 +1,5 @@
 # <img src="docs/logo.png" height="28" /> UXC 
 
-[![UXC MyGet Build Status](https://www.myget.org/BuildSource/Badge/uxifiit?identifier=bb713a08-72f5-476b-bf8d-3a731a1dd8b6)](https://www.myget.org/)
-
 ###### Client application of the UXI Group Studies infrastructure.
 UXC is designed for creating and recording user studies with eye tracking. UXC client and UXR web management applications form the UXI Group Studies infrastructure for conducting group eye tracking studies. 
 This project is developed at [User eXperience and Interaction Research Center](https://www.uxi.sk/) of [Faculty of Informatics of Information Technologies, Slovak University of Technology in Bratislava](http://fiit.stuba.sk/)

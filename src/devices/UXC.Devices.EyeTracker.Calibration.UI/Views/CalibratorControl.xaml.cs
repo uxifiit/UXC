@@ -37,6 +37,7 @@ namespace UXC.Devices.EyeTracker.Views
         public static readonly DependencyProperty EyesDisplayBackgroundProperty =
             DependencyProperty.Register("EyesDisplayBackground", typeof(Brush), typeof(CalibratorControl), new PropertyMetadata(new SolidColorBrush(Colors.Black)));
 
+        
 
         private void EyeDistanceCanvas_SizeChanged(object sender, SizeChangedEventArgs e)
         {

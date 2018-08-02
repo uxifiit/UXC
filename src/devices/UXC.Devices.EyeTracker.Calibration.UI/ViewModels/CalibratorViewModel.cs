@@ -153,11 +153,27 @@ namespace UXC.Devices.EyeTracker.ViewModels
         public CalibrationViewModel Calibration { get; }
 
 
+        private bool isProfileStorageEnabled = false;
+        public bool IsProfileStorageEnabled
+        {
+            get { return isProfileStorageEnabled; }
+            set
+            {
+                if (Set(ref isProfileStorageEnabled, value))
+                {
+                    OnPropertyChanged(nameof(ProfileStorageVisibility));
+                }
+            }
+        }
+
+        public Visibility ProfileStorageVisibility => IsProfileStorageEnabled ? Visibility.Visible : Visibility.Collapsed;
+
+
         private void UpdateResult(CalibrationExecutionReport result)
         {
             Result = new CalibrationResultViewModel(this, result.Plan, result.Result);
 
-            if (Result.IsValid)
+            if (IsProfileStorageEnabled && Result.IsValid)
             {
                 StoredCalibrations.PrepareSave(result.Data);
                 CanSaveCalibration = true;

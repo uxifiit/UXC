@@ -9,11 +9,13 @@ namespace UXC.Sessions.Timeline.Actions
 {
     public class EyeTrackerCalibrationActionSettings : ContentActionSettinsBase
     {
-        //    public int PlanLength { get; set; }
+        // public int PlanLength { get; set; }
         public List<Point2> CustomPlan { get; set; }
 
         // Calibration requires mouse cursor, so we disable this option
         public override bool? ShowCursor { get { return null; } set { } }
+
+        public bool IsProfileEnabled { get; set; } = false;
 
         //public TimeSpan? Delay { get; set; }
 
