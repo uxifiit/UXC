@@ -54,7 +54,7 @@ namespace UXC.Plugins.SessionsAPI
             public const string ACTION_ID = "id";
 
 
-            // POST api/session/recording/open/
+            // POST api/session/recording/open/<definitionId>
             public const string ACTION_OPEN_EXISTING = "open/" + Definition.PARAM_DEFINITION_ID;
 
             // POST api/session/recording/open/

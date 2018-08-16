@@ -32,9 +32,10 @@ namespace UXC.Plugins.SessionsAPI.Controllers
 
         [HttpPost]
         [Route(ApiRoutes.Recording.Timeline.ACTION_STEP)]
-        public IHttpActionResult ContinueStep([FromBody] SessionStep step)
+        public IHttpActionResult ContinueStep([FromBody] List<SessionStep> steps)
         {
-            _service.Continue(step);
+            // TODO Not implemented
+            _service.Continue(steps.FirstOrDefault());
             return Ok();
         }
     }
