@@ -36,13 +36,15 @@ namespace UXC.Sessions
 
         private readonly ReplaySubject<SessionRecordingEvent> _events = new ReplaySubject<SessionRecordingEvent>(1);
 
-        private readonly Queue<SessionStep> _steps = new Queue<SessionStep>();
-        private readonly Queue<SessionStep> _preSteps = new Queue<SessionStep>();
-        private readonly Queue<SessionStep> _postSteps = new Queue<SessionStep>();
+        private readonly Stack<SessionStep> _steps = new Stack<SessionStep>();
+        private readonly Stack<SessionStep> _preSteps = new Stack<SessionStep>();
+        private readonly Stack<SessionStep> _postSteps = new Stack<SessionStep>();
 
         private readonly SerialDisposable _cancellation = new SerialDisposable();
 
-        private Queue<SessionStep> _currentSteps = null;
+        private Stack<SessionStep> _currentSteps = null;
+
+        private readonly static SessionRecorderDefinition DefaultRecorderDefinition = new SessionRecorderDefinition("Local");
 
         internal SessionRecording(SessionDefinition definition, IAdaptersControl adapters)
         {
@@ -56,18 +58,21 @@ namespace UXC.Sessions
 
             Settings = new SessionRecordingSettings(id, openedAt);
 
-            if (definition.Welcome != null && definition.Welcome.Ignore == false)
+            InsertSteps(_preSteps, definition.PreSessionSteps);
+            InsertSteps(_postSteps, definition.PostSessionSteps);
+            InsertSteps(_steps, definition.SessionSteps);
+
+            if (_steps.Count == 0)
             {
-                _preSteps.Enqueue(new SessionStep() { Action = definition.Welcome });
+                InsertStep(_steps, SessionStep.Default);
             }
 
-            ValidateSteps(definition.PreSessionSteps).ForEach(step => _preSteps.Enqueue(step));
-            ValidateSteps(definition.PostSessionSteps).ForEach(step => _postSteps.Enqueue(step));
+            if (definition.Welcome != null && definition.Welcome.Ignore == false)
+            {
+                InsertStep(_preSteps, new SessionStep() { Action = definition.Welcome });
+            }
 
-            ValidateSteps(definition.SessionSteps).DefaultIfEmpty(SessionStep.Default)
-                                                  .ForEach(step => _steps.Enqueue(step));
-
-            RecorderConfigurations = ValidateRecorders(definition.Recorders).ToDictionary
+            RecorderConfigurations = ValidateRecorders(definition.Recorders).DefaultIfEmpty(DefaultRecorderDefinition).ToDictionary
             (
                 d => d.Name,
                 d => (IDictionary<string, object>)d.Configuration.ToDictionary(r => r.Key, r => r.Value)
@@ -200,7 +205,7 @@ namespace UXC.Sessions
         {
             return definitions?.Where(d => String.IsNullOrWhiteSpace(d?.Name) == false)
                                .Distinct(SessionRecorderDefinition.ComparerByKey)
-                ?? new List<SessionRecorderDefinition>() { new SessionRecorderDefinition("Local") };
+                ?? Enumerable.Empty<SessionRecorderDefinition>();
         }
 
 
@@ -312,11 +317,33 @@ namespace UXC.Sessions
         #endregion
 
 
+        public void InsertSteps(IEnumerable<SessionStep> steps)
+        {
+            var stack = _currentSteps;
+            if (stack != null)
+            {
+                InsertSteps(stack, steps);
+            }
+        }
+
+
+        private void InsertSteps(Stack<SessionStep> stack, IEnumerable<SessionStep> steps)
+        {
+            stack.ThrowIfNull(nameof(stack));
+
+            ValidateSteps(steps).Reverse().ForEach(s => stack.Push(s));
+        }
+
+
+        private void InsertStep(Stack<SessionStep> stack, params SessionStep[] steps)
+        {
+            InsertSteps(stack, steps);
+        }
 
 
         private void TakeNextStep()
         {
-            var step = _currentSteps.Dequeue();
+            var step = _currentSteps.Pop();
             CurrentStep = new SessionStepExecution(step, DateTime.Now);
         }
 
