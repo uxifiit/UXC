@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using UXC.Sessions.Timeline;
 
 namespace UXC.Sessions.Serialization.Converters.Json
 {
@@ -16,6 +17,7 @@ namespace UXC.Sessions.Serialization.Converters.Json
             new StringEnumConverter(camelCaseText: false),
             new DeviceTypeJsonConverter(),
             new TextJsonConverter(),
+            new SingleOrArrayConverter<SessionStep>(),
             new WelcomeStepActionSettingsJsonConverter(),
             new SessionStepActionSettingsJsonConverter()
         };
