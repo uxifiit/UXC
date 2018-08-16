@@ -106,6 +106,11 @@ namespace UXC.Sessions
                 definition = _service.LoadFromFile(file.FullName);
                 definition.CreatedAt = file.LastWriteTime;
 
+                if (definition.Recorders.Any(r => r.Name.Equals("Local", StringComparison.CurrentCultureIgnoreCase)) == false)
+                {
+                    definition.Recorders.Add(new SessionRecorderDefinition("Local"));
+                }
+
                 return true;
             }
             catch (Exception ex)
