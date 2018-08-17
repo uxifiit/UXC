@@ -22,4 +22,15 @@ namespace UXC.Sessions
 
         Cancelled
     }
+
+
+    public static class SessionStateEx
+    {
+        public static bool IsRunningState(this SessionState state)
+        {
+            return state == SessionState.Preparing
+                || state == SessionState.Running
+                || state == SessionState.Processing;
+        }
+    }
 }

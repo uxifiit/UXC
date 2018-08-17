@@ -22,21 +22,41 @@ namespace UXC.Plugins.SessionsAPI.Controllers
 
         [HttpPost]
         [Route(ApiRoutes.Recording.Timeline.ACTION_CONTINUE)]
-        public IHttpActionResult Continue()
+        public IHttpActionResult Continue([FromBody] List<SessionStep> steps = null)
         {
+            List<SessionStep> insertedSteps = null;
+
+            if (steps != null && steps.Any())
+            {
+                _service.InsertSteps(steps, out insertedSteps, 0);
+            }
+
             _service.Continue();
+
             return Ok();
         }
 
 
+        // TODO add API call to insert steps into a specific timeline
+
 
         [HttpPost]
-        [Route(ApiRoutes.Recording.Timeline.ACTION_STEP)]
-        public IHttpActionResult ContinueStep([FromBody] List<SessionStep> steps)
+        [Route(ApiRoutes.Recording.Timeline.ACTION_INSERT)]
+        public IHttpActionResult Insert([FromUri] int position = 0, [FromBody] List<SessionStep> steps = null)
         {
-            // TODO Not implemented
-            _service.Continue(steps.FirstOrDefault());
-            return Ok();
+            List<SessionStep> insertedSteps = null;
+
+            if (steps != null && steps.Any())
+            {
+                if (_service.InsertSteps(steps, out insertedSteps, position))
+                {
+                    return Ok(insertedSteps);
+                }
+
+                return BadRequest("No recording is running.");
+            }
+
+            return BadRequest();
         }
     }
 }

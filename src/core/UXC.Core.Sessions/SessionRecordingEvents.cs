@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UXC.Core;
 using UXC.Sessions.Timeline;
 using UXC.Sessions.Timeline.Results;
+using UXI.Common.Extensions;
 
 namespace UXC.Sessions
 {
@@ -61,6 +62,27 @@ namespace UXC.Sessions
         public DateTime StartedAt { get; }
 
         public override string EventType => "StepCompleted";
+    }
+
+
+    public class SessionRecordingTimelineChanged : SessionRecordingEvent
+    {
+        public SessionRecordingTimelineChanged(IEnumerable<SessionStep> steps, SessionState timeline, int position, DateTime timestamp, SessionState state)
+            : base(state, timestamp)
+        {
+            steps.ThrowIfNull(s => s.Any() == false, nameof(steps));
+            timeline.ThrowIf(t => t.IsRunningState() == false, nameof(timeline), $"The {timeline} session state does not have a timeline.");
+
+            Steps = steps.ToList();
+            Timeline = timeline;
+            Position = position;
+        }
+
+        public List<SessionStep> Steps { get; }
+
+        public SessionState Timeline { get; }
+
+        public int Position { get; }
     }
 
     //public class SessionCompletedEvent : SessionRecordingEvent
