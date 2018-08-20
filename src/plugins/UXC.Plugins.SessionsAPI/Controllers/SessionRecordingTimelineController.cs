@@ -28,10 +28,15 @@ namespace UXC.Plugins.SessionsAPI.Controllers
 
             if (steps != null && steps.Any())
             {
-                _service.InsertSteps(steps, out insertedSteps, 0);
+                if (_service.InsertSteps(steps, out insertedSteps, 0))
+                {
+                    _service.Continue();
+                }
             }
-
-            _service.Continue();
+            else
+            {
+                _service.Continue();
+            }
 
             return Ok();
         }

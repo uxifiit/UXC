@@ -333,6 +333,8 @@ namespace UXC.Sessions
                 {
                     _events.OnNext(new SessionRecordingTimelineChanged(addedSteps, State, position, DateTime.Now, State));
                 }
+
+                return addedSteps;
             }
 
             return Enumerable.Empty<SessionStep>();

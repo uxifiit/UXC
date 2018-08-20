@@ -63,7 +63,8 @@ namespace UXC.Plugins.SessionsAPI.Services
             if (recording != null)
             {
                 insertedSteps = recording.InsertSteps(steps, position = 0).ToList();
-                return true;
+
+                return insertedSteps != null && insertedSteps.Any();
             }
 
             insertedSteps = null;
