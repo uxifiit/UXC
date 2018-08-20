@@ -22,7 +22,7 @@ namespace UXC.Plugins.SessionsAPI.Controllers
 
         [HttpPost]
         [Route(ApiRoutes.Recording.Timeline.ACTION_CONTINUE)]
-        public IHttpActionResult Continue([FromBody] List<SessionStep> steps = null)
+        public IHttpActionResult Continue([FromBody] List<SessionStep> steps)
         {
             List<SessionStep> insertedSteps = null;
 
@@ -42,13 +42,15 @@ namespace UXC.Plugins.SessionsAPI.Controllers
 
         [HttpPost]
         [Route(ApiRoutes.Recording.Timeline.ACTION_INSERT)]
-        public IHttpActionResult Insert([FromUri] int position = 0, [FromBody] List<SessionStep> steps = null)
+        public IHttpActionResult Insert([FromBody] List<SessionStep> steps, [FromUri] int? position = 0)
         {
             List<SessionStep> insertedSteps = null;
 
+            int index = position.HasValue ? Math.Max(0, position.Value) : 0;
+
             if (steps != null && steps.Any())
             {
-                if (_service.InsertSteps(steps, out insertedSteps, position))
+                if (_service.InsertSteps(steps, out insertedSteps, index))
                 {
                     return Ok(insertedSteps);
                 }

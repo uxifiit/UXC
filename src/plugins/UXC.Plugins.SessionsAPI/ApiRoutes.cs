@@ -76,7 +76,7 @@ namespace UXC.Plugins.SessionsAPI
                 // POST api/session/recording/timeline/continue
                 public const string ACTION_CONTINUE = "continue";
 
-                public const string PARAM_POSITION = "{position:int?:min(0)}";
+                public const string PARAM_POSITION = "{position:int?}";
 
                 // POST api/session/recording/timeline/insert/<position=0>
                 public const string ACTION_INSERT = "insert/" + PARAM_POSITION;
