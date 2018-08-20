@@ -36,10 +36,10 @@ namespace UXC.Sessions
         public SessionStepStartedEvent(SessionStepExecution execution, SessionState state)
             : base(state, execution.StartedAt)
         {
-            StepAction = execution.Step.Action?.ActionType;
+            Step = execution.Step;
         }
 
-        public string StepAction { get; }
+        public SessionStep Step { get; }
 
         public override string EventType => "StepStarted";
     }
