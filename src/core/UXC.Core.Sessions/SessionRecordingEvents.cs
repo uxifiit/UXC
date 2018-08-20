@@ -83,6 +83,8 @@ namespace UXC.Sessions
         public SessionState Timeline { get; }
 
         public int Position { get; }
+
+        public override string EventType => "TimelineStepsInserted";
     }
 
     //public class SessionCompletedEvent : SessionRecordingEvent
