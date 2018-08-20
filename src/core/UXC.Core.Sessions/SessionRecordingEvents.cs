@@ -84,7 +84,7 @@ namespace UXC.Sessions
 
         public int Position { get; }
 
-        public override string EventType => "TimelineStepsInserted";
+        public override string EventType => "StepsInserted";
     }
 
     //public class SessionCompletedEvent : SessionRecordingEvent
