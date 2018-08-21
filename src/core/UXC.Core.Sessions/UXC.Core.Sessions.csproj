@@ -111,6 +111,7 @@
     <Compile Include="Serialization\Converters\Json\WelcomeStepActionSettingsJsonConverter.cs" />
     <Compile Include="SessionDeviceDefinition.cs" />
     <Compile Include="SessionRecordingSettings.cs" />
+    <Compile Include="SessionRecordingTimeline.cs" />
     <Compile Include="Timeline\Actions\SessionStepActionSettings.cs" />
     <Compile Include="Configuration\ISessionsConfiguration.cs" />
     <Compile Include="Extensions\IObservableEx.cs" />

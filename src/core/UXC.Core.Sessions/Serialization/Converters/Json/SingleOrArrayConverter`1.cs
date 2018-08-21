@@ -25,9 +25,10 @@ namespace UXC.Sessions.Serialization.Converters.Json
             var token = JToken.Load(reader);
             if (token.Type == JTokenType.Array)
             {
-                return token.ToObject<List<T>>();
+                JArray array = (JArray)token;
+                return array.Select(t => t.ToObject<T>(serializer)).ToList();
             }
-            return new List<T> { token.ToObject<T>() };
+            return new List<T> { token.ToObject<T>(serializer) };
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

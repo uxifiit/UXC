@@ -213,7 +213,9 @@ namespace UXC.Sessions.ViewModels.Timeline
 
         public bool Validate()
         {
-            return Answers.Count(a => a.IsChecked) == _settings.Limit;
+            int count = Answers.Count(a => a.IsChecked);
+            return (_settings.IsRequired == false || count > 0)
+                && count <= _settings.Limit;
         }
 
         public string GetAnswer()
@@ -264,6 +266,14 @@ namespace UXC.Sessions.ViewModels.Timeline
             get { return answer; }
             set { Set(ref answer, value); }
         }
+
+        public double Width => _settings.Width.HasValue ? _settings.Width.Value : 0;
+
+        public double Height => _settings.IsMultiline && _settings.Height.HasValue ? _settings.Height.Value : 0;
+
+        public bool IsMultiline => _settings.IsMultiline;
+
+        public System.Windows.TextWrapping TextWrapping => _settings.IsMultiline ? System.Windows.TextWrapping.Wrap : System.Windows.TextWrapping.NoWrap;
 
         public string GetAnswer() => Answer;
 

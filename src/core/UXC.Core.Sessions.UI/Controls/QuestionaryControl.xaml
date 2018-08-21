@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UXC.Sessions.Controls"
              xmlns:vmTimeline="clr-namespace:UXC.Sessions.ViewModels.Timeline"
+             xmlns:converters="clr-namespace:UXC.Core.Common.Converters;assembly=UXC.Core.UI"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              Name="control"
@@ -17,6 +18,8 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <converters:BoolToDoubleConverter x:Key="BoolToMultilineTextBoxHeightConverter" TrueValue="120" FalseValue="40" />
 
             <DataTemplate DataType="{x:Type vmTimeline:ChooseQuestionAnswerViewModel}">
                 <ItemsControl ItemsSource="{Binding Answers}">
@@ -37,8 +40,14 @@
             <DataTemplate DataType="{x:Type vmTimeline:WriteQuestionAnswerViewModel}">
                 <Grid>
                     <TextBox Text="{Binding Answer, Mode=TwoWay}"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
                              IsTabStop="True"
-                             Width="300"
+                             MinWidth="300" MinHeight="{Binding IsMultiline, Converter={StaticResource BoolToMultilineTextBoxHeightConverter}}"
+                             Width="{Binding Width}" Height="{Binding Height}"
+                             AcceptsReturn="{Binding IsMultiline}"
+                             TextWrapping="{Binding TextWrapping}"
+                             MaxWidth="1000" MaxHeight="400"
+                             HorizontalAlignment="Left"
                              Foreground="Black"
                              FontSize="{Binding FontSize, ElementName=control}" />
                 </Grid>

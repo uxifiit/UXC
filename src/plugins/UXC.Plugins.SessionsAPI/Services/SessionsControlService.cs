@@ -55,14 +55,19 @@ namespace UXC.Plugins.SessionsAPI.Services
         }
 
 
-        public bool Continue(SessionStep step)
+        public bool InsertSteps(IEnumerable<SessionStep> steps, out List<SessionStep> insertedSteps, int position = 0)
         {
+            steps.ThrowIfNull(s => s.Any() == false, nameof(steps));
+
             var recording = _control.CurrentRecording;
             if (recording != null)
             {
-                return recording.Continue(step);
+                insertedSteps = recording.InsertSteps(steps, position = 0).ToList();
+
+                return insertedSteps != null && insertedSteps.Any();
             }
 
+            insertedSteps = null;
             return false;
         }
 

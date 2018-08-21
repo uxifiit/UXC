@@ -36,13 +36,16 @@ namespace UXC.Sessions
 
         private readonly ReplaySubject<SessionRecordingEvent> _events = new ReplaySubject<SessionRecordingEvent>(1);
 
-        private readonly Queue<SessionStep> _steps = new Queue<SessionStep>();
-        private readonly Queue<SessionStep> _preSteps = new Queue<SessionStep>();
-        private readonly Queue<SessionStep> _postSteps = new Queue<SessionStep>();
+        private readonly LinkedList<SessionStep> _steps = new LinkedList<SessionStep>();
+        private readonly LinkedList<SessionStep> _preSteps = new LinkedList<SessionStep>();
+        private readonly LinkedList<SessionStep> _postSteps = new LinkedList<SessionStep>();
 
         private readonly SerialDisposable _cancellation = new SerialDisposable();
 
-        private Queue<SessionStep> _currentSteps = null;
+        private LinkedList<SessionStep> _currentSteps = null;
+
+        private readonly static SessionRecorderDefinition DefaultRecorderDefinition = new SessionRecorderDefinition("Local");
+
 
         internal SessionRecording(SessionDefinition definition, IAdaptersControl adapters)
         {
@@ -56,18 +59,21 @@ namespace UXC.Sessions
 
             Settings = new SessionRecordingSettings(id, openedAt);
 
-            if (definition.Welcome != null && definition.Welcome.Ignore == false)
+            InsertSteps(_preSteps, definition.PreSessionSteps);
+            InsertSteps(_postSteps, definition.PostSessionSteps);
+            InsertSteps(_steps, definition.SessionSteps);
+
+            if (_steps.Count == 0)
             {
-                _preSteps.Enqueue(new SessionStep() { Action = definition.Welcome });
+                InsertStep(_steps, SessionStep.Default);
             }
 
-            ValidateSteps(definition.PreSessionSteps).ForEach(step => _preSteps.Enqueue(step));
-            ValidateSteps(definition.PostSessionSteps).ForEach(step => _postSteps.Enqueue(step));
+            if (definition.Welcome != null && definition.Welcome.Ignore == false)
+            {
+                InsertStep(_preSteps, new SessionStep() { Action = definition.Welcome });
+            }
 
-            ValidateSteps(definition.SessionSteps).DefaultIfEmpty(SessionStep.Default)
-                                                  .ForEach(step => _steps.Enqueue(step));
-
-            RecorderConfigurations = ValidateRecorders(definition.Recorders).ToDictionary
+            RecorderConfigurations = ValidateRecorders(definition.Recorders).DefaultIfEmpty(DefaultRecorderDefinition).ToDictionary
             (
                 d => d.Name,
                 d => (IDictionary<string, object>)d.Configuration.ToDictionary(r => r.Key, r => r.Value)
@@ -200,7 +206,7 @@ namespace UXC.Sessions
         {
             return definitions?.Where(d => String.IsNullOrWhiteSpace(d?.Name) == false)
                                .Distinct(SessionRecorderDefinition.ComparerByKey)
-                ?? new List<SessionRecorderDefinition>() { new SessionRecorderDefinition("Local") };
+                ?? Enumerable.Empty<SessionRecorderDefinition>();
         }
 
 
@@ -312,11 +318,121 @@ namespace UXC.Sessions
         #endregion
 
 
+        /// <summary>
+        /// Inserts steps at the specified position in the current session timeline based on the session state (Preparing, Running, Processing). If the steps are inserted at the beginning of the timeline, they are executed after the current step.
+        /// </summary>
+        /// <param name="steps"></param>
+        public IEnumerable<SessionStep> InsertSteps(IEnumerable<SessionStep> steps, int position = 0)
+        {
+            var timeline = _currentSteps;
+            if (timeline != null)
+            {
+                var addedSteps = InsertSteps(timeline, steps, position);
+
+                if (addedSteps.Any())
+                {
+                    _events.OnNext(new SessionRecordingTimelineChanged(addedSteps, State, position, DateTime.Now, State));
+                }
+
+                return addedSteps;
+            }
+
+            return Enumerable.Empty<SessionStep>();
+        }
+
+
+        /// <summary>
+        /// Inserts steps at the specified position in the specified session timeline based on the given session state (expects one of these values: <seealso cref="SessionState.Preparing"/>, <seealso cref="SessionState.Running"/>, <seealso cref="SessionState.Processing"/>).
+        /// </summary>
+        /// <param name="targetTimeline"></param>
+        /// <returns></returns>
+        //public IEnumerable<SessionStep> InsertSteps(IEnumerable<SessionStep> steps, SessionState targetTimeline, int position = 0)
+        //{
+        //    var timeline = ResolveTimeline(ref targetTimeline);
+
+        //    if (timeline != null)
+        //    {
+        //        var addedSteps = InsertSteps(timeline, steps, position);
+
+        //        if (addedSteps.Any())
+        //        {
+        //            _events.OnNext(new SessionRecordingTimelineChanged(addedSteps, targetTimeline, position, DateTime.Now, State));
+        //        }
+
+        //        return addedSteps;
+        //    }
+
+        //    return Enumerable.Empty<SessionStep>();
+        //}
+
+
+        private LinkedList<SessionStep> ResolveTimeline(ref SessionState targetTimeline)
+        {
+            targetTimeline.ThrowIf(t => t.IsRunningState() == false, nameof(targetTimeline));
+
+            LinkedList<SessionStep> timeline = null;
+            switch (targetTimeline)
+            {
+                case SessionState.Preparing:
+                    timeline = _preSteps;
+                    break;
+                case SessionState.Processing:
+                    timeline = _postSteps;
+                    break;
+                default:
+                case SessionState.Running:
+                    timeline = _steps;
+                    targetTimeline = SessionState.Running;
+                    break;
+            }
+
+            return timeline;
+        }
+
+
+        /// <summary>
+        /// Inserts steps at the specified position in the timeline.
+        /// </summary>
+        /// <param name="stack"></param>
+        /// <param name="steps"></param>
+        private List<SessionStep> InsertSteps(LinkedList<SessionStep> timeline, IEnumerable<SessionStep> steps, int position = 0)
+        {
+            timeline.ThrowIfNull(nameof(timeline));
+
+            List<SessionStep> addedSteps = ValidateSteps(steps).ToList();
+
+            int index = Math.Max(0, position);
+
+            if (index >= timeline.Count)
+            {
+                addedSteps.ForEach(s => timeline.AddLast(s));
+            }
+            else
+            {
+                LinkedListNode<SessionStep> nextElement = timeline.First;
+                while (position-- > 0)
+                {
+                    nextElement = nextElement.Next;
+                }
+
+                addedSteps.ForEach(s => timeline.AddBefore(nextElement, s));
+            }
+
+            return addedSteps;
+        }
+
+
+        private List<SessionStep> InsertStep(LinkedList<SessionStep> timeline, params SessionStep[] steps)
+        {
+            return InsertSteps(timeline, steps);
+        }
 
 
         private void TakeNextStep()
         {
-            var step = _currentSteps.Dequeue();
+            var step = _currentSteps.First();
+            _currentSteps.RemoveFirst();
+
             CurrentStep = new SessionStepExecution(step, DateTime.Now);
         }
 
@@ -327,8 +443,6 @@ namespace UXC.Sessions
 
 
         public bool CanCancel() => _stateMachine.CanFire(SessionAction.Cancel);
-        //public void Cancel() => _stateMachine.Fire(SessionAction.Cancel);
-
 
 
         private void Process()
@@ -377,12 +491,10 @@ namespace UXC.Sessions
         public event EventHandler<ValueChangedEventArgs<SessionState>> StateChanged;
 
 
-        public bool IsRunning => state == SessionState.Preparing
-                              || state == SessionState.Running
-                              || state == SessionState.Processing;
+        public bool IsRunning => state.IsRunningState();
 
         public bool IsActive => state == SessionState.Opening
-                             || IsRunning;
+                             || state.IsRunningState();
 
 
         private SessionStepExecution currentStep = null;

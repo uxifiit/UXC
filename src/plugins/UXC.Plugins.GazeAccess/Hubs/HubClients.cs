@@ -11,7 +11,7 @@ namespace UXC.Plugins.GazeAccess.Hubs
 
         public void Add(string client, int group)
         {
-            OnClientAdded(group);
+            OnClientAdding(group);
 
             if (_clients.ContainsKey(client))
             {
@@ -26,6 +26,7 @@ namespace UXC.Plugins.GazeAccess.Hubs
                 FirstClientConnected?.Invoke(this, EventArgs.Empty);
             }
         }
+
 
         public int Remove(string client)
         {
@@ -42,6 +43,7 @@ namespace UXC.Plugins.GazeAccess.Hubs
             return group;
         }
 
+
         public int Update(string client, int group)
         {
             int old = Remove(client);
@@ -51,20 +53,24 @@ namespace UXC.Plugins.GazeAccess.Hubs
             return old;
         }
 
+
         public bool TryGet(string client, out int group)
         {
             return _clients.TryGetValue(client, out group);
         }
 
+
         private bool GroupExists(int group) => _clients.Values.Any(v => v == group);
 
-        private void OnClientAdded(int group)
+
+        private void OnClientAdding(int group)
         {
             if (GroupExists(group) == false)
             {
                 GroupCreated?.Invoke(this, group);
             }
         }
+
 
         private void OnClientRemoved(int group)
         {
@@ -73,6 +79,7 @@ namespace UXC.Plugins.GazeAccess.Hubs
                 GroupClosed?.Invoke(this, group);
             }
         }
+
 
         public event EventHandler<int> GroupCreated;
         public event EventHandler<int> GroupClosed;
