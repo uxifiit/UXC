@@ -28,16 +28,23 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="210" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="210" />
+        </Grid.ColumnDefinitions>
 
         <controls:QuestionaryControl DataContext="{Binding Questionary}"
                                      QuestionsSource="{Binding Questions}"
-                                     Grid.Row="1"
-                                     HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                     Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
+                                     HorizontalAlignment="Stretch" VerticalAlignment="Center"
+                                     Margin="50,0,50,100" />
         
         <Button Content="Continue" 
-                VerticalAlignment="Bottom" HorizontalAlignment="Right" 
-                Grid.Row="3"
-                Margin="0,0,60,100"
+                VerticalAlignment="Bottom" HorizontalAlignment="Left" 
+                Grid.Row="2"
+                Grid.Column="2"
+                Margin="0,0,0,100"
                 Foreground="Black"
                 Command="{Binding TryCompleteCommand}" 
                 IsTabStop="True"

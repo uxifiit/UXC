@@ -9,7 +9,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              Name="control"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -48,7 +48,6 @@
                              TextWrapping="{Binding TextWrapping}"
                              MaxWidth="1000" MaxHeight="400"
                              HorizontalAlignment="Left"
-                             Foreground="Black"
                              FontSize="{Binding FontSize, ElementName=control}" />
                 </Grid>
             </DataTemplate>
@@ -56,30 +55,34 @@
     </UserControl.Resources>
     
     <Grid>
-        <ItemsControl ItemsSource="{Binding QuestionsSource, ElementName=control}"
-                      Grid.Row="1"
-                      HorizontalAlignment="Center" VerticalAlignment="Center">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,0,0,20">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled"
+                      CanContentScroll="True">
+            <ItemsControl ItemsSource="{Binding QuestionsSource, ElementName=control}"
+                          Grid.Row="1"
+                          HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,0,0,20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
 
-                        <TextBlock Text="{Binding Question}" 
+                            <TextBlock Text="{Binding Question}" 
                                    FontSize="{Binding FontSize, ElementName=control}" 
                                    Foreground="{Binding Foreground, ElementName=control}"
                                    Margin="0,0,0,5"
                                    HorizontalAlignment="Left" />
 
-                        <ContentControl Content="{Binding Answer}"
+                            <ContentControl Content="{Binding Answer}"
                                         Grid.Row="1"
                                         FontSize="20"
                                         VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>
