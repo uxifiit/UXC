@@ -37,12 +37,12 @@ namespace UXC.Plugins.GazeAccess.Hubs
             _clients.LastClientDisconnected += OnLastClientDisconnected;
         }
 
-  
 
         private static string GetGroupName(int group)
         {
             return group.ToString();
         }
+
 
         private void OnGroupCreated(object sender, int group)
         {
@@ -53,24 +53,26 @@ namespace UXC.Plugins.GazeAccess.Hubs
 
             if (subscriptions.ContainsKey(group) == false)
             {
-                var gaze = _observer.Data;
+                var gazeData = _observer.Data;
 
                 if (framerate != DEFAULT_SAMPLING && framerate > 0)
                 {
-                    gaze = gaze.Sample(TimeSpan.FromMilliseconds(1000d / framerate));
+                    gazeData = gazeData.Sample(TimeSpan.FromMilliseconds(1000d / framerate));
                 }
 
                 var clientsGroup = hub.Clients.Group(groupName);
 
-                IDisposable subscription = gaze.Subscribe(g => clientsGroup.OnGazeData(g)); 
+                IDisposable subscription = gazeData.Subscribe(g => clientsGroup.OnGazeData(g)); 
                 subscriptions.TryAdd(group, subscription);
             }
         }
+
 
         private void OnLastClientDisconnected(object sender, EventArgs e)
         {
             stateSubscription.Disposable = Disposable.Empty;
         }
+
 
         private void OnFirstClientConnected(object sender, EventArgs e)
         {
@@ -78,6 +80,7 @@ namespace UXC.Plugins.GazeAccess.Hubs
 
             stateSubscription.Disposable = _observer.States.Subscribe(s => hub.Clients.All.OnStateChanged(s));
         }
+
 
         private void OnGroupClosed(object sender, int group)
         {
@@ -88,11 +91,12 @@ namespace UXC.Plugins.GazeAccess.Hubs
             }   
         }
 
+
         public async override Task OnConnected()
         {
             string client = Context.ConnectionId;
 
-            int sampling = 0;
+            int sampling = DEFAULT_SAMPLING;
 
             _clients.Add(client, sampling);
 
@@ -101,16 +105,18 @@ namespace UXC.Plugins.GazeAccess.Hubs
             await base.OnConnected();
         }
 
+
         public async override Task OnDisconnected(bool stopCalled)
         {
             string client = Context.ConnectionId;
 
             int sampling = _clients.Remove(client);
 
-          //  await Groups.Remove(client, GetGroupName(sampling)); // never completes, SignalR should handle disconnection by itself
+            // await Groups.Remove(client, GetGroupName(sampling)); // MK: never completes, SignalR should handle disconnection by itself
 
             await base.OnDisconnected(stopCalled);
         }
+
 
         public async Task<bool> SetSampling(int sampling)
         {
@@ -121,20 +127,22 @@ namespace UXC.Plugins.GazeAccess.Hubs
                 return false;
             }
 
-            int old = _clients.Update(Context.ConnectionId, sampling);
+            int old = _clients.Update(client, sampling);
 
             await Groups.Remove(client, GetGroupName(old));
             await Groups.Add(client, GetGroupName(sampling));
             return true;
         }
 
-        public int SetSampling()
+
+        public int GetSampling()
         {
             string client = Context.ConnectionId;
 
             int group;
             return _clients.TryGet(client, out group) ? group : DEFAULT_SAMPLING;
         }
+
 
         public string CurrentState()
         {
