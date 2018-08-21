@@ -213,7 +213,9 @@ namespace UXC.Sessions.ViewModels.Timeline
 
         public bool Validate()
         {
-            return Answers.Count(a => a.IsChecked) == _settings.Limit;
+            int count = Answers.Count(a => a.IsChecked);
+            return (_settings.IsRequired == false || count > 0)
+                && count <= _settings.Limit;
         }
 
         public string GetAnswer()

@@ -15,6 +15,7 @@ using UXC.Plugins.SessionsAPI.Services;
 using UXC.Sessions;
 using UXC.Sessions.Recording;
 using UXC.Sessions.Serialization.Converters.Json;
+using UXC.Sessions.Timeline;
 
 namespace UXC.Plugins.SessionsAPI
 {

@@ -54,7 +54,7 @@ namespace UXC.Plugins.SessionsAPI
             public const string ACTION_ID = "id";
 
 
-            // POST api/session/recording/open/
+            // POST api/session/recording/open/<definitionId>
             public const string ACTION_OPEN_EXISTING = "open/" + Definition.PARAM_DEFINITION_ID;
 
             // POST api/session/recording/open/
@@ -71,11 +71,18 @@ namespace UXC.Plugins.SessionsAPI
             {
                 public const string PREFIX = Recording.PREFIX + "/timeline";
 
+                //public const string PARAM_TIMELINE = "{timeline:regex(pre(process(ing)?)?|record(ing)?|(post)?process(ing)?)}";
+
                 // POST api/session/recording/timeline/continue
                 public const string ACTION_CONTINUE = "continue";
-                
-                // POST api/session/recording/timeline/step
-                public const string ACTION_STEP = "step";
+
+                public const string PARAM_POSITION = "{position:int?}";
+
+                // POST api/session/recording/timeline/insert/<position=0>
+                public const string ACTION_INSERT = "insert/" + PARAM_POSITION;
+
+                // POST api/session/recording/timeline/<timeline>/insert/<position=0>
+                //public const string ACTION_INSERT_TIMELINE = "insert";
             }
 
             public static class Settings
