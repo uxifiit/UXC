@@ -39,6 +39,7 @@
                     <TextBox Text="{Binding Answer, Mode=TwoWay}"
                              IsTabStop="True"
                              Width="300"
+                             HorizontalAlignment="Left"
                              Foreground="Black"
                              FontSize="{Binding FontSize, ElementName=control}" />
                 </Grid>
