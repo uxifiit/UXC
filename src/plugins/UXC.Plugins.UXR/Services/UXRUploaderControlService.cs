@@ -94,6 +94,6 @@ namespace UXC.Plugins.UXR.Services
         }
 
 
-        public bool IsWorking() => _uploader.IsWorking;
+        public bool IsWorking() => _uploader.IsWorking || (_uploader.IsEnabled && _uploads.Uploads.Any());
     }
 }

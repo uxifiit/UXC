@@ -11,6 +11,6 @@ namespace UXC.Core.ViewServices
         bool Start();
         bool Stop();
 
-        bool CheckStopCancelsWorkInProgress();
+        bool CheckIfStopCancelsWorkInProgress();
     }
 }

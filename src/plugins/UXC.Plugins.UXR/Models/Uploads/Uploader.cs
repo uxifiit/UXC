@@ -76,6 +76,7 @@ namespace UXC.Plugins.UXR.Models.Uploads
                 }
             }
         }
+
         public event EventHandler<bool> IsWorkingChanged;
 
 
@@ -129,56 +130,66 @@ namespace UXC.Plugins.UXR.Models.Uploads
         private async Task RunUploadsAsync(bool wait)
         {
             IsWorking = true;
-            CancellationDisposable cancellation = new CancellationDisposable();
-            _runningUpload.Disposable = cancellation;
 
-            HashSet<string> paths = new HashSet<string>();
-
-            if (_queue.Uploads.Any() && wait)
+            try
             {
-                await Task.Delay(WaitTimeBeforeUpload);
-            }
+                CancellationDisposable cancellation = new CancellationDisposable();
+                _runningUpload.Disposable = cancellation;
 
-            Upload upload = null;
-            while (cancellation.Token.IsCancellationRequested == false
-                    && _queue.TryPeek(out upload)
-                    && upload != null
-                    && paths.Contains(upload.Recording.Path) == false)
-            {
-                CurrentUpload = upload;
-                paths.Add(upload.Recording.Path);
+                HashSet<string> paths = new HashSet<string>();
 
-                try
+                if (_queue.Uploads.Any() && wait)
                 {
-                    var progress = new Progress<UploadStatus>(upload.UpdateStatus);
-                    using (var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellation.Token))
+                    await Task.Delay(WaitTimeBeforeUpload, cancellation.Token);
+                }
+
+                Upload upload = null;
+                while (cancellation.Token.IsCancellationRequested == false
+                        && _queue.TryPeek(out upload)
+                        && upload != null
+                        && paths.Contains(upload.Recording.Path) == false)
+                {
+                    CurrentUpload = upload;
+                    paths.Add(upload.Recording.Path);
+
+                    try
                     {
-                        await UploadRecordingDataAsync(upload.Recording, progress, cts.Token);
+                        var progress = new Progress<UploadStatus>(upload.UpdateStatus);
+                        using (var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellation.Token))
+                        {
+                            await UploadRecordingDataAsync(upload.Recording, progress, cts.Token);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // log
+                    }
+                    // TODO what if failed?
+
+                    _queue.TryDequeue(out upload);
+                    if (upload.Status.Step != UploadStep.Completed)
+                    {
+                        _queue.TryEnqueue(upload.Recording);
+                        await Task.Delay(_timeoutStepper.Current, cancellation.Token);
+
+                        _timeoutStepper.MoveNext();
+                    }
+                    else
+                    {
+                        _timeoutStepper.Reset();
                     }
                 }
-                catch (Exception ex)
-                {
-                    // log
-                }
-                // TODO what if failed?
 
-                _queue.TryDequeue(out upload);
-                if (upload.Status.Step != UploadStep.Completed)
-                {
-                    _queue.TryEnqueue(upload.Recording);
-                    await Task.Delay(_timeoutStepper.Current);
-
-                    _timeoutStepper.MoveNext();
-                }
-                else
-                {
-                    _timeoutStepper.Reset();
-                }
+                ResetUpload();
             }
+            catch (OperationCanceledException)
+            {
 
-            ResetUpload();
-
-            IsWorking = false;
+            }
+            finally
+            {
+                IsWorking = false;
+            }
         }
 
 

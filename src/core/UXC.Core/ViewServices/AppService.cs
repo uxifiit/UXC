@@ -105,7 +105,7 @@ namespace UXC.Core.ViewServices
         }
 
 
-        public bool CheckStopCancelsWorkInProgress()
+        public bool CheckIfStopCancelsWorkInProgress()
         {
             return State.HasFlag(AppState.Started) 
                 && _controls.Any(c => c.IsWorking());

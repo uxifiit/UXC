@@ -312,7 +312,7 @@ namespace UXC
             var app = _kernel?.Get<IAppService>();
             if (app != null)
             {
-                bool isWorking = app.CheckStopCancelsWorkInProgress();
+                bool isWorking = app.CheckIfStopCancelsWorkInProgress();
                 if (isWorking)
                 {
                     var window = this.MainWindow as MahApps.Metro.Controls.MetroWindow;
