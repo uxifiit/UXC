@@ -116,6 +116,7 @@
     <Compile Include="Common\Commands\WrappedCommand.cs" />
     <Compile Include="Common\Commands\MenuItemCommand.cs" />
     <Compile Include="Common\Commands\NullCommands.cs" />
+    <Compile Include="Common\Converters\BoolToDoubleConverter.cs" />
     <Compile Include="Common\Converters\ReferenceValueConverter.cs" />
     <Compile Include="Common\Extensions\CommandsEx.cs" />
     <Compile Include="Common\Extensions\DependencyObjectEx.cs" />
