@@ -99,5 +99,5 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
 
 ## Publications
 
-Bielikova, M., Konopka, M., Simko, J., Moro, R., Tvarozek, J., Hlavac, P., Demcak, P. (2018). Eye-tracking en masse: Group user studies,
+Bielikova, M., Konopka, M., Simko, J., Moro, R., Tvarozek, J., Hlavac, P., Kuric, E. (2018). Eye-tracking en masse: Group user studies,
 lab infrastructure, and practices. *Journal of Eye Movement Research, 11(3)*, Article No. 6. DOI: http://dx.doi.org/10.16910/jemr.11.3.6
