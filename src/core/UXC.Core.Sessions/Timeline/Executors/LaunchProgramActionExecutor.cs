@@ -125,23 +125,35 @@ namespace UXC.Sessions.Timeline.Executors
         {
             var process = ObjectEx.GetAndReplace(ref _process, null);
 
-            KillProcess(process);
+            try
+            {
+                CloseProcess(process);
+            }
+            catch (Exception)
+            {
+                // TODO log exception
+            }
 
             return base.Complete();
         }
 
 
-        private void KillProcess(Process process)
+        private void CloseProcess(Process process)
         {
             if (process != null && process.HasExited == false)
             {
                 process.EnableRaisingEvents = false;
-                
+                process.Exited -= process_Exited;
+
                 //process.OutputDataReceived -= Process_OutputDataReceived;
                 //process.ErrorDataReceived -= Process_ErrorDataReceived;
 
-                process.Exited -= process_Exited;
-                process.Kill();
+                bool closed = process.CloseMainWindow();
+                if (closed == false)
+                {
+                    process.Kill();
+                }
+
                 process.Dispose();
             }
         }
