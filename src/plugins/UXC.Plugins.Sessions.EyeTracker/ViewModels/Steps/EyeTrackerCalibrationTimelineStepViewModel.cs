@@ -158,8 +158,6 @@ namespace UXC.Sessions.ViewModels.Timeline
 
         private async Task CalibrateAsync(ICalibrator calibrator)
         {
-            //Task windowClosed = window.OpenAsync();
-
             var execution = calibrator as IEyeTrackerCalibrationExecution;
 
             var result = SessionStepResult.Failed;
@@ -192,9 +190,8 @@ namespace UXC.Sessions.ViewModels.Timeline
                         cancellation.Token
                     );
 
-                    result = new EyeTrackerCalibrationSessionStepResult(_calibrations);
-
                     // create result with calibrations
+                    result = new EyeTrackerCalibrationSessionStepResult(_calibrations);
                 }
                 catch (OperationCanceledException)
                 {
@@ -202,13 +199,12 @@ namespace UXC.Sessions.ViewModels.Timeline
                 }
                 finally
                 {
+                    //remove handler from execution
                     if (execution != null)
                     {
                         execution.CalibrationFinished -= Execution_CalibrationFinished;
                     }
                 }
-
-                //remove handler from execution
 
                 Navigation.Clear();
 
