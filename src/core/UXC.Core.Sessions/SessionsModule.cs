@@ -41,8 +41,8 @@ namespace UXC.Sessions
             SessionStepActionSettings.Register(typeof(ShowDesktopActionSettings));
             SessionStepActionSettings.Register(typeof(LaunchProgramActionSettings));
             SessionStepActionSettings.Register(typeof(QuestionaryActionSettings));
-            SessionStepActionSettings.Register(typeof(ChooseQuestionAnswerActionSettings));
-            SessionStepActionSettings.Register(typeof(WriteQuestionAnswerActionSettings));
+            SessionStepActionSettings.Register(typeof(ChooseAnswerQuestionActionSettings));
+            SessionStepActionSettings.Register(typeof(WriteAnswerQuestionActionSettings));
             SessionStepActionSettings.Register(typeof(InstructionsActionSettings));
         }
 

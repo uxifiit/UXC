@@ -24,8 +24,8 @@ namespace UXC.Sessions
             Bind<IViewModelFactory>().To<ShowDesktopTimelineStepViewModelFactory>().InSingletonScope();
             Bind<IViewModelFactory>().To<WelcomeTimelineStepViewModelFactory>().InSingletonScope();
             Bind<IViewModelFactory>().To<QuestionaryTimelineStepViewModelFactory>().InSingletonScope();
-            Bind<IViewModelFactory>().To<ChooseQuestionAnswerViewModelFactory>().InSingletonScope();
-            Bind<IViewModelFactory>().To<WriteQuestionAnswerViewModelFactory>().InSingletonScope();
+            Bind<IViewModelFactory>().To<ChooseAnswerQuestionViewModelFactory>().InSingletonScope();
+            Bind<IViewModelFactory>().To<WriteAnswerQuestionViewModelFactory>().InSingletonScope();
 
 #if DEBUG
             if (DesignTimeHelper.IsDesignTime)

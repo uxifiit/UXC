@@ -19,25 +19,45 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            
+            
             <converters:BoolToDoubleConverter x:Key="BoolToMultilineTextBoxHeightConverter" TrueValue="120" FalseValue="40" />
 
-            <DataTemplate DataType="{x:Type vmTimeline:ChooseQuestionAnswerViewModel}">
-                <ItemsControl ItemsSource="{Binding Answers}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"
-                                          FontSize="{Binding FontSize, ElementName=control}"
-                                          IsTabStop="True"
-                                          Foreground="{Binding Foreground, ElementName=control}"
-                                          Content="{Binding Answer}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+            <DataTemplate x:Key="MultiChoiceAnswerDataTemplate">
+                <Grid>
+                    <CheckBox IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                              FontSize="{Binding FontSize, ElementName=control}"
+                              IsTabStop="True"
+                              Padding="8,0,0,0"
+                              Margin="0,5,0,0"
+                              Foreground="{Binding Foreground, ElementName=control}"
+                              Content="{Binding Answer}"/>
+                </Grid>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type vmTimeline:WriteQuestionAnswerViewModel}">
+            <DataTemplate x:Key="SingleChoiceAnswerDataTemplate">
+                <Grid>
+                    <RadioButton IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                                 FontSize="{Binding FontSize, ElementName=control}"
+                                 IsTabStop="True"
+                                 Padding="8,0,0,0"
+                                 Margin="0,5,0,0"
+                                 Foreground="{Binding Foreground, ElementName=control}"
+                                 Content="{Binding Answer}"
+                                 GroupName="{Binding DataContext.Id, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}" />
+                </Grid>
+            </DataTemplate>
+            
+            <converters:BoolToDataTemplateConverter x:Key="BoolToChoiceDataTemplateConverter" 
+                                                    TrueValue="{StaticResource MultiChoiceAnswerDataTemplate}"
+                                                    FalseValue="{StaticResource SingleChoiceAnswerDataTemplate}" />
+
+            <DataTemplate DataType="{x:Type vmTimeline:ChooseAnswerQuestionViewModel}">
+                <ItemsControl ItemsSource="{Binding Answers}"
+                              ItemTemplate="{Binding IsMultiChoice, Converter={StaticResource BoolToChoiceDataTemplateConverter}}"/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type vmTimeline:WriteAnswerQuestionViewModel}">
                 <Grid>
                     <TextBox Text="{Binding Answer, Mode=TwoWay}"
                              ScrollViewer.VerticalScrollBarVisibility="Auto"

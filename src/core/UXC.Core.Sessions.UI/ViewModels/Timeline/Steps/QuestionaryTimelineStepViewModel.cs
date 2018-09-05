@@ -25,7 +25,7 @@ namespace UXC.Sessions.ViewModels.Timeline
 
             var questions = settings.Questions?
                                     .Where(q => resolver.CanCreate(q))
-                                    .Select(q => new QuestionViewModel(q.Question, q.Id, (IQuestionAnswerViewModel)resolver.Create(q), q.IsRequired));
+                                    .Select(q => new QuestionViewModel(q.Question, q.Id, (IQuestionViewModel)resolver.Create(q), q.IsRequired));
 
             Questionary = new QuestionaryViewModel(questions);
 
@@ -150,7 +150,7 @@ namespace UXC.Sessions.ViewModels.Timeline
 
     public class QuestionViewModel : BindableBase
     {
-        internal QuestionViewModel(string question, string id, IQuestionAnswerViewModel answer, bool isRequired)
+        internal QuestionViewModel(string question, string id, IQuestionViewModel answer, bool isRequired)
         {
             Question = question;
             Id = id;
@@ -164,7 +164,7 @@ namespace UXC.Sessions.ViewModels.Timeline
 
         public bool IsRequired { get; } 
 
-        public IQuestionAnswerViewModel Answer { get; }
+        public IQuestionViewModel Answer { get; }
 
 
         public void ResetValidity() => IsInvalid = false;
@@ -186,7 +186,7 @@ namespace UXC.Sessions.ViewModels.Timeline
     }
 
 
-    public interface IQuestionAnswerViewModel
+    public interface IQuestionViewModel
     {
         bool Validate();
 
@@ -196,26 +196,29 @@ namespace UXC.Sessions.ViewModels.Timeline
     }
 
 
-    internal class ChooseQuestionAnswerViewModel : IQuestionAnswerViewModel
+    internal class ChooseAnswerQuestionViewModel : IQuestionViewModel
     {
-        private readonly ChooseQuestionAnswerActionSettings _settings;
+        private readonly ChooseAnswerQuestionActionSettings _settings;
 
-        internal ChooseQuestionAnswerViewModel(ChooseQuestionAnswerActionSettings settings)
+        internal ChooseAnswerQuestionViewModel(ChooseAnswerQuestionActionSettings settings)
         {
             _settings = settings;
 
-            Answers = settings.Answers.Select(a => new QuestionAnswerChoiceViewModel(a)).ToList();
+            Answers = settings.Answers.Select(a => new QuestionAnswerOptionViewModel(a)).ToList();
         }
 
-        public bool IsMultiChoice => _settings.Limit > 1;
+        public string Id => _settings.Id;
 
-        public ICollection<QuestionAnswerChoiceViewModel> Answers { get; }
+        public bool IsMultiChoice => _settings.Limit.HasValue == false || _settings.Limit.Value > 1;
+
+        public ICollection<QuestionAnswerOptionViewModel> Answers { get; }
 
         public bool Validate()
         {
             int count = Answers.Count(a => a.IsChecked);
             return (_settings.IsRequired == false || count > 0)
-                && count <= _settings.Limit;
+                && (_settings.Limit.HasValue == false || count <= _settings.Limit)
+                && (_settings.Minimum.HasValue == false || count >= _settings.Minimum.Value);
         }
 
         public string GetAnswer()
@@ -234,9 +237,9 @@ namespace UXC.Sessions.ViewModels.Timeline
     }
 
 
-    internal class QuestionAnswerChoiceViewModel
+    internal class QuestionAnswerOptionViewModel
     {
-        public QuestionAnswerChoiceViewModel(string answer)
+        public QuestionAnswerOptionViewModel(string answer)
         {
             Answer = answer;
             //Tag = tag;
@@ -251,14 +254,16 @@ namespace UXC.Sessions.ViewModels.Timeline
 
 
 
-    internal class WriteQuestionAnswerViewModel : BindableBase, IQuestionAnswerViewModel
+    internal class WriteAnswerQuestionViewModel : BindableBase, IQuestionViewModel
     {
-        private readonly WriteQuestionAnswerActionSettings _settings;
+        private readonly WriteAnswerQuestionActionSettings _settings;
 
-        internal WriteQuestionAnswerViewModel(WriteQuestionAnswerActionSettings settings)
+        internal WriteAnswerQuestionViewModel(WriteAnswerQuestionActionSettings settings)
         {
             _settings = settings;
         }
+
+        public string Id => _settings.Id;
 
         private string answer = String.Empty;
         public string Answer

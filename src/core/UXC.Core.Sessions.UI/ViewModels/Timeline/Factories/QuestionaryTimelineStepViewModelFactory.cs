@@ -18,19 +18,19 @@ namespace UXC.Sessions.ViewModels.Timeline.Factories
     }
 
 
-    class ChooseQuestionAnswerViewModelFactory : RelayViewModelFactory<ChooseQuestionAnswerActionSettings, IQuestionAnswerViewModel>
+    class ChooseAnswerQuestionViewModelFactory : RelayViewModelFactory<ChooseAnswerQuestionActionSettings, IQuestionViewModel>
     {
-        public ChooseQuestionAnswerViewModelFactory()
-            : base(settings => new ChooseQuestionAnswerViewModel(settings))
+        public ChooseAnswerQuestionViewModelFactory()
+            : base(settings => new ChooseAnswerQuestionViewModel(settings))
         {
         }
     }
 
 
-    class WriteQuestionAnswerViewModelFactory : RelayViewModelFactory<WriteQuestionAnswerActionSettings, IQuestionAnswerViewModel>
+    class WriteAnswerQuestionViewModelFactory : RelayViewModelFactory<WriteAnswerQuestionActionSettings, IQuestionViewModel>
     {
-        public WriteQuestionAnswerViewModelFactory()
-            : base(settings => new WriteQuestionAnswerViewModel(settings))
+        public WriteAnswerQuestionViewModelFactory()
+            : base(settings => new WriteAnswerQuestionViewModel(settings))
         {
         }
     }

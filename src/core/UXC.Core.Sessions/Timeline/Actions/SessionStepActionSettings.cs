@@ -118,15 +118,17 @@ namespace UXC.Sessions.Timeline.Actions
 
 
 
-    public class ChooseQuestionAnswerActionSettings : QuestionActionSettings
+    public class ChooseAnswerQuestionActionSettings : QuestionActionSettings
     {
         public List<string> Answers { get; set; }
 
-        public int Limit { get; set; } = 1;
+        public int? Limit { get; set; } = 1;
+
+        public int? Minimum { get; set; }
 
         public override SessionStepActionSettings Clone()
         {
-            var clone = (ChooseQuestionAnswerActionSettings)base.Clone();
+            var clone = (ChooseAnswerQuestionActionSettings)base.Clone();
 
             clone.Answers = Answers?.ToList();
 
@@ -136,7 +138,7 @@ namespace UXC.Sessions.Timeline.Actions
 
 
 
-    public class WriteQuestionAnswerActionSettings : QuestionActionSettings
+    public class WriteAnswerQuestionActionSettings : QuestionActionSettings
     {
         public string ValidAnswerRegexPattern { get; set; }
 
