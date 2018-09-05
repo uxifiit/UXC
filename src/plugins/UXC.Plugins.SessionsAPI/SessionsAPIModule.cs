@@ -69,9 +69,14 @@ namespace UXC.Plugins.SessionsAPI
                 cfg.CreateMap<SessionDefinitionCreate, SessionDefinition>()
                    .ConstructUsing((SessionDefinitionCreate _) => SessionDefinition.Create());
 
-                cfg.CreateMap<SessionRecording, SessionRecordingInfo>()
-                   .ForMember(i => i.CurrentStep,
-                              e => e.MapFrom(recording => recording.CurrentStep != null ? recording.CurrentStep.Step.Action.ActionType : null));
+                cfg.CreateMap<SessionRecording, SessionRecordingInfo>();
+
+                cfg.CreateMap<SessionStepExecution, SessionStepExecutionInfo>()
+                   .ForMember(i => i.ActionType,
+                              e => e.MapFrom(execution => execution.Step.Action.ActionType))
+                   .ForMember(i => i.Tag,
+                              e => e.MapFrom(execution => execution.Step.Action.Tag));
+
             });
 
             return config.CreateMapper();

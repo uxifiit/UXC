@@ -11,9 +11,12 @@ namespace UXC.Sessions.Timeline
     {
         internal SessionStepExecution(SessionStep step, DateTime startedAt)
         {
+            //Index = index;
             Step = step;
             StartedAt = startedAt;
         }
+
+        //public int Index { get; }
 
         public SessionStep Step { get; }
 

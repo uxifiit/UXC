@@ -131,6 +131,7 @@
     <Compile Include="Entities\SessionDefinitionCreate.cs" />
     <Compile Include="Entities\SessionDefinitionInfo.cs" />
     <Compile Include="Entities\SessionRecordingInfo.cs" />
+    <Compile Include="Entities\SessionStepExecutionInfo.cs" />
     <Compile Include="ExternalSessionDefinitions.cs" />
     <Compile Include="Hubs\SessionRecordingDataBufferHub.cs" />
     <Compile Include="Hubs\SessionDefinitionHub.cs" />

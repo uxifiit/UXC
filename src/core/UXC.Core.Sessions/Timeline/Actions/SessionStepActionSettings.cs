@@ -52,6 +52,9 @@ namespace UXC.Sessions.Timeline.Actions
             ?? (actionType = CreateActionTypeName(this.GetType()));   // Used for serialization? 
 
 
+        public string Tag { get; set; }
+
+
         public virtual SessionStepActionSettings Clone()
         {
             return (SessionStepActionSettings)this.MemberwiseClone();

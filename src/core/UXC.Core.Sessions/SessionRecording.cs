@@ -287,7 +287,7 @@ namespace UXC.Sessions
 
         private void Prepare()
         {
-            _currentSteps = _preSteps;
+            ResetCurrentTimeline(_preSteps);
 
             Continue();
         }
@@ -303,7 +303,7 @@ namespace UXC.Sessions
 
             _adapters.StartRecordingAsync(SelectedDevices, cancellation.Token).Forget();
 
-            _currentSteps = _steps;
+            ResetCurrentTimeline(_steps);
 
             Continue();
         }
@@ -366,27 +366,33 @@ namespace UXC.Sessions
         //}
 
 
-        private LinkedList<SessionStep> ResolveTimeline(ref SessionState targetTimeline)
+        //private LinkedList<SessionStep> ResolveTimeline(ref SessionState targetTimeline)
+        //{
+        //    targetTimeline.ThrowIf(t => t.IsRunningState() == false, nameof(targetTimeline));
+
+        //    LinkedList<SessionStep> timeline = null;
+        //    switch (targetTimeline)
+        //    {
+        //        case SessionState.Preparing:
+        //            timeline = _preSteps;
+        //            break;
+        //        case SessionState.Processing:
+        //            timeline = _postSteps;
+        //            break;
+        //        default:
+        //        case SessionState.Running:
+        //            timeline = _steps;
+        //            targetTimeline = SessionState.Running;
+        //            break;
+        //    }
+
+        //    return timeline;
+        //}
+
+
+        private void ResetCurrentTimeline(LinkedList<SessionStep> timeline)
         {
-            targetTimeline.ThrowIf(t => t.IsRunningState() == false, nameof(targetTimeline));
-
-            LinkedList<SessionStep> timeline = null;
-            switch (targetTimeline)
-            {
-                case SessionState.Preparing:
-                    timeline = _preSteps;
-                    break;
-                case SessionState.Processing:
-                    timeline = _postSteps;
-                    break;
-                default:
-                case SessionState.Running:
-                    timeline = _steps;
-                    targetTimeline = SessionState.Running;
-                    break;
-            }
-
-            return timeline;
+            _currentSteps = timeline;
         }
 
 
@@ -447,7 +453,7 @@ namespace UXC.Sessions
 
         private void Process()
         {
-            _currentSteps = _postSteps;
+            ResetCurrentTimeline(_postSteps);
 
             Continue();
         }

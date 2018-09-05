@@ -23,7 +23,7 @@ namespace UXC.Plugins.SessionsAPI.Entities
         public bool IsFinished { get; set; } = false;
 
         [DataMember]
-        public string CurrentStep { get; set; }
+        public SessionStepExecutionInfo CurrentStep { get; set; }
 
         [DataMember(IsRequired = true)]
         public SessionDefinitionInfo Definition { get; set; }
