@@ -156,6 +156,7 @@ namespace UXC.Sessions.ViewModels.Timeline
             calibratorViewModel.IsProfileStorageEnabled = _settings.IsProfileEnabled;
         }
 
+
         private async Task CalibrateAsync(ICalibrator calibrator)
         {
             var execution = calibrator as IEyeTrackerCalibrationExecution;
