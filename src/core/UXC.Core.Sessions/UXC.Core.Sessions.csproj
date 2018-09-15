@@ -96,7 +96,9 @@
     <Compile Include="Common\JsonConverter`1.cs" />
     <Compile Include="Common\RelayJsonConverter`1.cs" />
     <Compile Include="ILocalSessionDefinitionsService.cs" />
+    <Compile Include="IProcessService.cs" />
     <Compile Include="LocalSessionDefinitionsService.cs" />
+    <Compile Include="ProcessService.cs" />
     <Compile Include="Recording\Local\Configuration\LocalSessionRecorderConfiguration.cs" />
     <Compile Include="Serialization\Converters\Json\DataJsonConverters.cs" />
     <Compile Include="Serialization\Converters\Json\SingleOrArrayConverter`1.cs" />
@@ -115,6 +117,7 @@
     <Compile Include="Timeline\Actions\SessionStepActionSettings.cs" />
     <Compile Include="Configuration\ISessionsConfiguration.cs" />
     <Compile Include="Extensions\IObservableEx.cs" />
+    <Compile Include="Timeline\Executors\CloseProgramActionExecutor.cs" />
     <Compile Include="Timeline\Executors\ISessionStepActionExecutor.cs" />
     <Compile Include="Timeline\Executors\LaunchProgramActionExecutor.cs" />
     <Compile Include="Timeline\Executors\SessionStepActionExecutor`1.cs" />

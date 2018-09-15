@@ -13,43 +13,65 @@ using UXI.Common.Extensions;
 
 namespace UXC.Sessions.Timeline.Executors
 {
+
+    /*
+        Launch A - keep running - completes immediately
+        ... any other steps ...
+        Close A
+
+        Launch A - shows A, close on complete or complete on close
+     
+        Launch A - keep running, no tag
+        Launch B - close immediately, no tag
+        B closed - should not close A, even if both have no tag specified.
+
+
+        Launch A - keep running, no tag
+        Launch B - keep running, no tag
+        Close - no tag - close A and B
+    */
+    
+
     public class LaunchProgramActionExecutor : SessionStepActionExecutor<LaunchProgramActionSettings>
     {
-        private Process _process;
+        private readonly IProcessService _service;
 
-        // add logging error and output
+        private Process _process;
+        private LaunchProgramActionSettings _settings;
+
+        public LaunchProgramActionExecutor(IProcessService service)
+        {
+            _service = service;
+        }
+
+        // TODO add logging error and output
         //private readonly StringBuilder _outputData = new StringBuilder();
         //private readonly StringBuilder _errorData = new StringBuilder();
 
         protected override void Execute(SessionRecording recording, LaunchProgramActionSettings settings)
         {
+            _settings = settings;
             _process = CreateProcess(settings, recording);
-            _process.EnableRaisingEvents = true;
-            _process.Exited += process_Exited;
-            
-                //Observable.Create(o =>
-            //{
-            //    DataReceivedEventHandler handler = (e, d) =>
-            //    {
 
-            //    };
+            if (settings.KeepRunning == false)
+            {
+                _process.EnableRaisingEvents = true;
+                _process.Exited += process_Exited;
+            }
 
-            //    return new CompositeDisposable
-            //    (
-            //        Disposable.Create(() => { _process.ErrorDataReceived -= handler; }),
-            //        Disposable.Create(() => { _process.})
-            //    );
-            //});
-
-            //if (settings.RunOnBackground)
-            //{
-            //    _process.ErrorDataReceived += Process_ErrorDataReceived;
-            //    _process.OutputDataReceived += Process_OutputDataReceived;
-            //    _process.BeginOutputReadLine();
-            //    _process.BeginErrorReadLine();
-            //}
-
-            _process.Start();
+            if (_process.Start())
+            {
+                if (settings.KeepRunning)
+                {
+                    _service.Add(_process.Id, settings.Tag);
+                    _process.Dispose();
+                    _process = null;
+                }
+            }
+            else
+            {
+                // TODO show or log that the process did not start
+            }
         }
 
         private void process_Exited(object sender, EventArgs e)
@@ -93,6 +115,7 @@ namespace UXC.Sessions.Timeline.Executors
             return process;
         }
 
+
         //private void Process_OutputDataReceived(object sender, DataReceivedEventArgs e)
         //{
         //    _outputData.Append(e.Data);
@@ -102,6 +125,7 @@ namespace UXC.Sessions.Timeline.Executors
         //{
         //    _errorData.Append(e.Data);
         //}
+
 
         private static string InsertArgumentsParameters(string arguments, List<string> parameters, SessionRecording recording)
         {
@@ -121,13 +145,21 @@ namespace UXC.Sessions.Timeline.Executors
             return arguments;
         }
 
+
         public override SessionStepResult Complete()
         {
             var process = ObjectEx.GetAndReplace(ref _process, null);
 
             try
             {
-                CloseProcess(process);
+                if (process != null)
+                {
+                    process.Exited -= process_Exited;
+
+                    _service.CloseProcess(process, _settings.ForceClose);
+
+                    process.Dispose();
+                }
             }
             catch (Exception)
             {
@@ -136,26 +168,5 @@ namespace UXC.Sessions.Timeline.Executors
 
             return base.Complete();
         }
-
-
-        private void CloseProcess(Process process)
-        {
-            if (process != null && process.HasExited == false)
-            {
-                process.EnableRaisingEvents = false;
-                process.Exited -= process_Exited;
-
-                //process.OutputDataReceived -= Process_OutputDataReceived;
-                //process.ErrorDataReceived -= Process_ErrorDataReceived;
-
-                bool closed = process.CloseMainWindow();
-                if (closed == false)
-                {
-                    process.Kill();
-                }
-
-                process.Dispose();
-            }
-        }
     }
-}
+} 

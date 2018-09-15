@@ -81,8 +81,19 @@ namespace UXC.Sessions.Timeline.Actions
         public List<string> ArgumentsParameters { get; set; } = new List<string>();
 
         public bool RunInBackground { get; set; }
+
+        public bool KeepRunning { get; set; }
+
+        public bool ForceClose { get; set; }
     }
 
+
+    public class CloseProgramActionSettings : SessionStepActionSettings
+    {
+        public bool ForceClose { get; set; }
+
+        public TimeSpan? ForceCloseTimeout { get; set; }
+    }
 
 
     public class QuestionaryActionSettings : ContentActionSettinsBase

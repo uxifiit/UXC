@@ -33,6 +33,8 @@ namespace UXC.Sessions
             BindLocalSessionDefinitions();
 
             RegisterTimelineSteps();
+
+            BindProgramsSessionStep();
         }
 
 
@@ -40,6 +42,7 @@ namespace UXC.Sessions
         {
             SessionStepActionSettings.Register(typeof(ShowDesktopActionSettings));
             SessionStepActionSettings.Register(typeof(LaunchProgramActionSettings));
+            SessionStepActionSettings.Register(typeof(CloseProgramActionSettings));
             SessionStepActionSettings.Register(typeof(QuestionaryActionSettings));
             SessionStepActionSettings.Register(typeof(ChooseAnswerQuestionActionSettings));
             SessionStepActionSettings.Register(typeof(WriteAnswerQuestionActionSettings));
@@ -65,6 +68,10 @@ namespace UXC.Sessions
         }
 
 
+        private void BindProgramsSessionStep()
+        {
+            Bind<IProcessService>().To<ProcessService>().InSingletonScope();
+        }
         //private void BindCsvSerialization()
         //{
         //    // add other class maps

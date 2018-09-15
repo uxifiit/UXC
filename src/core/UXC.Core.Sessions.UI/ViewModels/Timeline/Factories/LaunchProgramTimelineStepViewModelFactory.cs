@@ -11,8 +11,8 @@ namespace UXC.Sessions.ViewModels.Timeline.Factories
 {
     class LaunchProgramTimelineStepViewModelFactory : RelayViewModelFactory<LaunchProgramActionSettings, ITimelineStepViewModel>
     {
-        public LaunchProgramTimelineStepViewModelFactory()
-            : base(settings => new ExecutedTimelineStepViewModel(settings, new LaunchProgramActionExecutor()))
+        public LaunchProgramTimelineStepViewModelFactory(IProcessService service)
+            : base(settings => new ExecutedTimelineStepViewModel(settings, new LaunchProgramActionExecutor(service)))
         {
         }
     }
