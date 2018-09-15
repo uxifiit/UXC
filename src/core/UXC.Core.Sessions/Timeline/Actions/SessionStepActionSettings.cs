@@ -70,7 +70,7 @@ namespace UXC.Sessions.Timeline.Actions
 
 
 
-    public class LaunchProgramActionSettings : SessionStepActionSettings
+    public class LaunchProgramActionSettings : ContentActionSettingsBase
     {
         public string Path { get; set; }
 
@@ -88,7 +88,7 @@ namespace UXC.Sessions.Timeline.Actions
     }
 
 
-    public class CloseProgramActionSettings : SessionStepActionSettings
+    public class CloseProgramActionSettings : ContentActionSettingsBase
     {
         public bool ForceClose { get; set; }
 
@@ -96,7 +96,7 @@ namespace UXC.Sessions.Timeline.Actions
     }
 
 
-    public class QuestionaryActionSettings : ContentActionSettinsBase
+    public class QuestionaryActionSettings : ContentActionSettingsBase
     {
         public string Id { get; set; }
 
@@ -165,7 +165,7 @@ namespace UXC.Sessions.Timeline.Actions
 
 
 
-    public class InstructionsActionSettings : ContentActionSettinsBase
+    public class InstructionsActionSettings : ContentActionSettingsBase
     {
         public Text Instructions { get; set; }
 
@@ -213,7 +213,7 @@ namespace UXC.Sessions.Timeline.Actions
 
    
      
-    public abstract class ContentActionSettinsBase : SessionStepActionSettings
+    public abstract class ContentActionSettingsBase : SessionStepActionSettings
     {
         public string Background { get; set; }
         public string Foreground { get; set; }

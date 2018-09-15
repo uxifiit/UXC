@@ -15,7 +15,7 @@ namespace UXC.Sessions.ViewModels.Timeline
     {
         private const int DEFAULT_FONT_SIZE = 24;
 
-        public ContentTimelineStepViewModelBase(ContentActionSettinsBase settings)
+        public ContentTimelineStepViewModelBase(ContentActionSettingsBase settings)
         {
             Foreground = ResolveColor(settings.Foreground, Colors.White);
             Background = ResolveColor(settings.Background, Colors.Black);

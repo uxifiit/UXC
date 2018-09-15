@@ -7,7 +7,7 @@ using UXC.Core.Data;
 
 namespace UXC.Sessions.Timeline.Actions
 {
-    public class EyeTrackerCalibrationActionSettings : ContentActionSettinsBase
+    public class EyeTrackerCalibrationActionSettings : ContentActionSettingsBase
     {
         // public int PlanLength { get; set; }
         public List<Point2> CustomPlan { get; set; }
