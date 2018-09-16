@@ -13,11 +13,6 @@ namespace UXC.Sessions.ViewModels.Timeline
 {
     public interface ITimelineStepViewModel
     {
-        //public TimelineStepViewModelBase()// SessionStepActionSettings action)
-        //{
-        //   // Settings = settings;
-        //}
-
         void Execute(SessionRecordingViewModel recording);
 
         SessionStepResult Complete();
@@ -25,5 +20,7 @@ namespace UXC.Sessions.ViewModels.Timeline
         event EventHandler<SessionStepResult> Completed;
 
         bool IsContent { get; }
+
+        event EventHandler<bool> IsContentChanged;
     }
 }

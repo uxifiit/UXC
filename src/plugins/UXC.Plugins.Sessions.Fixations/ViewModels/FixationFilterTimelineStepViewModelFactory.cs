@@ -27,7 +27,7 @@ namespace UXC.Plugins.Sessions.Fixations.ViewModels
 
         public object Create(object source)
         {
-            return new ExecutedTimelineStepViewModel((FixationFilterActionSettings)source, new FixationFilterActionExecutor(_resolver.GetAll<IDataSerializationFactory>()));
+            return new ExecutedTimelineStepViewModel((FixationFilterActionSettings)source, new FixationFilterActionExecutor(_resolver.GetAll<IDataSerializationFactory>()), _resolver.Get<ViewModelResolver>());
         }
     }
 }

@@ -20,6 +20,7 @@ namespace UXC.Sessions
         {
             Bind<IViewModelFactory>().To<DefaultTimelineStepViewModelFactory>().InSingletonScope();
             Bind<IViewModelFactory>().To<InstructionsTimelineStepViewModelFactory>().InSingletonScope();
+            Bind<IViewModelFactory>().To<CloseProgramTimelineStepViewModelFactory>().InSingletonScope();
             Bind<IViewModelFactory>().To<LaunchProgramTimelineStepViewModelFactory>().InSingletonScope();
             Bind<IViewModelFactory>().To<ShowDesktopTimelineStepViewModelFactory>().InSingletonScope();
             Bind<IViewModelFactory>().To<WelcomeTimelineStepViewModelFactory>().InSingletonScope();

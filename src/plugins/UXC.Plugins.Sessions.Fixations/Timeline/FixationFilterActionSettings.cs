@@ -7,7 +7,7 @@ using UXC.Sessions.Timeline.Actions;
 
 namespace UXC.Sessions.Timeline.Actions
 {
-    public class FixationFilterActionSettings : SessionStepActionSettings
+    public class FixationFilterActionSettings : ExecutedActionSettingsBase
     {
 
     }

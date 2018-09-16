@@ -21,5 +21,7 @@ namespace UXC.Sessions.ViewModels.Timeline.Factories
         }
 
         public bool IsContent => true;
+
+        public event EventHandler<bool> IsContentChanged { add { } remove { } }
     }
 }

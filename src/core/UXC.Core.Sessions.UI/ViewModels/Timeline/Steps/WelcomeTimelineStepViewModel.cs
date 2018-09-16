@@ -14,7 +14,7 @@ using UXI.Common.UI;
 
 namespace UXC.Sessions.ViewModels.Timeline
 {
-    public class WelcomeTimelineStepViewModel : QuestionaryTimelineStepViewModel, ITimelineStepViewModel
+    public class WelcomeTimelineStepViewModel : QuestionaryTimelineStepViewModel
     {
         private readonly WelcomeActionSettings _settings;
 

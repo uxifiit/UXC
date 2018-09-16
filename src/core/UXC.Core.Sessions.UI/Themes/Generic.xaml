@@ -15,8 +15,7 @@
                                               FontSize="{Binding FontSize}"
                                               DataContext="{Binding}" />
     </DataTemplate>
-    
-   
+       
     <DataTemplate DataType="{x:Type vmTimeline:InstructionsTimelineStepViewModel}">
         <vTimeline:InstructionsTimelineStepControl Background="{Binding Background}"
                                                    Foreground="{Binding Foreground}"
@@ -30,5 +29,9 @@
                                                   Foreground="{Binding Foreground}"
                                                   FontSize="{Binding FontSize}"
                                                   DataContext="{Binding}"/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vmTimeline:ExecutedTimelineStepViewModel}">
+        <ContentControl DataContext="{Binding Content}" Content="{Binding}" />
     </DataTemplate>
 </ResourceDictionary>

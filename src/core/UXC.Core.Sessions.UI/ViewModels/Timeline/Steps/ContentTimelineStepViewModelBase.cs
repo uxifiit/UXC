@@ -33,6 +33,8 @@ namespace UXC.Sessions.ViewModels.Timeline
 
         public bool IsContent => true;
 
+        public event EventHandler<bool> IsContentChanged { add { } remove { } }
+
 
         public Brush Background { get; protected set; }
 

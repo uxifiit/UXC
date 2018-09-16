@@ -115,6 +115,10 @@
       <Project>{E1343366-81FF-4D8F-A8C9-A13E389D45A3}</Project>
       <Name>UXC.Core.Sessions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\core\UXC.Core.UI\UXC.Core.UI.csproj">
+      <Project>{DA1BE9D9-A997-4387-BE22-46DAB2A0996A}</Project>
+      <Name>UXC.Core.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

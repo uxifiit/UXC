@@ -63,14 +63,19 @@ namespace UXC.Sessions.Timeline.Actions
 
 
 
-    public class ShowDesktopActionSettings : SessionStepActionSettings
+    public class ShowDesktopActionSettings : ExecutedActionSettingsBase
     {
         public bool MinimizeAll { get; set; }
     }
 
 
+    public class ExecutedActionSettingsBase : SessionStepActionSettings
+    {
+        public SessionStepActionSettings Content { get; set; }
+    }
 
-    public class LaunchProgramActionSettings : ContentActionSettingsBase
+
+    public class LaunchProgramActionSettings : ExecutedActionSettingsBase
     {
         public string Path { get; set; }
 
@@ -85,14 +90,20 @@ namespace UXC.Sessions.Timeline.Actions
         public bool KeepRunning { get; set; }
 
         public bool ForceClose { get; set; }
+
+        public bool WaitForStart { get; set; }
+
+        public TimeSpan? WaitTimeout { get; set; } 
     }
 
 
-    public class CloseProgramActionSettings : ContentActionSettingsBase
+    public class CloseProgramActionSettings : ExecutedActionSettingsBase
     {
         public bool ForceClose { get; set; }
 
         public TimeSpan? ForceCloseTimeout { get; set; }
+
+        public string Message { get; set; }
     }
 
 

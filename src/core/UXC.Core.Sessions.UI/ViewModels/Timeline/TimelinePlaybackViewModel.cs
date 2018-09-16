@@ -14,6 +14,7 @@ using UXC.Sessions.Timeline.Actions;
 using UXC.Sessions.Timeline.Executors;
 using UXC.Sessions.Timeline.Results;
 using UXC.Sessions.ViewModels.Timeline;
+using UXI.Common.Extensions;
 using UXI.Common.Helpers;
 using UXI.Common.UI;
 
@@ -58,11 +59,13 @@ namespace UXC.Sessions.ViewModels
                     if (previous != null)
                     {
                         previous.Completed -= Action_Completed;
+                        previous.IsContentChanged -= Action_IsContentChanged;
                     }
 
                     if (value != null)
                     {
                         value.Completed += Action_Completed;
+                        value.IsContentChanged += Action_IsContentChanged;
                     }
                 }
             }
@@ -83,16 +86,21 @@ namespace UXC.Sessions.ViewModels
         }
 
 
+        private void Action_IsContentChanged(object sender, bool isContent)
+        {
+            _dispatcher.InvokeAsync(() =>
+            {
+                _recording.IsTimelineActive = isContent;
+            }).Task.Forget();
+        }
+
+
         public void Proceed(SessionStepExecution execution)
         {
             ClearCallbacks();
             _hotkeysDisposable.Disposable = Disposable.Empty;
 
             _execution = execution;
-
-            // set key shortcut
-            // -> command
-            // -> event Completed
 
             // wait for action executor completed
             // -> event Completed
@@ -106,6 +114,9 @@ namespace UXC.Sessions.ViewModels
                 _timerDisposable.Disposable = new Timer(CompleteActionDurationTimer, action, execution.Step.Completion.Duration.Value, TimeSpan.FromMilliseconds(-1));
             }
 
+            // set key shortcut
+            // -> command
+            // -> event Completed
             var hotkeys = ResolveHotkeys(execution.Step.Completion.Hotkeys);
             if (hotkeys.Any())
             {

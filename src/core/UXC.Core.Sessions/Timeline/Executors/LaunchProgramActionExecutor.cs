@@ -61,11 +61,25 @@ namespace UXC.Sessions.Timeline.Executors
 
             if (_process.Start())
             {
+                if (settings.WaitForStart)
+                {
+                    if (_settings.WaitTimeout.HasValue)
+                    {
+                        _process.WaitForInputIdle((int)_settings.WaitTimeout.Value.TotalMilliseconds);
+                    }
+                    else
+                    {
+                        _process.WaitForInputIdle();
+                    }
+                }
+
                 if (settings.KeepRunning)
                 {
                     _service.Add(_process.Id, settings.Tag);
                     _process.Dispose();
                     _process = null;
+
+                    Complete();
                 }
             }
             else
@@ -152,7 +166,7 @@ namespace UXC.Sessions.Timeline.Executors
 
             try
             {
-                if (process != null)
+                if (process != null && _settings.KeepRunning == false)
                 {
                     process.Exited -= process_Exited;
 

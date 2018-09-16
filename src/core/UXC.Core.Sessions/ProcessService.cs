@@ -30,7 +30,7 @@ namespace UXC.Sessions
             string key = tag?.Trim();
 
             return String.IsNullOrWhiteSpace(key)
-                 ? null
+                 ? String.Empty
                  : key;
         }
 
