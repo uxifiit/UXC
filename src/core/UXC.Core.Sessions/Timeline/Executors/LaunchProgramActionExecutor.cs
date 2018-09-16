@@ -79,12 +79,13 @@ namespace UXC.Sessions.Timeline.Executors
                     _process.Dispose();
                     _process = null;
 
-                    Complete();
+                    OnCompleted(SessionStepResult.Successful);
                 }
             }
             else
             {
                 // TODO show or log that the process did not start
+                OnCompleted(SessionStepResult.Failed);
             }
         }
 
