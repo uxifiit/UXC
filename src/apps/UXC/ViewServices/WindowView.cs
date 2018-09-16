@@ -65,15 +65,16 @@ namespace UXC.ViewServices
 
         public void MakeVisible()
         {
-            _window.ShowInTaskbar = true;
+//            _window.ShowInTaskbar = true;
             _window.Visibility = Visibility.Visible;
         }
 
 
         public void Hide()
         {
-            _window.ShowInTaskbar = false;
-            _window.Visibility = Visibility.Collapsed;
+            _window.Hide();
+//            _window.ShowInTaskbar = false;
+//            _window.Visibility = Visibility.Collapsed;
         }
 
 
