@@ -11,6 +11,8 @@ namespace UXC.Sessions.Common
 {
     public abstract class InheritedObjectJsonConverter<T> : JsonConverter
     {
+        private readonly bool _canBeNull = (typeof(T).IsValueType == false) || (Nullable.GetUnderlyingType(typeof(T)) != null);
+
         protected abstract Type ResolveType(JObject jObject);
 
         protected T Create(Type objectType, JObject jObject)
@@ -36,25 +38,32 @@ namespace UXC.Sessions.Common
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            // Load JObject from stream
-            JObject jObject = JObject.Load(reader);
-
-            // Create target object based on JObject
-            T target;
-            try
+            if (reader.TokenType == JsonToken.Null && _canBeNull)
             {
-                target = Create(objectType, jObject);
+                return null;
             }
-            catch
+            else
             {
-                System.Diagnostics.Debug.WriteLine("Failed to deserialize JSON");
-                throw; 
+                // Load JObject from stream
+                JObject jObject = JObject.Load(reader);
+
+                // Create target object based on JObject
+                T target;
+                try
+                {
+                    target = Create(objectType, jObject);
+                }
+                catch
+                {
+                    System.Diagnostics.Debug.WriteLine("Failed to deserialize JSON");
+                    throw; 
+                }
+
+                // Populate the object properties
+                serializer.Populate(jObject.CreateReader(), target);
+
+                return target;
             }
-
-            // Populate the object properties
-            serializer.Populate(jObject.CreateReader(), target);
-
-            return target;
         }
 
         public override bool CanRead => true;
