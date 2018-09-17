@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UXC.Sessions.Views.Timeline"
-             xmlns:vmTimeline="clr-namespace:UXC.Sessions.ViewModels.Timeline"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:controls="clr-namespace:UXC.Sessions.Controls"
              mc:Ignorable="d" 

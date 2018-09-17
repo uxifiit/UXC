@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:UXC.Sessions.Controls"
-             xmlns:vmTimeline="clr-namespace:UXC.Sessions.ViewModels.Timeline"
+             xmlns:vm="clr-namespace:UXC.Sessions.ViewModels.Timeline.Steps.Questionary"
              xmlns:converters="clr-namespace:UXC.Core.Common.Converters;assembly=UXC.Core.UI"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
@@ -19,8 +19,6 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            
-            
             <converters:BoolToDoubleConverter x:Key="BoolToMultilineTextBoxHeightConverter" TrueValue="120" FalseValue="40" />
 
             <DataTemplate x:Key="MultiChoiceAnswerDataTemplate">
@@ -52,12 +50,12 @@
                                                     TrueValue="{StaticResource MultiChoiceAnswerDataTemplate}"
                                                     FalseValue="{StaticResource SingleChoiceAnswerDataTemplate}" />
 
-            <DataTemplate DataType="{x:Type vmTimeline:ChooseAnswerQuestionViewModel}">
+            <DataTemplate DataType="{x:Type vm:ChooseAnswerQuestionViewModel}">
                 <ItemsControl ItemsSource="{Binding Answers}"
                               ItemTemplate="{Binding IsMultiChoice, Converter={StaticResource BoolToChoiceDataTemplateConverter}}"/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type vmTimeline:WriteAnswerQuestionViewModel}">
+            <DataTemplate DataType="{x:Type vm:WriteAnswerQuestionViewModel}">
                 <Grid>
                     <TextBox Text="{Binding Answer, Mode=TwoWay}"
                              ScrollViewer.VerticalScrollBarVisibility="Auto"

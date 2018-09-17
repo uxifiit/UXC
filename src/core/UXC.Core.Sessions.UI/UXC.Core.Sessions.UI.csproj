@@ -142,6 +142,12 @@
     <Compile Include="ViewModels\Timeline\Factories\WelcomeTimelineStepViewModelFactory.cs" />
     <Compile Include="ViewModels\Timeline\Steps\ContentTimelineStepViewModelBase.cs" />
     <Compile Include="ViewModels\Timeline\Steps\QuestionaryTimelineStepViewModel.cs" />
+    <Compile Include="ViewModels\Timeline\Steps\Questionary\ChooseAnswerQuestionViewModel.cs" />
+    <Compile Include="ViewModels\Timeline\Steps\Questionary\IQuestionAnswerViewModel.cs" />
+    <Compile Include="ViewModels\Timeline\Steps\Questionary\QuestionAnswerOptionViewModel.cs" />
+    <Compile Include="ViewModels\Timeline\Steps\Questionary\QuestionaryViewModel.cs" />
+    <Compile Include="ViewModels\Timeline\Steps\Questionary\QuestionViewModel.cs" />
+    <Compile Include="ViewModels\Timeline\Steps\Questionary\WriteAnswerQuestionViewModel.cs" />
     <Compile Include="ViewModels\Timeline\Steps\WelcomeTimelineStepViewModel.cs" />
     <Compile Include="ViewModels\SessionDefinitionsViewModel.cs" />
     <Compile Include="ViewModels\Timeline\Factories\DefaultTimelineStepViewModelFactory.cs" />

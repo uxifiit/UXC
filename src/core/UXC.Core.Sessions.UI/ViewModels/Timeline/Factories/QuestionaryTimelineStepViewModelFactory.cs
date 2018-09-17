@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UXC.Core.Modules;
 using UXC.Core.ViewModels;
 using UXC.Sessions.Timeline.Actions;
+using UXC.Sessions.ViewModels.Timeline.Steps.Questionary;
 
 namespace UXC.Sessions.ViewModels.Timeline.Factories
 {
@@ -18,7 +19,7 @@ namespace UXC.Sessions.ViewModels.Timeline.Factories
     }
 
 
-    class ChooseAnswerQuestionViewModelFactory : RelayViewModelFactory<ChooseAnswerQuestionActionSettings, IQuestionViewModel>
+    class ChooseAnswerQuestionViewModelFactory : RelayViewModelFactory<ChooseAnswerQuestionActionSettings, IQuestionAnswerViewModel>
     {
         public ChooseAnswerQuestionViewModelFactory()
             : base(settings => new ChooseAnswerQuestionViewModel(settings))
@@ -27,7 +28,7 @@ namespace UXC.Sessions.ViewModels.Timeline.Factories
     }
 
 
-    class WriteAnswerQuestionViewModelFactory : RelayViewModelFactory<WriteAnswerQuestionActionSettings, IQuestionViewModel>
+    class WriteAnswerQuestionViewModelFactory : RelayViewModelFactory<WriteAnswerQuestionActionSettings, IQuestionAnswerViewModel>
     {
         public WriteAnswerQuestionViewModelFactory()
             : base(settings => new WriteAnswerQuestionViewModel(settings))
