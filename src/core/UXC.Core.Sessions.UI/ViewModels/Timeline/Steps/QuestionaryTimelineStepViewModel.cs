@@ -227,7 +227,8 @@ namespace UXC.Sessions.ViewModels.Timeline
 
             return Answers.Zip(indexes, (a, i) => a.IsChecked ? i.ToString() : null)
                           .Where(i => i != null)
-                          .Aggregate((x, y) => x + "," + y);
+                          .DefaultIfEmpty(String.Empty)
+                          .Aggregate((x, y) => x + ";" + y);
         }
 
         public void Reset()
