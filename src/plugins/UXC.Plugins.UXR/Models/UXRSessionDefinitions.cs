@@ -92,18 +92,12 @@ namespace UXC.Plugins.UXR.Models
                 definition = SessionDefinition.Create();
                 string definitionJson = (string)sessionInfo.Definition.Value ?? String.Empty;
 
-                
                 JsonConvert.PopulateObject(definitionJson, definition, _serializerSettings);
 
                 definition.Project = sessionInfo.Project;
                 definition.Name = sessionInfo.Name;
                 definition.Source = "UXR";
                 definition.SerializationFormat = "JSON";
-
-                if (definition.Welcome != null && definition.Welcome.Ignore == false)
-                {
-                    definition.Welcome.Description = new Text() { Lines = sessionInfo.Description?.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList() };
-                }
 
                 if (definition.Recorders.Any(r => r.Name.Equals("Local", StringComparison.CurrentCultureIgnoreCase)) == false)
                 {
