@@ -118,7 +118,7 @@
                                         MovementDuration="1000"
                                         TargetPointReached="pointControl_TargetPointReached" />
 
-        <TextBlock x:Name="textBlock" Text="Follow the green dot"
+        <TextBlock x:Name="textBlock" Text="Follow the dot"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    FontSize="28" FontFamily="Segoe UI Semilight" 
                    Opacity="0"

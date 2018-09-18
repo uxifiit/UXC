@@ -72,8 +72,9 @@ namespace UXC.Sessions.Views.Timeline
 
         private void pointControl_TargetPointReached(object sender, Core.Controls.PointReachedEventArgs e)
         {
-            var control = (FrameworkElement)sender;
-            var animation = (PointAnimationViewModel)control.DataContext;
+            //var control = (FrameworkElement)sender;
+            var timeline = (EyeTrackerValidationTimelineStepViewModel)this.DataContext;
+            var animation = timeline.Animation;
             if (animation != null)
             {
                 animation.CompletePoint(e.Point);

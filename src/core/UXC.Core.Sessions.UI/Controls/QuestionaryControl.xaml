@@ -51,7 +51,7 @@
                                                     FalseValue="{StaticResource SingleChoiceAnswerDataTemplate}" />
 
             <DataTemplate DataType="{x:Type vm:ChooseAnswerQuestionViewModel}">
-                <ItemsControl ItemsSource="{Binding Answers}"
+                <ItemsControl ItemsSource="{Binding Options}"
                               ItemTemplate="{Binding IsMultiChoice, Converter={StaticResource BoolToChoiceDataTemplateConverter}}"/>
             </DataTemplate>
 

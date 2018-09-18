@@ -85,7 +85,7 @@ namespace UXC.Sessions.Timeline.Actions
 
         public List<string> ArgumentsParameters { get; set; } = new List<string>();
 
-        public bool RunInBackground { get; set; }
+        public bool RunInBackground { get; set; } = false;
 
         public bool KeepRunning { get; set; }
 

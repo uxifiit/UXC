@@ -64,9 +64,8 @@
         </VisualStateManager.VisualStateGroups>
 
         <controls:PointAnimationControl x:Name="pointControl"
-                                        DataContext="{Binding Animation}"
                                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-                                        TargetPoint="{Binding TargetPoint}"
+                                        TargetPoint="{Binding Animation.TargetPoint}"
                                         PointFill="{Binding PointFill}"
                                         AnimateToTargetPoint="False"
                                         LoopShrinkOnTargetPoint="True" 
@@ -74,8 +73,7 @@
                                         MovementDuration="800"
                                         TargetPointReached="pointControl_TargetPointReached" />
 
-        <TextBlock x:Name="textBlock" Text="Follow the green dot"
-                   
+        <TextBlock x:Name="textBlock" Text="Follow the dot"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    FontSize="28" FontFamily="Segoe UI Semilight" 
                    Opacity="0"

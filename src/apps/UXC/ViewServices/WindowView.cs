@@ -69,6 +69,7 @@ namespace UXC.ViewServices
             _window.Topmost = true;
             _window.Visibility = Visibility.Visible;
             _window.Topmost = false;
+            _window.Focus();
         }
 
 

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using UXC.Sessions.Timeline.Actions;
 using UXC.Sessions.Timeline.Results;
@@ -66,6 +67,8 @@ namespace UXC.Sessions.Timeline.Executors
                     if (_settings.WaitTimeout.HasValue)
                     {
                         _process.WaitForInputIdle((int)_settings.WaitTimeout.Value.TotalMilliseconds);
+                        //_process.WaitForInputIdle();
+                        //Thread.Sleep((int)_settings.WaitTimeout.Value.TotalMilliseconds);
                     }
                     else
                     {
