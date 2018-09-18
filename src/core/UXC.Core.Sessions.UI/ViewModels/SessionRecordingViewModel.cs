@@ -15,12 +15,14 @@ using UXC.Sessions.Timeline;
 using UXC.Sessions.Timeline.Results;
 using UXI.Common.Extensions;
 using UXI.Common.UI;
+using UXC.Sessions.Helpers;
 
 namespace UXC.Sessions.ViewModels
 {
     public class SessionRecordingViewModel : ProgressViewModel
     {
         private readonly Dispatcher _dispatcher;
+        private readonly WindowsTaskbarHelper _taskbar = new WindowsTaskbarHelper();
 
         public SessionRecordingViewModel(SessionRecording recording, ViewModelResolver resolver, Dispatcher dispatcher)
         {
@@ -104,6 +106,11 @@ namespace UXC.Sessions.ViewModels
         {
             _dispatcher.InvokeAsync(() =>
             {
+                if (Recording.IsActive)
+                {
+                    Task.Run(() => _taskbar.Hide()).Forget();
+                }
+
                 OnPropertyChanged(nameof(State));
                 OnPropertyChanged(nameof(IsActive));
                 OnPropertyChanged(nameof(IsRunning));
@@ -116,6 +123,8 @@ namespace UXC.Sessions.ViewModels
 
                 if (Recording.IsFinished)
                 {
+                    Task.Run(() => _taskbar.Reset()).Forget();
+
                     IsTimelineActive = false;
                     Timeline.Clear();
                     RecordingEnded?.Invoke(this, EventArgs.Empty);

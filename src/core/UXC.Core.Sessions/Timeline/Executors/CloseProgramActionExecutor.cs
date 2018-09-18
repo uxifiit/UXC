@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UXC.Sessions.Helpers;
 using UXC.Sessions.Timeline.Actions;
 
 namespace UXC.Sessions.Timeline.Executors
 {
     public class CloseProgramActionExecutor : SessionStepActionExecutor<CloseProgramActionSettings>
     {
-        public IProcessService _service;
+        private readonly IProcessService _service;
 
         public CloseProgramActionExecutor(IProcessService service)
         {

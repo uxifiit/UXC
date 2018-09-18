@@ -62,10 +62,11 @@ namespace UXC.Sessions.Timeline.Actions
     }
 
 
-
     public class ShowDesktopActionSettings : ExecutedActionSettingsBase
     {
         public bool MinimizeAll { get; set; }
+
+        public bool? ShowTaskbar { get; set; } = null;
     }
 
 
@@ -93,7 +94,7 @@ namespace UXC.Sessions.Timeline.Actions
 
         public bool WaitForStart { get; set; }
 
-        public TimeSpan? WaitTimeout { get; set; } 
+        public TimeSpan? WaitTimeout { get; set; }
     }
 
 

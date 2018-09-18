@@ -8,15 +8,15 @@ using System.Windows;
 
 namespace UXC.Sessions.Helpers
 {
-    class WindowsTaskbarHelper
+    public class WindowsTaskbarHelper
     {
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        public static extern IntPtr FindWindow(string strClassName, string strWindowName);
+        static extern IntPtr FindWindow(string strClassName, string strWindowName);
 
         [DllImport("shell32.dll")]
-        public static extern UInt32 SHAppBarMessage(UInt32 dwMessage, ref AppBarData pData);
+        static extern UInt32 SHAppBarMessage(UInt32 dwMessage, ref AppBarData pData);
 
-        public enum AppBarMessages
+        enum AppBarMessages
         {
             New = 0x00,
             Remove = 0x01,
@@ -32,7 +32,7 @@ namespace UXC.Sessions.Helpers
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct AppBarData
+        struct AppBarData
         {
             public int cbSize; // initialize this field using: Marshal.SizeOf(typeof(APPBARDATA));
             public IntPtr hWnd;
@@ -43,7 +43,7 @@ namespace UXC.Sessions.Helpers
         }
 
         [StructLayout(LayoutKind.Sequential)]
-        public struct Rectangle
+        struct Rectangle
         {
             public int Left, Top, Right, Bottom;
 
@@ -139,7 +139,7 @@ namespace UXC.Sessions.Helpers
         }
 
 
-        public enum AppBarStates
+        enum AppBarStates
         {
             AlwaysOnTop = 0x00,
             AutoHide = 0x01
@@ -149,7 +149,7 @@ namespace UXC.Sessions.Helpers
         /// Set the Taskbar State option
         /// </summary>
         /// <param name="option">AppBarState to activate</param>
-        public static void SetTaskbarState(AppBarStates option)
+        static void SetTaskbarState(AppBarStates option)
         {
             AppBarData msgData = new AppBarData();
             msgData.cbSize = Marshal.SizeOf(msgData);
@@ -162,12 +162,54 @@ namespace UXC.Sessions.Helpers
         /// Gets the current Taskbar state
         /// </summary>
         /// <returns>current Taskbar state</returns>
-        public static AppBarStates GetTaskbarState()
+        static AppBarStates GetTaskbarState()
         {
             AppBarData msgData = new AppBarData();
             msgData.cbSize = Marshal.SizeOf(msgData);
             msgData.hWnd = FindWindow("System_TrayWnd", null);
             return (AppBarStates)SHAppBarMessage((UInt32)AppBarMessages.GetState, ref msgData);
+        }
+
+
+        private void TryChangeTaskbarState(AppBarStates state)
+        {
+            try
+            {
+                if (_originalState.HasValue == false)
+                {
+                    _originalState = GetTaskbarState();
+                }
+
+                SetTaskbarState(state);
+            }
+            catch
+            {
+
+            }
+        }
+        
+
+        private AppBarStates? _originalState;
+
+        public void Show()
+        {
+            TryChangeTaskbarState(AppBarStates.AlwaysOnTop);
+        }
+
+        public void Hide()
+        {
+            TryChangeTaskbarState(AppBarStates.AutoHide);
+        }
+
+        public bool IsChanged => _originalState.HasValue;
+
+        public void Reset()
+        {
+            if (_originalState.HasValue)
+            {
+                SetTaskbarState(_originalState.Value);
+                _originalState = null;
+            }
         }
     }
 }

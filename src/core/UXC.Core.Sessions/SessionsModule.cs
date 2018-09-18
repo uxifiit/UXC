@@ -9,6 +9,7 @@ using UXC.Sessions.Recording;
 using UXC.Sessions.Recording.Local;
 using UXC.Sessions.Serialization.Converters.Json;
 using UXC.Sessions.Timeline.Actions;
+using UXC.Sessions.Helpers;
 
 namespace UXC.Sessions
 {
