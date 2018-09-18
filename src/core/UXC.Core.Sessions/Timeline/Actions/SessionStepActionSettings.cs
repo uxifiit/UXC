@@ -184,6 +184,8 @@ namespace UXC.Sessions.Timeline.Actions
         public List<string> Parameters { get; set; } = null;
 
         public bool ShowContinue { get; set; }
+
+        public string ContinueButtonLabel { get; set; }
     }
 
 
@@ -223,6 +225,8 @@ namespace UXC.Sessions.Timeline.Actions
         public Text Description { get; set; }
 
         public bool HideDevices { get; set; }
+
+        public string StartButtonLabel { get; set; }
     }
 
    

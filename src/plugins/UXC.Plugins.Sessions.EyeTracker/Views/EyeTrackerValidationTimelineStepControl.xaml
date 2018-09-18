@@ -73,7 +73,7 @@
                                         MovementDuration="800"
                                         TargetPointReached="pointControl_TargetPointReached" />
 
-        <TextBlock x:Name="textBlock" Text="Follow the dot"
+        <TextBlock x:Name="textBlock" Text="{Binding Message, TargetNullValue='Follow the dot'}"
                    HorizontalAlignment="Center" VerticalAlignment="Center"
                    FontSize="28" FontFamily="Segoe UI Semilight" 
                    Opacity="0"

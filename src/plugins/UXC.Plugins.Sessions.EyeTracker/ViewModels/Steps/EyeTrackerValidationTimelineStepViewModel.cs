@@ -43,7 +43,9 @@ namespace UXC.Sessions.ViewModels.Timeline
         {
             _settings = settings;
 
-            PointFill = ResolveColor(settings.PointColor, Colors.LimeGreen);           
+            PointFill = ResolveColor(settings.PointColor, Colors.LimeGreen);
+
+            Message = settings.Message?.Trim();
         }
 
 
@@ -80,6 +82,9 @@ namespace UXC.Sessions.ViewModels.Timeline
 
 
         public Brush PointFill { get; }
+
+
+        public string Message { get; }
 
 
         private void SetupAnimation(IEnumerable<Point2> points)

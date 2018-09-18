@@ -20,6 +20,8 @@ namespace UXC.Sessions.Timeline.Actions
 
         public string PointColor { get; set; }
 
+        public string Message { get; set; }
+
         public override SessionStepActionSettings Clone()
         {
             var clone = (EyeTrackerValidationActionSettings)base.Clone();

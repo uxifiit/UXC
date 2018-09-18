@@ -27,11 +27,13 @@ namespace UXC.Sessions.ViewModels.Timeline
                          ? String.Join(Environment.NewLine, _settings.Instructions.Lines)
                          : String.Empty;
 
-            
+
 
             if (settings.ShowContinue)
             {
                 ContinueCommand = new RelayCommand(() => Complete());
+                string label = settings.ContinueButtonLabel?.Trim();
+                ContinueButtonLabel = String.IsNullOrWhiteSpace(label) ? null : label;
             }
         }
 
@@ -48,6 +50,9 @@ namespace UXC.Sessions.ViewModels.Timeline
 
 
         public ICommand ContinueCommand { get; } = NullCommand.Instance;
+
+
+        public string ContinueButtonLabel { get; } = null;
 
 
         public override void Execute(SessionRecordingViewModel recording)

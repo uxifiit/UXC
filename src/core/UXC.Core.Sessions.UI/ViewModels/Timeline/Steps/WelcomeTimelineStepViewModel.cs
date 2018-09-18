@@ -28,6 +28,9 @@ namespace UXC.Sessions.ViewModels.Timeline
             Description = _settings.Description?.Lines != null && _settings.Description.Lines.Any()
                         ? String.Join(Environment.NewLine, _settings.Description.Lines)
                         : String.Empty;
+
+            string label = settings.StartButtonLabel?.Trim();
+            StartButtonLabel = String.IsNullOrWhiteSpace(label) ? null : label;
         }
 
 
@@ -40,6 +43,9 @@ namespace UXC.Sessions.ViewModels.Timeline
 
 
         public string Description { get; }
+
+
+        public string StartButtonLabel { get; }
 
 
         public Visibility DevicesListVisibility => _settings.HideDevices ? Visibility.Collapsed : Visibility.Visible;
