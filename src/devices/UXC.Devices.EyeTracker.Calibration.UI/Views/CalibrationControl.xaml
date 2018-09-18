@@ -116,6 +116,7 @@
                                         LoopShrinkOnTargetPoint="True" 
                                         ShrinkOnTargetPoint="True" 
                                         MovementDuration="1000"
+                                        PointFill="#FF2FC12F"
                                         TargetPointReached="pointControl_TargetPointReached" />
 
         <TextBlock x:Name="textBlock" Text="Follow the dot"
