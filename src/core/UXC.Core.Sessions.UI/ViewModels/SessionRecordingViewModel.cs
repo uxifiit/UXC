@@ -106,7 +106,7 @@ namespace UXC.Sessions.ViewModels
         {
             _dispatcher.InvokeAsync(() =>
             {
-                if (Recording.IsActive)
+                if (Recording.IsRunning && _taskbar.IsChanged == false)
                 {
                     Task.Run(() => _taskbar.Hide()).Forget();
                 }
