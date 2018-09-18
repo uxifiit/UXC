@@ -83,7 +83,7 @@ namespace UXC.Sessions.Timeline.Actions
 
         public string Arguments { get; set; }
 
-        public List<string> ArgumentsParameters { get; set; } = new List<string>();
+        public List<string> ArgumentsParameters { get; set; } = null;
 
         public bool RunInBackground { get; set; } = false;
 
@@ -179,6 +179,8 @@ namespace UXC.Sessions.Timeline.Actions
     public class InstructionsActionSettings : ContentActionSettingsBase
     {
         public Text Instructions { get; set; }
+
+        public List<string> Parameters { get; set; } = null;
 
         public bool ShowContinue { get; set; }
     }

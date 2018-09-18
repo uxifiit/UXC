@@ -8,6 +8,7 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using UXC.Sessions.Common.Helpers;
 using UXC.Sessions.Timeline.Actions;
 using UXC.Sessions.Timeline.Results;
 using UXI.Common.Extensions;
@@ -108,7 +109,7 @@ namespace UXC.Sessions.Timeline.Executors
             string arguments = settings.Arguments ?? String.Empty;
             if (settings.ArgumentsParameters != null && settings.ArgumentsParameters.Any())
             {
-                arguments = InsertArgumentsParameters(arguments, settings.ArgumentsParameters, recording);
+                arguments = SessionRecordingSettingsHelper.FillParameters(arguments, settings.ArgumentsParameters, recording.Settings);
             }
 
             process.StartInfo = new ProcessStartInfo(settings.Path, arguments)
@@ -143,26 +144,7 @@ namespace UXC.Sessions.Timeline.Executors
         //{
         //    _errorData.Append(e.Data);
         //}
-
-
-        private static string InsertArgumentsParameters(string arguments, List<string> parameters, SessionRecording recording)
-        {
-            object recordingSetting;
-
-            foreach (var parameter in parameters)
-            {
-                string value = String.Empty;
-                if (recording.Settings.TryGetSetting(parameter, out recordingSetting))
-                {
-                    value = Convert.ToString(recordingSetting);
-                }
-
-                arguments = arguments.Replace($"{{{parameter}}}", value);
-            }
-
-            return arguments;
-        }
-
+        
 
         public override SessionStepResult Complete()
         {

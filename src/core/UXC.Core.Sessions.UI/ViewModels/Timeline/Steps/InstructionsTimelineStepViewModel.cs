@@ -11,6 +11,7 @@ using UXC.Core.Common.Commands;
 using UXC.Sessions.Timeline.Actions;
 using UXC.Sessions.Timeline.Results;
 using UXI.Common.UI;
+using UXC.Sessions.Common.Helpers;
 
 namespace UXC.Sessions.ViewModels.Timeline
 {
@@ -26,6 +27,8 @@ namespace UXC.Sessions.ViewModels.Timeline
                          ? String.Join(Environment.NewLine, _settings.Instructions.Lines)
                          : String.Empty;
 
+            
+
             if (settings.ShowContinue)
             {
                 ContinueCommand = new RelayCommand(() => Complete());
@@ -33,7 +36,12 @@ namespace UXC.Sessions.ViewModels.Timeline
         }
 
 
-        public string Instructions { get; }
+        private string instructions;
+        public string Instructions
+        {
+            get { return instructions; }
+            private set { Set(ref instructions, value); }
+        }
 
 
         public Visibility ContinueButtonVisibility => _settings.ShowContinue ? Visibility.Visible : Visibility.Collapsed;
@@ -44,6 +52,10 @@ namespace UXC.Sessions.ViewModels.Timeline
 
         public override void Execute(SessionRecordingViewModel recording)
         {
+            if (_settings.Parameters != null && _settings.Parameters.Any())
+            {
+                Instructions = SessionRecordingSettingsHelper.FillParameters(Instructions, _settings.Parameters, recording.Recording.Settings);
+            }
         }
 
 

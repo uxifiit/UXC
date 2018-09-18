@@ -125,6 +125,7 @@
     <Compile Include="Controls\QuestionaryControl.xaml.cs">
       <DependentUpon>QuestionaryControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\WindowsTaskbarHelper.cs" />
     <Compile Include="Models\Design\DesignSessionRecordingsDataSource.cs" />
     <Compile Include="Models\Directories.cs" />
     <Compile Include="Models\ImportSessionDefinitions.cs" />

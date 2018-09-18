@@ -92,6 +92,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Helpers\SessionRecordingSettingsHelper.cs" />
     <Compile Include="Common\InheritedObjectJsonConverter`1.cs" />
     <Compile Include="Common\JsonConverter`1.cs" />
     <Compile Include="Common\RelayJsonConverter`1.cs" />
