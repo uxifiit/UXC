@@ -1,8 +1,9 @@
 # <img src="docs/logo.png" height="28" /> UXC 
 
 ###### Client application of the UXI Group Studies infrastructure.
-UXC is designed for creating and recording user studies with eye tracking. UXC client and UXR web management applications form the UXI Group Studies infrastructure for conducting group eye tracking studies. 
-This project is developed at [User eXperience and Interaction Research Center](https://www.uxi.sk/) of [Faculty of Informatics of Information Technologies, Slovak University of Technology in Bratislava](http://fiit.stuba.sk/)
+UXC is designed for creating and recording user studies with eye tracking. UXC client and UXR web management applications form the UXI Group Studies infrastructure for conducting group eye tracking studies. This project is developed at [User eXperience and Interaction Research Center](https://www.uxi.sk/) of [Faculty of Informatics of Information Technologies, Slovak University of Technology in Bratislava](http://fiit.stuba.sk/).
+
+For more information about the infrastructure, group studies and our lab, see the [Publications](#publications) section below.
 
 See [UXC project Wiki](https://github.com/uxifiit/UXC/wiki) for documentation, examples and guides.
 
@@ -95,3 +96,8 @@ This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.t
   * Web: https://www.uxi.sk/
 * Martin Konopka
   * E-mail: martin (underscore) konopka (at) stuba (dot) sk
+
+## Publications
+
+Bielikova, M., Konopka, M., Simko, J., Moro, R., Tvarozek, J., Hlavac, P., Kuric, E. (2018). Eye-tracking en masse: Group user studies,
+lab infrastructure, and practices. *Journal of Eye Movement Research, 11(3)*, Article No. 6. DOI: http://dx.doi.org/10.16910/jemr.11.3.6
