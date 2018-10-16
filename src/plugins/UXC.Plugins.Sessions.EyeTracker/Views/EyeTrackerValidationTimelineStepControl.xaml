@@ -70,7 +70,7 @@
                                         AnimateToTargetPoint="False"
                                         LoopShrinkOnTargetPoint="True" 
                                         ShrinkOnTargetPoint="True" 
-                                        MovementDuration="800"
+                                        MovementDuration="1000"
                                         TargetPointReached="pointControl_TargetPointReached" />
 
         <TextBlock x:Name="textBlock" Text="{Binding Message, TargetNullValue='Follow the dot'}"
