@@ -96,6 +96,11 @@ namespace UXC.Devices.EyeTracker.ViewModels
         }
 
 
+        public TimeSpan PointCompletionBeginTimeout { get; set; } = TimeSpan.FromMilliseconds(1000);
+
+        public TimeSpan PointCompletionEndTimeout { get; set; } = TimeSpan.FromMilliseconds(300);
+
+
         private async void PointAnimation_PointCompleted(object sender, Point point)
         {
             try
@@ -103,11 +108,11 @@ namespace UXC.Devices.EyeTracker.ViewModels
                 Point2 point2d = new Point2(point.X, point.Y);
                 if (_calibrator.CanContinue(point2d))
                 {
-                    await Task.Delay(600); // PointCompletedBeginTimeout
+                    await Task.Delay(PointCompletionBeginTimeout); // PointCompletedBeginTimeout
 
                     await _calibrator.ContinueAsync(point2d);
 
-                    await Task.Delay(200); // PointCompletedEndTimeout
+                    await Task.Delay(PointCompletionEndTimeout); // PointCompletedEndTimeout
 
                     Animation?.Continue();
                 }

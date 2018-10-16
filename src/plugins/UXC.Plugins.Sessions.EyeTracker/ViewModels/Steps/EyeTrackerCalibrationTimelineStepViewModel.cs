@@ -152,6 +152,16 @@ namespace UXC.Sessions.ViewModels.Timeline
                 calibratorViewModel.PlansSelection.SelectedIndex = 0;
             }
 
+            if (_settings.PointCompletionBeginTimeout.HasValue)
+            {
+                calibratorViewModel.Calibration.PointCompletionBeginTimeout = _settings.PointCompletionBeginTimeout.Value;
+            }
+
+            if (_settings.PointCompletionEndTimeout.HasValue)
+            {
+                calibratorViewModel.Calibration.PointCompletionEndTimeout = _settings.PointCompletionEndTimeout.Value;
+            }
+
             // enable or disable load/save options for calibration profiles
             calibratorViewModel.IsProfileStorageEnabled = _settings.IsProfileEnabled;
         }

@@ -17,6 +17,10 @@ namespace UXC.Sessions.Timeline.Actions
 
         public bool IsProfileEnabled { get; set; } = false;
 
+        public TimeSpan? PointCompletionBeginTimeout { get; set; }
+
+        public TimeSpan? PointCompletionEndTimeout { get; set; }
+
         //public TimeSpan? Delay { get; set; }
 
         //public TimeSpan? MovementDuration { get; set; }
