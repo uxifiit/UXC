@@ -55,9 +55,9 @@ namespace UXC.Sessions
             _adapters = adapters;
 
             DateTime openedAt = DateTime.Now;
-            string id = CreateRecordingId(openedAt, definition.Project, definition.Name);
+            string sessionId = CreateRecordingId(openedAt, definition.Project, definition.Name);
 
-            Settings = new SessionRecordingSettings(id, openedAt);
+            Settings = new SessionRecordingSettings(definition, sessionId, openedAt);
 
             InsertSteps(_preSteps, definition.PreSessionSteps);
             InsertSteps(_postSteps, definition.PostSessionSteps);

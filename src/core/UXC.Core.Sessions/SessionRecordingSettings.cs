@@ -16,7 +16,7 @@ namespace UXC.Sessions
         private const char SECTION_KEY_DELIMITER = '.';
         private readonly RuntimeStorage _storage = new RuntimeStorage(SETTINGS_SECTION_SESSION);
 
-        public SessionRecordingSettings(string id, DateTime openedAt)
+        public SessionRecordingSettings(SessionDefinition definition, string sessionId, DateTime openedAt)
         {
             ISettings sessionSection;
             _storage.TryGetSection(SETTINGS_SECTION_SESSION, out sessionSection);
@@ -24,10 +24,16 @@ namespace UXC.Sessions
             StartedAtProperty = new ConfigurationSettingProperty("StartedAt", typeof(DateTime), DateTime.MinValue, sessionSection);
             FinishedAtProperty = new ConfigurationSettingProperty("FinishedAt", typeof(DateTime), DateTime.MinValue, sessionSection);
             OpenedAtProperty = new ConfigurationSettingProperty("OpenedAt", openedAt, sessionSection);
-            IdProperty = new ConfigurationSettingProperty("Id", id, sessionSection);
+            IdProperty = new ConfigurationSettingProperty("Id", sessionId, sessionSection);
+            NameProperty = new ConfigurationSettingProperty("Name", definition.Name, sessionSection);
+            ProjectProperty = new ConfigurationSettingProperty("Project", definition.Project, sessionSection);
         }
 
-        internal ConfigurationSettingProperty IdProperty { get; } 
+        internal ConfigurationSettingProperty IdProperty { get; }
+
+        internal ConfigurationSettingProperty NameProperty { get; } 
+
+        internal ConfigurationSettingProperty ProjectProperty { get; }
 
         internal ConfigurationSettingProperty OpenedAtProperty { get; }
 
