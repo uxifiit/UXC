@@ -23,7 +23,6 @@ namespace UXC.Modules
 
             Bind<IInteractionService>().To<InteractionService>().InSingletonScope();
             Bind<INotificationService>().To<NotificationService>().InSingletonScope();
-            //Bind<IWindowsService>().To<WindowsService>().InSingletonScope();
         }
     }
 }

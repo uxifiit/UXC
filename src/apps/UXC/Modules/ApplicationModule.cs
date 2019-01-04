@@ -32,6 +32,7 @@ namespace UXC.Modules
         }
     }
 
+
     public class ApplicationModule : NinjectModule
     {
         public ApplicationModule()

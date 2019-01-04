@@ -29,12 +29,6 @@ namespace UXC.Modules
             }
 
             Bind<ISettingsSectionViewModel>().To<AppSettingsSectionViewModel>().InSingletonScope();
-
-
-            //Bind<IControlService>().To<AdaptersControlService>().InSingletonScope();
-            //Bind<IControlService>().To<SessionsControlService>().InSingletonScope();
-
-            //Bind<HookController>().ToSelf();
         }
     }
 }
