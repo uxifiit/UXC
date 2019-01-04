@@ -1,4 +1,4 @@
-<UserControl x:Class="UXC.Views.SettingsPage"
+<UserControl x:Class="UXC.Views.SettingsControl"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,11 +8,11 @@
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
       xmlns:actions="clr-namespace:UXC.Common.Actions"
       xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-      DataContext="{Binding Source={StaticResource ViewModelLocator}, Path=Settings}">
+      Name="control">
 
     <i:Interaction.Triggers>
         <i:EventTrigger SourceObject="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type metro:Flyout}}}" EventName="IsOpenChanged">
-            <i:InvokeCommandAction Command="{Binding ReloadCommand}" />
+            <i:InvokeCommandAction Command="{Binding ReloadCommand, ElementName=control}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -24,7 +24,7 @@
 
 
         <ItemsControl HorizontalAlignment="Stretch"
-                      ItemsSource="{Binding Sections}">
+                      ItemsSource="{Binding Sections, ElementName=control}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <ContentPresenter Content="{Binding}">
@@ -48,7 +48,7 @@
             <Button Content="save" Width="60" Margin="0,0,10,0" Style="{DynamicResource SquareButtonStyle}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding SaveCommand}" />
+                        <i:InvokeCommandAction Command="{Binding SaveCommand, ElementName=control}" />
                         <actions:SetFlyoutOpenAction Value="False" TargetObject="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type metro:Flyout}}}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>

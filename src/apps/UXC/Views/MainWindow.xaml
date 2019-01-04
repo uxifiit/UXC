@@ -83,6 +83,7 @@
     
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
+            <!-- Open Settings flyout button -->
             <Button Content="&#xE115;" FontFamily="Segoe UI Symbol">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">
@@ -90,7 +91,14 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </Button>
-            <!--<Button Content="&#xE11B;" FontFamily="Segoe UI Symbol" Click="ButtonAbout_Click" />-->
+            <!-- Open About flyout button -->
+            <Button Content="&#xE11B;" FontFamily="Segoe UI Symbol">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <Actions:SetFlyoutOpenAction TargetObject="{Binding ElementName=AboutFlyout}" Value="True" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
         </metro:WindowCommands>
     </metro:MetroWindow.RightWindowCommands>
     <metro:MetroWindow.Flyouts>
@@ -99,11 +107,30 @@
                           Width="300"
                           IsOpen="False" 
                           IsModal="True"
-                          IsPinned="False"
+                          IsPinned="True"
                           Position="Right" 
                           HeaderTemplate="{StaticResource FlyoutHeaderTemplate}">
                 <metro:Flyout.Content>
-                    <views:SettingsPage />
+                    <views:SettingsControl DataContext="{Binding Settings, Source={StaticResource ViewModelLocator}}"
+                                           Sections="{Binding Sections}" 
+                                           SaveCommand="{Binding SaveCommand}"
+                                           ReloadCommand="{Binding ReloadCommand}" />
+                </metro:Flyout.Content>
+            </metro:Flyout>
+
+            <metro:Flyout Header="about" Name="AboutFlyout" 
+                          Width="300"
+                          IsOpen="False" 
+                          IsModal="True"
+                          IsPinned="False"
+                          Position="Right"
+                          Theme="Light"
+                          HeaderTemplate="{StaticResource FlyoutHeaderTemplate}">
+                <metro:Flyout.Content>
+                    <views:AboutControl DataContext="{Binding About, Source={StaticResource ViewModelLocator}}"
+                                        VersionNumber="{Binding VersionNumber}"
+                                        DebugLabelVisibility="{Binding IsDebugBuild, Converter={StaticResource BoolToVisibilityConverter}}"
+                                        AdminLabelVisibility="{Binding HasAdminPrivileges, Converter={StaticResource BoolToVisibilityConverter}}"/> 
                 </metro:Flyout.Content>
             </metro:Flyout>
 
@@ -135,10 +162,15 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="UXC" 
+        <StackPanel Orientation="Horizontal"
+                    Margin="10,10,0,0">
+            <Image Source="/UXC;component/Resources/Logo.png" 
+                   Height="30"
+                   Margin="2,0,5,0"/>
+            <TextBlock Text="UXC" 
                    FontSize="30" FontFamily="Segoe UI" FontWeight="SemiBold"
-                   Margin="10,10,0,0" />
-
+                   Margin="0,0,0,4"/>
+        </StackPanel>
 
 
         <metro:MetroAnimatedSingleRowTabControl Grid.Row="1"

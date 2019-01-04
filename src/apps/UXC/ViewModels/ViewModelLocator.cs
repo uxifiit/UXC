@@ -49,6 +49,8 @@ namespace UXC.ViewModels
 
         public AppViewModel App => _kernel.Get<AppViewModel>();
 
+        public AboutViewModel About => _kernel.Get<AboutViewModel>();
+
         public AdaptersViewModel Adapters => _kernel.Get<AdaptersViewModel>();
 
         public SettingsViewModel Settings => _kernel.Get<SettingsViewModel>();

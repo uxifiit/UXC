@@ -27,14 +27,10 @@ namespace UXC.Modules
             Bind<IViewModelFactory>().To<AdapterViewModelFactory>().InSingletonScope();
             Bind<ViewModelResolver>().ToSelf().InSingletonScope();
 
-            //Bind<IViewModelFactory>().To<CalibratorViewModelFactory>().InSingletonScope();
-
             Bind<AppViewModel>().ToSelf().InSingletonScope();
             Bind<AdaptersViewModel>().ToSelf().InSingletonScope();
-            //Bind<GazeViewModel>().ToSelf().InSingletonScope();
+            Bind<AboutViewModel>().ToSelf().InSingletonScope();
             Bind<SettingsViewModel>().ToSelf().InSingletonScope();
-
-            //Bind<SessionsViewModel>().ToSelf().InSingletonScope();
         }
     }
 }

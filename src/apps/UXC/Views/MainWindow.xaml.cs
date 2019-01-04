@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using UXC.ViewModels;
 using MahApps.Metro.Controls;
 using UXC.Core.ViewModels;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace UXC
 {
@@ -26,11 +27,6 @@ namespace UXC
         public MainWindow()
         {
             InitializeComponent();
-        }
-     
-        internal void CloseSettingsFlyout()
-        {
-            SettingsFlyout.IsOpen = false;
         }
     }
 }
