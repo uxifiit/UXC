@@ -45,13 +45,15 @@ namespace UXC.Sessions.ViewModels.Timeline.Steps.Questionary
             if (areAnswersValid)
             {
                 answers = Questions.Select(q => new QuestionAnswer(q.Id, q.Answer.GetAnswer())).ToList();
-
-                return IsSubmitted = true;
+            }
+            else
+            {
+                answers = new List<QuestionAnswer>();
             }
 
-            answers = new List<QuestionAnswer>();
+            IsSubmitted = areAnswersValid;
 
-            return IsSubmitted = false;
+            return areAnswersValid;
         }
 
 

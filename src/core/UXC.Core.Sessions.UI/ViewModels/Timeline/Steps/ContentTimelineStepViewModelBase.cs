@@ -31,6 +31,7 @@ namespace UXC.Sessions.ViewModels.Timeline
             }
         }
 
+
         public bool IsContent => true;
 
         public event EventHandler<bool> IsContentChanged { add { } remove { } }
@@ -73,7 +74,9 @@ namespace UXC.Sessions.ViewModels.Timeline
             Completed?.Invoke(this, result);
         }
 
+
         public abstract SessionStepResult Complete();
+
 
         public abstract void Execute(SessionRecordingViewModel recording);
     }

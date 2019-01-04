@@ -17,11 +17,15 @@ namespace UXC.Sessions.ViewModels.Timeline.Steps.Questionary
             IsRequired = isRequired;
         }
 
+
         public string Question { get; }
+
 
         public string Id { get; }
 
+
         public bool IsRequired { get; }
+
 
         public IQuestionAnswerViewModel Answer { get; }
 

@@ -18,11 +18,15 @@ namespace UXC.Sessions.ViewModels.Timeline.Steps.Questionary
             Options = settings.Answers.Select(a => new QuestionAnswerOptionViewModel(a)).ToList();
         }
 
+
         public string Id => _settings.Id;
+
 
         public bool IsMultiChoice => _settings.Limit.HasValue == false || _settings.Limit.Value > 1;
 
+
         public ICollection<QuestionAnswerOptionViewModel> Options { get; }
+
 
         public bool Validate()
         {
@@ -33,6 +37,7 @@ namespace UXC.Sessions.ViewModels.Timeline.Steps.Questionary
                 && (_settings.Minimum.HasValue == false || count >= _settings.Minimum.Value);
         }
 
+
         public string GetAnswer()
         {
             var indexes = Enumerable.Range(0, Options.Count);
@@ -42,6 +47,7 @@ namespace UXC.Sessions.ViewModels.Timeline.Steps.Questionary
                           .DefaultIfEmpty(String.Empty)
                           .Aggregate((x, y) => x + ";" + y);
         }
+
 
         public void Reset()
         {

@@ -62,17 +62,26 @@ namespace UXC.Sessions.Timeline.Actions
     }
 
 
+    public class ExecutedActionSettingsBase : SessionStepActionSettings
+    {
+        public SessionStepActionSettings Content { get; set; }
+    }
+
+
+    public abstract class ContentActionSettingsBase : SessionStepActionSettings
+    {
+        public string Background { get; set; }
+        public string Foreground { get; set; }
+        public int? FontSize { get; set; }
+        public virtual bool? ShowCursor { get; set; }
+    }
+
+
     public class ShowDesktopActionSettings : ExecutedActionSettingsBase
     {
         public bool MinimizeAll { get; set; }
 
         public bool? ShowTaskbar { get; set; } = null;
-    }
-
-
-    public class ExecutedActionSettingsBase : SessionStepActionSettings
-    {
-        public SessionStepActionSettings Content { get; set; }
     }
 
 
@@ -230,12 +239,5 @@ namespace UXC.Sessions.Timeline.Actions
     }
 
    
-     
-    public abstract class ContentActionSettingsBase : SessionStepActionSettings
-    {
-        public string Background { get; set; }
-        public string Foreground { get; set; }
-        public int? FontSize { get; set; }
-        public virtual bool? ShowCursor { get; set; }
-    }
+   
 }

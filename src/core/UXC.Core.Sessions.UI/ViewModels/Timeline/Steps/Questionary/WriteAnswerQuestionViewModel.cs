@@ -18,7 +18,9 @@ namespace UXC.Sessions.ViewModels.Timeline.Steps.Questionary
             _settings = settings;
         }
 
+
         public string Id => _settings.Id;
+
 
         private string answer = String.Empty;
         public string Answer
@@ -27,22 +29,35 @@ namespace UXC.Sessions.ViewModels.Timeline.Steps.Questionary
             set { Set(ref answer, value); }
         }
 
-        public double Width => _settings.Width.HasValue ? _settings.Width.Value : 0;
 
-        public double Height => _settings.IsMultiline && _settings.Height.HasValue ? _settings.Height.Value : 0;
+        public double Width => _settings.Width.HasValue 
+                             ? _settings.Width.Value 
+                             : 0;
+
+
+        public double Height => _settings.IsMultiline && _settings.Height.HasValue 
+                              ? _settings.Height.Value 
+                              : 0;
+
 
         public bool IsMultiline => _settings.IsMultiline;
 
-        public System.Windows.TextWrapping TextWrapping => _settings.IsMultiline ? System.Windows.TextWrapping.Wrap : System.Windows.TextWrapping.NoWrap;
+
+        public System.Windows.TextWrapping TextWrapping => _settings.IsMultiline
+                                                         ? System.Windows.TextWrapping.Wrap 
+                                                         : System.Windows.TextWrapping.NoWrap;
+
 
         public string GetAnswer() => Answer;
 
+
         public bool Validate()
         {
-            return String.IsNullOrWhiteSpace(Answer) == false
+            return (String.IsNullOrWhiteSpace(Answer) == false)
                 && (String.IsNullOrWhiteSpace(_settings.ValidAnswerRegexPattern)
                     || Regex.IsMatch(Answer, _settings.ValidAnswerRegexPattern));
         }
+
 
         public void Reset()
         {
