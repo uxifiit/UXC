@@ -42,7 +42,7 @@
                            Visibility="{Binding DebugLabelVisibility}" />
             </StackPanel>
 
-            <TextBlock Text="&#x00A9; 2016 FIIT STUBA" />
+            <TextBlock Text="&#x00A9; 2018 FIIT STUBA" />
 
             <TextBlock Text="Has Administrator privileges"
                        FontWeight="SemiBold"
