@@ -32,12 +32,12 @@ namespace UXC.Sessions.ViewModels.Timeline.Steps.Questionary
 
         public double Width => _settings.Width.HasValue 
                              ? _settings.Width.Value 
-                             : 0;
+                             : 300;
 
 
-        public double Height => _settings.IsMultiline && _settings.Height.HasValue 
-                              ? _settings.Height.Value 
-                              : 0;
+        public double Height => _settings.IsMultiline 
+                              ? (_settings.Height ?? 120)
+                              : Double.NaN;
 
 
         public bool IsMultiline => _settings.IsMultiline;
