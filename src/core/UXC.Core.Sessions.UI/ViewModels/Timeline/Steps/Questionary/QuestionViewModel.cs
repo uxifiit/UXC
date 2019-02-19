@@ -9,12 +9,13 @@ namespace UXC.Sessions.ViewModels.Timeline.Steps.Questionary
 {
     public class QuestionViewModel : BindableBase
     {
-        internal QuestionViewModel(string question, string id, IQuestionAnswerViewModel answer, bool isRequired)
+        internal QuestionViewModel(string question, string id, IQuestionAnswerViewModel answer, bool isRequired, string helpText = null)
         {
             Question = question;
             Id = id;
             Answer = answer;
             IsRequired = isRequired;
+            HelpText = helpText;
         }
 
 
@@ -47,5 +48,8 @@ namespace UXC.Sessions.ViewModels.Timeline.Steps.Questionary
             get { return isInvalid; }
             private set { Set(ref isInvalid, value); }
         }
+
+
+        public string HelpText { get; }
     }
 }

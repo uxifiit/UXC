@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:UXC.Sessions.Controls"
              xmlns:vm="clr-namespace:UXC.Sessions.ViewModels.Timeline.Steps.Questionary"
              xmlns:converters="clr-namespace:UXC.Core.Common.Converters;assembly=UXC.Core.UI"
+             xmlns:convertersLocal="clr-namespace:UXC.Sessions.Common.Converters"
+             xmlns:convertersLibs="clr-namespace:UXI.Common.Converters;assembly=UXI.Common.UI"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              Name="control"
@@ -19,7 +21,11 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <converters:BoolToDoubleConverter x:Key="BoolToMultilineTextBoxHeightConverter" TrueValue="120" FalseValue="40" />
+            <convertersLocal:BoolToScrollBarVisibility x:Key="BoolToVerticalScrollBarVisibility" TrueValue="Auto" FalseValue="Disabled" />
+            <convertersLocal:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter" TrueValue="Collapsed" FalseValue="Visible" />
+            <convertersLibs:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            
+            <!--<converters:BoolToDoubleConverter x:Key="BoolToMultilineTextBoxHeightConverter" TrueValue="120" FalseValue="NaN" />-->
 
             <DataTemplate x:Key="MultiChoiceAnswerDataTemplate">
                 <Grid>
@@ -58,9 +64,8 @@
             <DataTemplate DataType="{x:Type vm:WriteAnswerQuestionViewModel}">
                 <Grid>
                     <TextBox Text="{Binding Answer, Mode=TwoWay}"
-                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             ScrollViewer.VerticalScrollBarVisibility="{Binding IsMultiline, Converter={StaticResource BoolToVerticalScrollBarVisibility}}"
                              IsTabStop="True"
-                             MinWidth="300" MinHeight="{Binding IsMultiline, Converter={StaticResource BoolToMultilineTextBoxHeightConverter}}"
                              Width="{Binding Width}" Height="{Binding Height}"
                              AcceptsReturn="{Binding IsMultiline}"
                              TextWrapping="{Binding TextWrapping}"
@@ -81,22 +86,40 @@
                           HorizontalAlignment="Center" VerticalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="0,0,0,20">
+                        <Grid Margin="0,0,0,40">
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
+                            <Grid Margin="-5"
+                                  Background="Red"
+                                  Opacity="0.1"
+                                  Visibility="{Binding IsInvalid, Converter={StaticResource BoolToVisibilityConverter}}"
+                                  Grid.RowSpan="3" />
+
                             <TextBlock Text="{Binding Question}" 
-                                   FontSize="{Binding FontSize, ElementName=control}" 
-                                   Foreground="{Binding Foreground, ElementName=control}"
-                                   Margin="0,0,0,5"
-                                   HorizontalAlignment="Left" />
+                                       FontSize="{Binding FontSize, ElementName=control}" 
+                                       Foreground="{Binding Foreground, ElementName=control}"
+                                       Margin="0,0,0,5"
+                                       HorizontalAlignment="Left" />
 
                             <ContentControl Content="{Binding Answer}"
-                                        Grid.Row="1"
-                                        FontSize="20"
-                                        VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+                                            Grid.Row="1"
+                                            FontSize="20"
+                                            VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+
+                            <Grid Visibility="{Binding HelpText, Converter={StaticResource EmptyStringToVisibilityConverter}}"
+                                  Margin="0,5,0,0"
+                                  Grid.Row="2">
+                                <TextBlock Text="{Binding HelpText}"
+                                           FontSize="{Binding FontSize, ElementName=control}"
+                                           Foreground="Red"
+                                           Visibility="{Binding IsInvalid, Converter={StaticResource BoolToVisibilityConverter}}"
+                                           HorizontalAlignment="Left" />
+                            </Grid>
+                            
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
