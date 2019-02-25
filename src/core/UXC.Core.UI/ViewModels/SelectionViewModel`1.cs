@@ -62,10 +62,14 @@ namespace UXC.Core.ViewModels
                     OnPropertyChanged(nameof(HasSelectedItem));
                     OnPropertyChanged(nameof(SelectedItem));
 
+                    SelectedIndexChanged?.Invoke(this, index);
                     SelectedItemChanged?.Invoke(this, SelectedItem);
                 }
             }
         }
+
+
+        public event EventHandler<int> SelectedIndexChanged;
 
         public event EventHandler<TItem> SelectedItemChanged;
 

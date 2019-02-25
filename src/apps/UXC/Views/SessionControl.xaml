@@ -150,11 +150,10 @@
                 </StackPanel>
 
             <Button Content="Start" 
-                        Width="160" 
-                        VerticalAlignment="Bottom" HorizontalAlignment="Right" 
-                        Style="{DynamicResource AccentedSquareButtonStyle}"
-                        Command="{Binding OpenCommand}"
-                        CommandParameter="{Binding Definitions.Selection.SelectedItem}" />
+                    Width="160" 
+                    VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                    Style="{DynamicResource AccentedSquareButtonStyle}"
+                    Command="{Binding OpenSelectedCommand}" />
 
         </Grid>
             <!-- same in TrayPopup -->

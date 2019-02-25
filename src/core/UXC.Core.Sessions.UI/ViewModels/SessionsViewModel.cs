@@ -42,8 +42,13 @@ namespace UXC.Sessions.ViewModels
             _control.RecordingChanged += (_, recording) => dispatcher.Invoke(() => UpdateRecording(recording));
 
             Definitions = definitions;
+            Definitions.Selection.SelectedItemChanged += Selection_SelectedItemChanged;
         }
 
+        private void Selection_SelectedItemChanged(object sender, ISessionChoiceViewModel e)
+        {
+            openSelectedCommand?.RaiseCanExecuteChanged();
+        }
 
         public SessionDefinitionsViewModel Definitions { get; }
 
@@ -173,6 +178,12 @@ namespace UXC.Sessions.ViewModels
         private RelayCommand<ISessionChoiceViewModel> openCommand = null;
         public RelayCommand<ISessionChoiceViewModel> OpenCommand => openCommand
             ?? (openCommand = new RelayCommand<ISessionChoiceViewModel>(d => OpenSessionAsync(d).Forget(), d => d != null));
+
+
+        private RelayCommand openSelectedCommand = null;
+        public RelayCommand OpenSelectedCommand => openSelectedCommand
+            ?? (openSelectedCommand = new RelayCommand(() => OpenSessionAsync(Definitions.Selection.SelectedItem).Forget(), () => Definitions.Selection.HasSelectedItem));
+
 
         private async Task OpenSessionAsync(ISessionChoiceViewModel definition)
         {
