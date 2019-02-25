@@ -68,7 +68,7 @@ namespace UXC.Sessions.ViewModels
                 _dispatcher.Invoke(() => RemoveSessionDefinitions(e.RemovedItems));
             }
 
-            SelectLastDefinition();
+            _dispatcher.Invoke(() => SelectLastDefinition());
 
             // TODO keep selected definition, but add command from uxr to start definition remotely
             //if (selected != Selection.Items.FirstOrDefault())

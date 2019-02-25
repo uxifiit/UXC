@@ -96,6 +96,7 @@ namespace UXC.Plugins.UXR.Models
 
                 definition.Project = sessionInfo.Project;
                 definition.Name = sessionInfo.Name;
+                definition.CreatedAt = sessionInfo.CreatedAt;
                 definition.Source = "UXR";
                 definition.SerializationFormat = "JSON";
 

@@ -42,8 +42,13 @@ namespace UXC.Sessions.ViewModels
             _control.RecordingChanged += (_, recording) => dispatcher.Invoke(() => UpdateRecording(recording));
 
             Definitions = definitions;
+            Definitions.Selection.SelectedItemChanged += Selection_SelectedItemChanged;
         }
 
+        private void Selection_SelectedItemChanged(object sender, ISessionChoiceViewModel e)
+        {
+            openSelectedCommand?.RaiseCanExecuteChanged();
+        }
 
         public SessionDefinitionsViewModel Definitions { get; }
 
@@ -174,19 +179,32 @@ namespace UXC.Sessions.ViewModels
         public RelayCommand<ISessionChoiceViewModel> OpenCommand => openCommand
             ?? (openCommand = new RelayCommand<ISessionChoiceViewModel>(d => OpenSessionAsync(d).Forget(), d => d != null));
 
-        private async Task OpenSessionAsync(ISessionChoiceViewModel definition)
+
+        private RelayCommand openSelectedCommand = null;
+        public RelayCommand OpenSelectedCommand => openSelectedCommand
+            ?? (openSelectedCommand = new RelayCommand(() => OpenSessionAsync(Definitions.Selection.SelectedItem).Forget(), () => Definitions.Selection.HasSelectedItem));
+
+
+        private async Task OpenSessionAsync(ISessionChoiceViewModel definitionChoice)
         {
             try
             {
-                SessionRecording recording = _control.Record(definition.GetDefinition());
+                var definition = definitionChoice.GetDefinition();
 
-                if (currentRecording != null && currentRecording.Recording == recording)
+                if (definition != null)
                 {
-                    bool open = await currentRecording.OpenAsync();
-
-                    if (open)
+                    SessionRecording recording = _control.Record(definitionChoice.GetDefinition());
+                
+                    // currentRecording is updated in UpdateRecording from event handler of _control.RecordingChanged.
+                    // here, we do only check
+                    if (currentRecording != null && currentRecording.Recording == recording)
                     {
-                        _views.MainWindow?.Hide();
+                        bool open = await currentRecording.OpenAsync();
+
+                        if (open)
+                        {
+                            _views.MainWindow?.Hide();
+                        }
                     }
                 }
             }
@@ -210,6 +228,7 @@ namespace UXC.Sessions.ViewModels
         private RelayCommand showSessionCommand = null; // opens session window from the app main window
         public RelayCommand ShowSessionCommand => showSessionCommand
             ?? (showSessionCommand = new RelayCommand(() => ShowSession(_sessionHostWindow), () => CurrentRecording != null && CurrentRecording.IsTimelineActive == true));
+
 
         private void ShowSession(IView hostWindow)
         {
