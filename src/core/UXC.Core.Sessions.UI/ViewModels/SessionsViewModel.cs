@@ -185,19 +185,26 @@ namespace UXC.Sessions.ViewModels
             ?? (openSelectedCommand = new RelayCommand(() => OpenSessionAsync(Definitions.Selection.SelectedItem).Forget(), () => Definitions.Selection.HasSelectedItem));
 
 
-        private async Task OpenSessionAsync(ISessionChoiceViewModel definition)
+        private async Task OpenSessionAsync(ISessionChoiceViewModel definitionChoice)
         {
             try
             {
-                SessionRecording recording = _control.Record(definition.GetDefinition());
+                var definition = definitionChoice.GetDefinition();
 
-                if (currentRecording != null && currentRecording.Recording == recording)
+                if (definition != null)
                 {
-                    bool open = await currentRecording.OpenAsync();
-
-                    if (open)
+                    SessionRecording recording = _control.Record(definitionChoice.GetDefinition());
+                
+                    // currentRecording is updated in UpdateRecording from event handler of _control.RecordingChanged.
+                    // here, we do only check
+                    if (currentRecording != null && currentRecording.Recording == recording)
                     {
-                        _views.MainWindow?.Hide();
+                        bool open = await currentRecording.OpenAsync();
+
+                        if (open)
+                        {
+                            _views.MainWindow?.Hide();
+                        }
                     }
                 }
             }
@@ -221,6 +228,7 @@ namespace UXC.Sessions.ViewModels
         private RelayCommand showSessionCommand = null; // opens session window from the app main window
         public RelayCommand ShowSessionCommand => showSessionCommand
             ?? (showSessionCommand = new RelayCommand(() => ShowSession(_sessionHostWindow), () => CurrentRecording != null && CurrentRecording.IsTimelineActive == true));
+
 
         private void ShowSession(IView hostWindow)
         {
