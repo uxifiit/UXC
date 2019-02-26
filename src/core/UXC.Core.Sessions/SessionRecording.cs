@@ -76,7 +76,8 @@ namespace UXC.Sessions
             RecorderConfigurations = ValidateRecorders(definition.Recorders).DefaultIfEmpty(DefaultRecorderDefinition).ToDictionary
             (
                 d => d.Name,
-                d => (IDictionary<string, object>)d.Configuration.ToDictionary(r => r.Key, r => r.Value)
+                d => (IDictionary<string, object>)d.Configuration.ToDictionary(r => r.Key, r => r.Value),
+                StringComparer.CurrentCultureIgnoreCase
             );
 
             DeviceConfigurations = ValidateDevices(definition.Devices).ToDictionary

@@ -43,14 +43,9 @@ namespace UXC.Sessions
 
         public List<SessionRecorderDefinition> Recorders { get; set; } = new List<SessionRecorderDefinition>();
 
-        /// <summary>
-        /// Boolean flag to check whether keep recording data after recording.
-        /// </summary>
-        //public bool KeepData { get; set; } = true;
-
 
         /// <summary>
-        /// Boolean flag to check whether recording can start only if all the devices are ready. 
+        /// Boolean flag determining whether the recording can start only if all the devices are ready. 
         /// Set to false if recording can start immediately even without any or all devices not prepared.
         /// </summary>
         public bool StrictStart { get; set; } = true;

@@ -47,6 +47,7 @@ namespace UXC.Plugins.UXR.Services
                                      .Do(r => DumpSessionInfo(r))
 #endif
                                      .Where(r => r.Recording.State == SessionState.Completed)
+                                     .Where(r => r.Recording.RecorderConfigurations.ContainsKey("UXR"))
                                      .Subscribe(r => UploadSessionData(r.Recording, r.RootFolder));
 
             _uploader.Start();

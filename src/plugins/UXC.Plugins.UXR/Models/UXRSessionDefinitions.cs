@@ -105,6 +105,11 @@ namespace UXC.Plugins.UXR.Models
                     definition.Recorders.Add(new SessionRecorderDefinition("Local"));
                 }
 
+                if (definition.Recorders.Any(r => r.Name.Equals("UXR", StringComparison.CurrentCultureIgnoreCase)) == false)
+                {
+                    definition.Recorders.Add(new SessionRecorderDefinition("UXR"));
+                }
+
                 return true;
             }
             catch (Exception ex)
