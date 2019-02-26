@@ -10,7 +10,4 @@ namespace UXC.Sessions.Timeline.Actions
 
         public string Message { get; set; }
     }
-
-   
-   
 }
