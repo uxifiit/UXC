@@ -11,6 +11,7 @@ namespace UXC.Plugins.UXR.Models.Uploads
         public string Path { get; set; }
 
         public int? SessionId { get; set; }
+
         public string SessionName { get; set; }
 
         public string Project { get; set; }
@@ -18,8 +19,6 @@ namespace UXC.Plugins.UXR.Models.Uploads
         public string RecordingId { get; set; }
 
         public DateTime StartTime { get; set; }
-        [Obsolete]
-        public bool DeleteData { get; set; }
 
         public SessionRecordingData Clone()
         {

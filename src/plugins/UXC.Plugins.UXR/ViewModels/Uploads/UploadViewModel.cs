@@ -33,11 +33,9 @@ namespace UXC.Plugins.UXR.ViewModels.Uploads
 
         internal Upload Upload => _upload;
 
-
         public UploadStatus Status => _upload.Status;
 
         public bool IsWorking => Status.Step != UploadStep.Scheduled && Status.Step != UploadStep.Completed;
-
 
         public bool IsCompleted => Status.Step == UploadStep.Completed;
 
@@ -45,9 +43,7 @@ namespace UXC.Plugins.UXR.ViewModels.Uploads
 
         public string Project => _upload.Recording.Project;
 
-
         public DateTime StartTime => _upload.Recording.StartTime;
-
 
         public string Path => _upload.Recording.Path;
     }

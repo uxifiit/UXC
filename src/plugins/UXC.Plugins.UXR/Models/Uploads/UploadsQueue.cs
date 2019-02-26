@@ -32,10 +32,12 @@ namespace UXC.Plugins.UXR.Models.Uploads
             return false;
         }
 
+
         public bool TryPeek(out Upload upload)
         {
             return _queue.TryPeek(out upload);
         }
+
 
         public bool TryDequeue(out Upload upload)
         {
@@ -48,6 +50,7 @@ namespace UXC.Plugins.UXR.Models.Uploads
 
             return false;
         }
+
 
         public IEnumerable<Upload> TryEnqueueRange(IEnumerable<SessionRecordingData> recordings)
         {

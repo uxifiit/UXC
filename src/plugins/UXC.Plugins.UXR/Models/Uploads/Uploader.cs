@@ -336,7 +336,7 @@ namespace UXC.Plugins.UXR.Models.Uploads
                             //if (recording.DeleteData)
                             //{
                             //    // TODO Uploader: delete recording data?
-                            //    //Directory.Delete(recording.Path, true);
+                            //    // Directory.Delete(recording.Path, true);
                             //}
                         }
                     }

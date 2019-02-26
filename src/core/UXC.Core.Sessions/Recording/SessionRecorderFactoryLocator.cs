@@ -13,7 +13,7 @@ namespace UXC.Sessions.Recording
 {
     public class SessionRecorderFactoryLocator
     {
-        private readonly Dictionary<string, ISessionRecorderFactory> _factories = new Dictionary<string, ISessionRecorderFactory>();
+        private readonly Dictionary<string, ISessionRecorderFactory> _factories = new Dictionary<string, ISessionRecorderFactory>(StringComparer.CurrentCultureIgnoreCase);
 
         public SessionRecorderFactoryLocator(IEnumerable<ISessionRecorderFactory> factories, IModulesService modules)
         {
@@ -25,7 +25,8 @@ namespace UXC.Sessions.Recording
 
         private void AddFactories(IEnumerable<ISessionRecorderFactory> factories)
         {
-            factories?.ForEach(factory => _factories.TryAdd(factory.Target.ToLower(), factory));
+            factories?.Where(factory => String.IsNullOrWhiteSpace(factory.Target) == false)
+                      .ForEach(factory => _factories.TryAdd(factory.Target, factory));
         }
 
 
@@ -34,10 +35,10 @@ namespace UXC.Sessions.Recording
             recording.ThrowIfNull(nameof(recording));
 
             return recording.RecorderConfigurations
-                            .Where(r => _factories.ContainsKey(r.Key.ToLower()))
+                            .Where(r => _factories.ContainsKey(r.Key))
                             .Select(r => 
                             {
-                                var recorder = _factories[r.Key.ToLower()].Create(recording);
+                                var recorder = _factories[r.Key].Create(recording);
                                 Configurator.Configure(recorder, r.Value);
                                 return recorder;
                             })
