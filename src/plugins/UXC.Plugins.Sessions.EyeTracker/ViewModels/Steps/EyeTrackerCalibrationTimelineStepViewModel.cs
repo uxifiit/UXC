@@ -154,12 +154,12 @@ namespace UXC.Sessions.ViewModels.Timeline
 
             if (_settings.PointCompletionBeginTimeout.HasValue)
             {
-                calibratorViewModel.Calibration.PointCompletionBeginTimeout = _settings.PointCompletionBeginTimeout.Value;
+                calibratorViewModel.Calibration.PointCompletionBeginTimeout = TimeSpan.FromMilliseconds(_settings.PointCompletionBeginTimeout.Value);
             }
 
             if (_settings.PointCompletionEndTimeout.HasValue)
             {
-                calibratorViewModel.Calibration.PointCompletionEndTimeout = _settings.PointCompletionEndTimeout.Value;
+                calibratorViewModel.Calibration.PointCompletionEndTimeout = TimeSpan.FromMilliseconds(_settings.PointCompletionEndTimeout.Value);
             }
 
             // enable or disable load/save options for calibration profiles

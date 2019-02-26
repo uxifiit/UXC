@@ -108,11 +108,11 @@ namespace UXC.Devices.EyeTracker.ViewModels
                 Point2 point2d = new Point2(point.X, point.Y);
                 if (_calibrator.CanContinue(point2d))
                 {
-                    await Task.Delay(PointCompletionBeginTimeout); // PointCompletedBeginTimeout
+                    await Task.Delay(PointCompletionBeginTimeout);
 
                     await _calibrator.ContinueAsync(point2d);
 
-                    await Task.Delay(PointCompletionEndTimeout); // PointCompletedEndTimeout
+                    await Task.Delay(PointCompletionEndTimeout); 
 
                     Animation?.Continue();
                 }
