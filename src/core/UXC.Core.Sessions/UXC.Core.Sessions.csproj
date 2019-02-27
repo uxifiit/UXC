@@ -128,6 +128,7 @@
     <Compile Include="Configuration\ISessionsConfiguration.cs" />
     <Compile Include="Extensions\IObservableEx.cs" />
     <Compile Include="Timeline\Actions\ShowDesktopActionSettings.cs" />
+    <Compile Include="Timeline\Actions\ImageActionSettings.cs" />
     <Compile Include="Timeline\Actions\Text.cs" />
     <Compile Include="Timeline\Actions\WelcomeActionSettings.cs" />
     <Compile Include="Timeline\Actions\Questionaries\WriteAnswerQuestionActionSettings.cs" />

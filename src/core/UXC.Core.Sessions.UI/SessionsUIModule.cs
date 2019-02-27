@@ -10,6 +10,7 @@ using UXC.Sessions.Models;
 using UXC.Sessions.Models.Design;
 using UXC.Sessions.ViewModels;
 using UXC.Sessions.ViewModels.Timeline.Factories;
+using UXC.Sessions.ViewModels.Timeline.Preparation;
 using UXI.Common.UI;
 
 namespace UXC.Sessions
@@ -20,6 +21,7 @@ namespace UXC.Sessions
         {
             Bind<IViewModelFactory>().To<DefaultTimelineStepViewModelFactory>().InSingletonScope();
             Bind<IViewModelFactory>().To<InstructionsTimelineStepViewModelFactory>().InSingletonScope();
+            Bind<IViewModelFactory>().To<ImageTimelineStepViewModelFactory>().InSingletonScope();
             Bind<IViewModelFactory>().To<CloseProgramTimelineStepViewModelFactory>().InSingletonScope();
             Bind<IViewModelFactory>().To<LaunchProgramTimelineStepViewModelFactory>().InSingletonScope();
             Bind<IViewModelFactory>().To<ShowDesktopTimelineStepViewModelFactory>().InSingletonScope();
@@ -40,6 +42,11 @@ namespace UXC.Sessions
 #if DEBUG
             }
 #endif
+
+            Bind<IImageService>().To<ImageService>().InSingletonScope();
+            Bind<ITimelineStepPreparation>().To<ImageTimelineStepPreparation>().InSingletonScope();
+
+            Bind<TimelinePreparation>().ToSelf().InSingletonScope();
 
             Bind<SessionRecordingViewModelFactory>().ToSelf().InSingletonScope();
             Bind<SessionsViewModel>().ToSelf().InSingletonScope();

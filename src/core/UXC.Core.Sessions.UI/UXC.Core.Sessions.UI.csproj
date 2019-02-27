@@ -129,6 +129,8 @@
     </Compile>
     <Compile Include="Models\Design\DesignSessionRecordingsDataSource.cs" />
     <Compile Include="Models\Directories.cs" />
+    <Compile Include="Models\IImageService.cs" />
+    <Compile Include="Models\ImageService.cs" />
     <Compile Include="Models\ImportSessionDefinitions.cs" />
     <Compile Include="Models\ISessionRecordingsDataSource.cs" />
     <Compile Include="Models\SessionRecordingData.cs" />
@@ -140,8 +142,12 @@
     <Compile Include="ViewModels\SessionRecordingViewModel.cs" />
     <Compile Include="ViewModels\SessionRecordingViewModelFactory.cs" />
     <Compile Include="ViewModels\Timeline\Factories\CloseProgramTimelineStepViewModelFactory.cs" />
+    <Compile Include="ViewModels\Timeline\Factories\ImageTimelineStepViewModelFactory.cs" />
     <Compile Include="ViewModels\Timeline\Factories\QuestionaryTimelineStepViewModelFactory.cs" />
     <Compile Include="ViewModels\Timeline\Factories\WelcomeTimelineStepViewModelFactory.cs" />
+    <Compile Include="ViewModels\Timeline\Preparation\ITimelineStepPreparation.cs" />
+    <Compile Include="ViewModels\Timeline\Preparation\ImageTimelineStepPreparation.cs" />
+    <Compile Include="ViewModels\Timeline\Preparation\TimelinePreparation.cs" />
     <Compile Include="ViewModels\Timeline\Steps\ContentTimelineStepViewModelBase.cs" />
     <Compile Include="ViewModels\Timeline\Steps\QuestionaryTimelineStepViewModel.cs" />
     <Compile Include="ViewModels\Timeline\Steps\Questionary\ChooseAnswerQuestionViewModel.cs" />
@@ -150,6 +156,7 @@
     <Compile Include="ViewModels\Timeline\Steps\Questionary\QuestionaryViewModel.cs" />
     <Compile Include="ViewModels\Timeline\Steps\Questionary\QuestionViewModel.cs" />
     <Compile Include="ViewModels\Timeline\Steps\Questionary\WriteAnswerQuestionViewModel.cs" />
+    <Compile Include="ViewModels\Timeline\Steps\ImageTimelineStepViewModel.cs" />
     <Compile Include="ViewModels\Timeline\Steps\WelcomeTimelineStepViewModel.cs" />
     <Compile Include="ViewModels\SessionDefinitionsViewModel.cs" />
     <Compile Include="ViewModels\Timeline\Factories\DefaultTimelineStepViewModelFactory.cs" />
@@ -166,6 +173,9 @@
     <Compile Include="ViewModels\SessionRecordingsDataViewModel.cs" />
     <Compile Include="Views\SessionRecordingControl.xaml.cs">
       <DependentUpon>SessionRecordingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Timeline\ImageTimelineStepControl.xaml.cs">
+      <DependentUpon>ImageTimelineStepControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Timeline\WelcomeTimelineStepControl.xaml.cs">
       <DependentUpon>WelcomeTimelineStepControl.xaml</DependentUpon>
@@ -210,6 +220,10 @@
     <Page Include="Views\SessionRecordingControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Timeline\ImageTimelineStepControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Timeline\WelcomeTimelineStepControl.xaml">
       <Generator>MSBuild:Compile</Generator>

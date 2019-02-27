@@ -6,7 +6,4 @@
 
         public bool? ShowTaskbar { get; set; } = null;
     }
-
-   
-   
 }

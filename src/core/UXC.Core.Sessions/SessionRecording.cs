@@ -29,7 +29,6 @@ namespace UXC.Sessions
             Complete
         }
 
-        private readonly SessionDefinition _definition;
         private readonly IAdaptersControl _adapters;
 
         private readonly StateMachine<SessionState, SessionAction> _stateMachine;
@@ -51,7 +50,7 @@ namespace UXC.Sessions
         {
             definition.ThrowIfNull(nameof(definition));
 
-            _definition = definition;
+            Definition = definition;
             _adapters = adapters;
 
             DateTime openedAt = DateTime.Now;
@@ -163,7 +162,7 @@ namespace UXC.Sessions
         public string Id { get { return Settings.IdProperty.Get<string>(); } }
 
 
-        public SessionDefinition Definition => _definition;
+        public SessionDefinition Definition { get; }
 
 
         public IDictionary<DeviceType, IDictionary<string, object>> DeviceConfigurations { get; }
@@ -255,7 +254,7 @@ namespace UXC.Sessions
         }
         #endregion
 
-        private bool CheckDeviceStates() => _definition.StrictStart == false
+        private bool CheckDeviceStates() => Definition.StrictStart == false
                                             || _adapters.CheckAreDevicesInState(DeviceState.Connected, SelectedDevices);
 
         public bool Continue()

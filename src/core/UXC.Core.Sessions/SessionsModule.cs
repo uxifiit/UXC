@@ -48,6 +48,7 @@ namespace UXC.Sessions
             SessionStepActionSettings.Register(typeof(ChooseAnswerQuestionActionSettings));
             SessionStepActionSettings.Register(typeof(WriteAnswerQuestionActionSettings));
             SessionStepActionSettings.Register(typeof(InstructionsActionSettings));
+            SessionStepActionSettings.Register(typeof(ImageActionSettings));
         }
 
 

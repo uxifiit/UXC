@@ -15,7 +15,15 @@
                                               FontSize="{Binding FontSize}"
                                               DataContext="{Binding}" />
     </DataTemplate>
-       
+
+    <DataTemplate DataType="{x:Type vmTimeline:ImageTimelineStepViewModel}">
+        <vTimeline:ImageTimelineStepControl Background="{Binding Background}"
+                                            Foreground="{Binding Foreground}"
+                                            FontSize="{Binding FontSize}"
+                                            Cursor="{Binding Cursor}"
+                                            DataContext="{Binding}"/>
+    </DataTemplate>
+    
     <DataTemplate DataType="{x:Type vmTimeline:InstructionsTimelineStepViewModel}">
         <vTimeline:InstructionsTimelineStepControl Background="{Binding Background}"
                                                    Foreground="{Binding Foreground}"
