@@ -10,7 +10,4 @@
 
         public bool IsMultiline { get; set; } = false;
     }
-
-   
-   
 }

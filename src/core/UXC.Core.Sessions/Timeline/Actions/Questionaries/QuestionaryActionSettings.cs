@@ -5,6 +5,8 @@ namespace UXC.Sessions.Timeline.Actions
 {
     public class QuestionaryActionSettings : ContentActionSettingsBase
     {
+        public string Title { get; set; }
+
         public string Id { get; set; }
 
         public List<QuestionActionSettings> Questions { get; set; }
@@ -18,7 +20,4 @@ namespace UXC.Sessions.Timeline.Actions
             return clone;
         }
     }
-
-   
-   
 }

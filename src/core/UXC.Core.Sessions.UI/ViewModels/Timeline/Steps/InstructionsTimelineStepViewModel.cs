@@ -27,7 +27,7 @@ namespace UXC.Sessions.ViewModels.Timeline
                          ? String.Join(Environment.NewLine, _settings.Instructions.Lines)
                          : String.Empty;
 
-
+            Title = _settings.Title;
 
             if (settings.ShowContinue)
             {
@@ -46,6 +46,15 @@ namespace UXC.Sessions.ViewModels.Timeline
         }
 
 
+        private string title;
+        public string Title
+        {
+            get { return title; }
+            private set { Set(ref title, value); }
+        }
+
+
+
         public Visibility ContinueButtonVisibility => _settings.ShowContinue ? Visibility.Visible : Visibility.Collapsed;
 
 
@@ -60,6 +69,7 @@ namespace UXC.Sessions.ViewModels.Timeline
             if (_settings.Parameters != null && _settings.Parameters.Any())
             {
                 Instructions = SessionRecordingSettingsHelper.FillParameters(Instructions, _settings.Parameters, recording.Recording.Settings);
+                Title = SessionRecordingSettingsHelper.FillParameters(Title, _settings.Parameters, recording.Recording.Settings);
             }
         }
 

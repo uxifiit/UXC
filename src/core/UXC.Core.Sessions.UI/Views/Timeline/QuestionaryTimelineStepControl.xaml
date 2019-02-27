@@ -33,6 +33,12 @@
             <ColumnDefinition Width="210" />
         </Grid.ColumnDefinitions>
 
+        <TextBlock Text="{Binding Title}" 
+                   Grid.ColumnSpan="3"
+                   FontSize="40"
+                   FontFamily="Segoe UI Semilight"
+                   Margin="60,60,0,0" />
+
         <controls:QuestionaryControl DataContext="{Binding Questionary}"
                                      QuestionsSource="{Binding Questions}"
                                      Grid.Column="1" Grid.Row="1" Grid.RowSpan="2"
