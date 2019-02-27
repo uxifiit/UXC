@@ -17,15 +17,9 @@ namespace UXC.Sessions.Timeline.Actions
 
         public bool IsProfileEnabled { get; set; } = false;
 
-        public TimeSpan? PointCompletionBeginTimeout { get; set; }
+        public uint? PointCompletionBeginTimeout { get; set; }
 
-        public TimeSpan? PointCompletionEndTimeout { get; set; }
-
-        //public TimeSpan? Delay { get; set; }
-
-        //public TimeSpan? MovementDuration { get; set; }
-
-        //public TimeSpan? InstructionsDuration { get; set; }
+        public uint? PointCompletionEndTimeout { get; set; }
 
         public override SessionStepActionSettings Clone()
         {

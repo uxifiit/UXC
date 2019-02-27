@@ -16,22 +16,23 @@ using UXC.Sessions.Timeline.Results;
 using UXI.Common.Extensions;
 using UXI.Common.UI;
 using UXC.Sessions.Helpers;
+using UXC.Sessions.ViewModels.Timeline.Preparation;
 
 namespace UXC.Sessions.ViewModels
 {
     public class SessionRecordingViewModel : ProgressViewModel
     {
         private readonly Dispatcher _dispatcher;
+        private readonly TimelinePreparation _preparation;
         private readonly WindowsTaskbarHelper _taskbar = new WindowsTaskbarHelper();
 
-        public SessionRecordingViewModel(SessionRecording recording, ViewModelResolver resolver, Dispatcher dispatcher)
+        public SessionRecordingViewModel(SessionRecording recording, ViewModelResolver resolver, Dispatcher dispatcher, TimelinePreparation preparation)
         {
             _dispatcher = dispatcher;
-
+            _preparation = preparation;
             Recording = recording;
             Recording.StateChanged += Recording_StateChanged;
             Recording.CurrentStepChanged += Recording_CurrentStepChanged;
-            //Recording.StartFailed += Recording_StartFailed;
 
             Timeline = new TimelinePlaybackViewModel(this, resolver, dispatcher);
             Timeline.StepCompleted += Timeline_StepCompleted;
@@ -57,19 +58,6 @@ namespace UXC.Sessions.ViewModels
                 if (CanContinueRecording(execution.Result))
                 {
                     Recording.Continue();
-
-                    //bool continued = TryContinue();
-                    //if (continued == false)
-                    //{
-                    //    if (Recording.CanClose())
-                    //    {
-                    //        Recording.Close();
-                    //    }
-                    //    else
-                    //    {
-                    //        Timeline.Clear();
-                    //    }
-                    //}
                 }
                 else
                 {
@@ -125,6 +113,8 @@ namespace UXC.Sessions.ViewModels
                 {
                     Task.Run(() => _taskbar.Reset()).Forget();
 
+                    _preparation.Reset();
+
                     IsTimelineActive = false;
                     Timeline.Clear();
                     RecordingEnded?.Invoke(this, EventArgs.Empty);
@@ -176,6 +166,8 @@ namespace UXC.Sessions.ViewModels
             try
             {
                 IsLoading = true;
+
+                await _preparation.PrepareAsync(Recording);
 
                 IsLoaded = await Recording.OpenAsync(CancellationToken.None);
 

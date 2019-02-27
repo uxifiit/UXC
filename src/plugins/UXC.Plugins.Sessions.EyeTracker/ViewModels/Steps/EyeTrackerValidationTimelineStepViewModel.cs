@@ -49,7 +49,7 @@ namespace UXC.Sessions.ViewModels.Timeline
         }
 
 
-        public TimeSpan? InstructionsDuration => _settings.InstructionsDuration;
+        public TimeSpan? MessageDuration => _settings.MessageDuration;
 
 
         public override void Execute(SessionRecordingViewModel recording)
@@ -104,9 +104,9 @@ namespace UXC.Sessions.ViewModels.Timeline
         {
             var startTime = DateTime.Now;
 
-            if (_settings.PointDuration.HasValue)
+            if (_settings.PointDuration.HasValue && _settings.PointDuration.Value > 0)
             {
-                await Task.Delay(_settings.PointDuration.Value);
+                await Task.Delay(TimeSpan.FromMilliseconds(_settings.PointDuration.Value));
             }
 
             var endTime = DateTime.Now;

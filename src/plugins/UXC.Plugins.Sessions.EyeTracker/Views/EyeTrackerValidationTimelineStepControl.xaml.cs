@@ -53,7 +53,7 @@ namespace UXC.Sessions.Views.Timeline
             {
                 VisualStateManager.GoToElementState((FrameworkElement)this.Content, nameof(IntroductionState), true);
 
-                await Task.Delay(validation.InstructionsDuration ?? TimeSpan.FromSeconds(3)); // TODO REFACTOR InstructionsDuration -> propdp
+                await Task.Delay(validation.MessageDuration ?? TimeSpan.FromSeconds(3)); // TODO REFACTOR InstructionsDuration -> propdp
 
                 VisualStateManager.GoToElementState((FrameworkElement)this.Content, nameof(ValidationProcessState), true);
 

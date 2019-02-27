@@ -79,7 +79,7 @@ namespace UXC.Sessions
             if (hasEyeTracker)
             {
                 definition.PreSessionSteps.Add(new SessionStep() { Action = new EyeTrackerCalibrationActionSettings() });
-                definition.SessionSteps.Add(new SessionStep() { Action = new EyeTrackerValidationActionSettings() { PointDuration = TimeSpan.FromSeconds(2) }, Completion = new SessionStepCompletionSettings() { Hotkeys = new List<Hotkey>() { Hotkey.F10 } } });
+                definition.SessionSteps.Add(new SessionStep() { Action = new EyeTrackerValidationActionSettings() { PointDuration = 2000 }, Completion = new SessionStepCompletionSettings() { Hotkeys = new List<Hotkey>() { Hotkey.F10 } } });
             }
 
             definition.SessionSteps.Add(new SessionStep() { Action = new ShowDesktopActionSettings() { MinimizeAll = false }, Completion = new SessionStepCompletionSettings() { Hotkeys = new List<Hotkey>() { Hotkey.F10 } } });

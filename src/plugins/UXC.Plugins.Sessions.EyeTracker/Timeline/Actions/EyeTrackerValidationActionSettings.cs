@@ -12,11 +12,11 @@ namespace UXC.Sessions.Timeline.Actions
     {
         public List<Point2> Points { get; set; }
 
-        public TimeSpan? PointDuration { get; set; } = TimeSpan.FromSeconds(2);
+        public int? PointDuration { get; set; } = 2000;
 
-        public TimeSpan? MovementDuration { get; set; }
+        public double? MovementDuration { get; set; }
 
-        public TimeSpan? InstructionsDuration { get; set; }
+        public TimeSpan? MessageDuration { get; set; }
 
         public string PointColor { get; set; }
 
