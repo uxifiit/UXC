@@ -19,6 +19,12 @@
             <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
 
+        <TextBlock Text="{Binding Title}" 
+                   Grid.ColumnSpan="3"
+                   FontSize="40"
+                   FontFamily="Segoe UI Semilight"
+                   Margin="60,60,0,0" />
+        
         <TextBlock Text="{Binding Instructions}" 
                    Grid.Row="1"
                    Grid.Column="1"

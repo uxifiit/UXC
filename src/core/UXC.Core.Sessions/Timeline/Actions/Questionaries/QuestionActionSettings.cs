@@ -4,7 +4,7 @@
     {
         public string Id { get; set; }
 
-        public string Question { get; set; }
+        public Text Question { get; set; }
 
         public bool IsRequired { get; set; } = true;
 
@@ -15,7 +15,4 @@
             return (QuestionActionSettings)this.MemberwiseClone();
         }
     }
-
-   
-   
 }

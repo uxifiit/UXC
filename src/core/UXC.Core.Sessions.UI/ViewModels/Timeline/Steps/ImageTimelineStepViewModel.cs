@@ -38,14 +38,6 @@ namespace UXC.Sessions.ViewModels.Timeline
         }
 
 
-        //private string instructions;
-        //public string Instructions
-        //{
-        //    get { return instructions; }
-        //    private set { Set(ref instructions, value); }
-        //}
-
-
         public Visibility ContinueButtonVisibility => _settings.ShowContinue ? Visibility.Visible : Visibility.Collapsed;
 
 
@@ -88,11 +80,6 @@ namespace UXC.Sessions.ViewModels.Timeline
 
         public override void Execute(SessionRecordingViewModel recording)
         {
-            //if (_settings.Parameters != null && _settings.Parameters.Any())
-            //{
-            //    Instructions = SessionRecordingSettingsHelper.FillParameters(Instructions, _settings.Parameters, recording.Recording.Settings);
-            //}
-
             BitmapSource image;
             if (_images.TryGet(_settings.Path, out image))
             {
@@ -112,6 +99,7 @@ namespace UXC.Sessions.ViewModels.Timeline
         private void Image_DownloadCompleted(object sender, EventArgs e)
         {
             _dispatcher.Invoke(() => UpdateSize(imageSource));
+
         }
 
         private void UpdateSize(BitmapSource image)
@@ -141,6 +129,11 @@ namespace UXC.Sessions.ViewModels.Timeline
             var result = SessionStepResult.Successful; // TODO add the bounding box of image
 
             OnCompleted(result);
+
+            if (imageSource != null)
+            {
+                imageSource.DownloadCompleted -= Image_DownloadCompleted;
+            }
 
             return result;
         }

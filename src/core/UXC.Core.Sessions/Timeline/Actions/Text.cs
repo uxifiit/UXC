@@ -25,8 +25,5 @@ namespace UXC.Sessions.Timeline.Actions
                  ? String.Join(Environment.NewLine, Lines)
                  : String.Empty;
         }
-    }
-
-   
-   
+    }   
 }

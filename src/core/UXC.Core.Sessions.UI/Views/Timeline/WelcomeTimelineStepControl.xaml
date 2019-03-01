@@ -41,19 +41,19 @@
                    FontFamily="Segoe UI Semilight"
                    Margin="60,60,0,0" />
 
-            <TextBlock Text="{Binding Description}" 
-                       Visibility="{Binding DescriptionVisibility}"
-                       Grid.Row="1" Grid.Column="1"
-                       TextAlignment="Left"
-                       TextWrapping="Wrap"
-                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                       Margin="0,0,0,20" />
+        <TextBlock Text="{Binding Description}" 
+                   Visibility="{Binding DescriptionVisibility}"
+                   Grid.Row="1" Grid.Column="1"
+                   TextAlignment="Left"
+                   TextWrapping="Wrap"
+                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Margin="0,0,0,20" />
 
-            <controls:QuestionaryControl DataContext="{Binding Questionary}"
-                                         QuestionsSource="{Binding Questions}"
-                                         Grid.Row="2" Grid.Column="1"
-                                         Margin="0,0,0,30" 
-                                         HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
+        <controls:QuestionaryControl DataContext="{Binding Questionary}"
+                                     QuestionsSource="{Binding Questions}"
+                                     Grid.Row="2" Grid.Column="1"
+                                     Margin="0,0,0,30" 
+                                     HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
         
         <StackPanel Orientation="Vertical" 
                     Grid.Row="3" Grid.Column="1"

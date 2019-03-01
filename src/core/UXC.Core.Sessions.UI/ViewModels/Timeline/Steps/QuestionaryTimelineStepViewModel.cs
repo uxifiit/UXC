@@ -26,7 +26,14 @@ namespace UXC.Sessions.ViewModels.Timeline
 
             var questions = settings.Questions?
                                     .Where(q => resolver.CanCreate(q))
-                                    .Select(q => new QuestionViewModel(q.Question, q.Id, (IQuestionAnswerViewModel)resolver.Create(q), q.IsRequired, q.HelpText));
+                                    .Select(q =>
+                                    {
+                                        string question = q.Question.Lines != null && q.Question.Lines.Any()
+                                                        ? String.Join(Environment.NewLine, q.Question.Lines)
+                                                        : String.Empty;
+
+                                        return new QuestionViewModel(question, q.Id, (IQuestionAnswerViewModel)resolver.Create(q), q.IsRequired, q.HelpText);
+                                    });
 
             Questionary = new QuestionaryViewModel(questions);
 

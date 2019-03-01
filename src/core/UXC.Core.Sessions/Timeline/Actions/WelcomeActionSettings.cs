@@ -14,7 +14,4 @@
 
         public string StartButtonLabel { get; set; }
     }
-
-   
-   
 }

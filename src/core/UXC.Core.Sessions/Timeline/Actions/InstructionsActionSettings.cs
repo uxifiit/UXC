@@ -8,6 +8,8 @@ namespace UXC.Sessions.Timeline.Actions
 
         public List<string> Parameters { get; set; } = null;
 
+        public string Title { get; set; }
+
         public bool ShowContinue { get; set; }
 
         public string ContinueButtonLabel { get; set; }

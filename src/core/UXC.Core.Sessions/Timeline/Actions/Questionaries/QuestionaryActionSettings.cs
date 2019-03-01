@@ -18,7 +18,4 @@ namespace UXC.Sessions.Timeline.Actions
             return clone;
         }
     }
-
-   
-   
 }
