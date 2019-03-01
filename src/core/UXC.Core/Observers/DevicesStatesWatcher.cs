@@ -29,8 +29,6 @@ namespace UXC.Observers
         }   
 
         public event EventHandler<DeviceStatus> DeviceStateChanged;
-
-        // may be used for removing dependency of device context on AdaptersManager
         public event EventHandler<DeviceStatus> StartedObservingDevice;
         public event EventHandler<DeviceStatus> StoppedObservingDevice;
 

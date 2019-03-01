@@ -22,7 +22,7 @@ namespace UXC.Core.Modules
             WeakReference reference = new WeakReference(target);
 
             // TODO convert to WeakAction to avoid memory leaks
-            //WeakAction<IEnumerable<T>> weakCallback = new WeakAction<IEnumerable<T>>(callback);
+            // WeakAction<IEnumerable<T>> weakCallback = new WeakAction<IEnumerable<T>>(callback);
             Action<IEnumerable<object>> action = new Action<IEnumerable<object>>((o) => callback.Invoke(o?.OfType<T>() ?? Enumerable.Empty<T>()));
 
             _registrations.Add(type, action);
@@ -39,16 +39,6 @@ namespace UXC.Core.Modules
                     client.Invoke(instances);
                 }
             }
-        }
-
-        public void Unregister(object target)
-        {
-            throw new NotImplementedException();
-
-            //IReadOnlyCollection<Action<IEnumerable<object>>> actions;
-            //if (_targets.TryGetValue(target, out actions))
-            //{
-            //}
         }
     }
 }

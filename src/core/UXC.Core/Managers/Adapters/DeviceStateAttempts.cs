@@ -33,20 +33,21 @@ namespace UXC.Core.Managers.Adapters
             return attempt;
         }
 
+
         public bool CanAttemptCommand(DeviceType device, DeviceState state, out DeviceStateAttempt attempt)
         {
             return _attempts.TryGetValue(device, out attempt)
                 && attempt.IsEnabled
                 && attempt.TargetState != state;
-            // && (attempt.LastResult == CommandResult.NotApplied || attempt.LastResult == CommandResult.Failed);
-            //&& DeviceStatesHelper.IsBusy(state) == false;  // TODO ensure that IsWorking is used 
         }
+
 
         public bool CanAttemptCommand(DeviceType device, DeviceState state)
         {
             DeviceStateAttempt attempt;
             return CanAttemptCommand(device, state, out attempt);
         }
+
 
         public void DisableAttempt(DeviceType device)
         {
@@ -63,14 +64,18 @@ namespace UXC.Core.Managers.Adapters
     internal class DeviceStateAttempt
     {
         private readonly List<CommandResult> _results = new List<CommandResult>();
+
         public DeviceStateAttempt(DeviceState state)
         {
             targetState = state;
         }
 
+
         public void AddResult(CommandResult result) => _results.Add(result);
 
+
         public void Reset() => _results.Clear();
+
 
         private DeviceState targetState;
         public DeviceState TargetState
@@ -85,11 +90,13 @@ namespace UXC.Core.Managers.Adapters
                 }
             }
         }
+
+
         public int Attempts => _results.Count;
 
-    //    public IEnumerable<CommandResult> Results => _results;
 
         public CommandResult LastResult => _results.Any() ? _results.Last() : CommandResult.NotApplied;
+
 
         public bool IsEnabled { get; set; }
     }

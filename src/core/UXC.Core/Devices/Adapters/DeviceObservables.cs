@@ -26,7 +26,7 @@ namespace UXC.Devices.Adapters
             ConnectionErrors = errors;
             Logs = logs;
 
-            _statesReplay = replayedStates.Connect(); // TODO dispose connection
+            _statesReplay = replayedStates.Connect();
         }
 
         public DeviceType DeviceType { get; }
@@ -84,9 +84,6 @@ namespace UXC.Devices.Adapters
             {
                 if (disposing)
                 {
-                    //_states.Dispose();
-                    //_states = null;
-
                     _statesReplay?.Dispose();
                     _statesReplay = null;
                 }

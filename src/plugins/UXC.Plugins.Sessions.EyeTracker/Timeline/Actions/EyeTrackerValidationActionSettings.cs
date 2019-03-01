@@ -7,7 +7,6 @@ using UXC.Core.Data;
 
 namespace UXC.Sessions.Timeline.Actions
 {
-
     public class EyeTrackerValidationActionSettings : ContentActionSettingsBase
     {
         public List<Point2> Points { get; set; }

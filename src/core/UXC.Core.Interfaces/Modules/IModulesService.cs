@@ -14,6 +14,5 @@ namespace UXC.Core.Modules
     public interface IModulesService
     {
         void Register<T>(object target, Action<IEnumerable<T>> callback);
-        void Unregister(object target);
     }
 }

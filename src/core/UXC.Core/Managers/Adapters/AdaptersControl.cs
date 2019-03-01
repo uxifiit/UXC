@@ -1,4 +1,3 @@
-using log4net;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -19,18 +18,6 @@ using System.Reactive.Disposables;
 
 namespace UXC.Core.Managers.Adapters
 {
-    // malo by to ist bez vseobecneho timera. Take viac reactive:
-    // * pride pokyn, pokusam sa nastavit stavy
-    // * zmeni sa stav, opat sa pokusam
-    // * ked sa nedari, pytam si usera
-
-    // 1. zavolanie Resolve
-    // 2. vykonaj ...
-    // 3. ak zostane neuspesny
-    //    a. zapni timer a scheduluj (moze to byt uz prvy neuspesny zo vsetkych zariadeni) pokial uz nema vela pokusov
-    //    b. ak zostali nejake pre usera (alebo az po vsetkych pokusoch?), notifikuj ho
-    // 4. ak pride volanie Resolve uz naplanovaneho timeru, timer sa zrusi a vola sa hned Resolve
-
     public class AdaptersControl : IAdaptersControl
     {
         private const int MAX_ATTEMPT_LIMIT = 3;
@@ -42,9 +29,7 @@ namespace UXC.Core.Managers.Adapters
 
         private readonly DeviceStateAttempts _attempts = new DeviceStateAttempts();
         private readonly SerialDisposable _tasks = new SerialDisposable();
-        //private readonly SingleTaskSource _tasks = new SingleTaskSource();
         private readonly object _tasksLock = new object();
-        //private SingleTask _task = null;
 
         public AdaptersControl(IAdaptersManager manager, IDevicesContext context, ILogger logger)
         {
@@ -54,7 +39,6 @@ namespace UXC.Core.Managers.Adapters
             _context.DeviceUpdated += async (_, args) => await CheckDeviceAsync(args.DeviceType, args.State);
         }
     
-        //public event EventHandler<UserDeviceActionRequestedEventArgs> UserDeviceActionRequired;
 
         private Task SetStateAsync(DeviceState state, CancellationToken cancellationToken)
         {
@@ -205,7 +189,6 @@ namespace UXC.Core.Managers.Adapters
 
             return new DeviceStateAttemptResult(device.Code.DeviceType, targetState, DateTime.Now, result);
         }
-
       
 
         public Task DisconnectAsync(CancellationToken cancellationToken)

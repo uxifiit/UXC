@@ -26,9 +26,11 @@ namespace UXC.Devices.Adapters.Commands
             });
         }
 
-        public IEnumerable<IDeviceCommand> Forward { get; }
-        public IEnumerable<IDeviceCommand> Backward { get; }
 
+        public IEnumerable<IDeviceCommand> Forward { get; }
+
+
+        public IEnumerable<IDeviceCommand> Backward { get; }
 
 
         #region IEnumerable<IDeviceCommand> Members

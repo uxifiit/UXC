@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ninject.Modules;
-using UXC;
 using UXC.Core.ViewServices;
 
 namespace UXC.Core.Modules
@@ -13,8 +12,6 @@ namespace UXC.Core.Modules
     {
         public override void Load()
         {
-           /// TODO add configurations
-
             Bind<IAppService>().To<AppService>().InSingletonScope();
         }
     }

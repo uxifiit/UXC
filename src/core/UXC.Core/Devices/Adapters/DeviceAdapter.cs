@@ -166,7 +166,6 @@ namespace UXC.Devices.Adapters
         public event EventHandler<DeviceCommandExecution> CommandExecutionChanged;
 
 
-        // TODO SET STATE !!! remove undo? or how to know the target state of command's action
         public bool TryGoToState(DeviceState targetState, CancellationToken cancellationToken, out Task<CommandResult> execution)
         {
             var currentState = State;
@@ -250,7 +249,6 @@ namespace UXC.Devices.Adapters
             IDeviceCommand command = null;
             return _commands.TryGet(c => c.Action == action, out command)
                 && CanApplyCommand(command);
-            // && RecentCommandExecution.IsWorking == false
         }
 
 
@@ -286,9 +284,6 @@ namespace UXC.Devices.Adapters
             {
                 if (disposing)
                 {
-                    //_states.Dispose();
-                    //_states = null;
-
                     if (State.HasFlag(DeviceState.Connected))
                     {
                         _device.DisconnectDevice();
