@@ -24,9 +24,10 @@ namespace UXC.Sessions.ViewModels.Timeline
         {
             _id = settings.Id;
 
+
             var questions = settings.Questions?
                                     .Where(q => resolver.CanCreate(q))
-                                    .Select(q =>
+                                    .Select(q => 
                                     {
                                         string question = q.Question.Lines != null && q.Question.Lines.Any()
                                                         ? String.Join(Environment.NewLine, q.Question.Lines)
@@ -34,6 +35,8 @@ namespace UXC.Sessions.ViewModels.Timeline
 
                                         return new QuestionViewModel(question, q.Id, (IQuestionAnswerViewModel)resolver.Create(q), q.IsRequired, q.HelpText);
                                     });
+
+            Title = settings.Title?.Trim() ?? String.Empty;
 
             Questionary = new QuestionaryViewModel(questions);
 
@@ -61,6 +64,14 @@ namespace UXC.Sessions.ViewModels.Timeline
                     _recording.Settings.SetCustomSetting(_id, qa.QuestionId, qa.Answer);
                 }
             }
+        }
+
+
+        private string title;
+        public string Title
+        {
+            get { return title; }
+            private set { Set(ref title, value); }
         }
 
 
