@@ -15,7 +15,4 @@
             return (QuestionActionSettings)this.MemberwiseClone();
         }
     }
-
-   
-   
 }

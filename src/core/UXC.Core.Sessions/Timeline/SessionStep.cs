@@ -38,8 +38,6 @@ namespace UXC.Sessions.Timeline
 
         public TimeSpan? Duration { get; set; } = null;
 
-        public bool AnyKeyPress { get; set; } = false;
-
         public List<Hotkey> Hotkeys { get; set; } = new List<Hotkey>();
 
         public SessionStepCompletionSettings Clone()

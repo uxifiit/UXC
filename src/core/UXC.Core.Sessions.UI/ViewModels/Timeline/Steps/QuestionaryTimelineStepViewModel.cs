@@ -32,10 +32,11 @@ namespace UXC.Sessions.ViewModels.Timeline
                                         string question = q.Question.Lines != null && q.Question.Lines.Any()
                                                         ? String.Join(Environment.NewLine, q.Question.Lines)
                                                         : String.Empty;
+
                                         return new QuestionViewModel(question, q.Id, (IQuestionAnswerViewModel)resolver.Create(q), q.IsRequired, q.HelpText);
                                     });
 
-            Title = settings.Title;
+            Title = settings.Title?.Trim() ?? String.Empty;
 
             Questionary = new QuestionaryViewModel(questions);
 

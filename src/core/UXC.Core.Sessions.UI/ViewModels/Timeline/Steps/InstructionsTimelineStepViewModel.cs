@@ -27,7 +27,7 @@ namespace UXC.Sessions.ViewModels.Timeline
                          ? String.Join(Environment.NewLine, _settings.Instructions.Lines)
                          : String.Empty;
 
-            Title = _settings.Title;
+            Title = _settings.Title?.Trim() ?? String.Empty;
 
             if (settings.ShowContinue)
             {
@@ -52,7 +52,6 @@ namespace UXC.Sessions.ViewModels.Timeline
             get { return title; }
             private set { Set(ref title, value); }
         }
-
 
 
         public Visibility ContinueButtonVisibility => _settings.ShowContinue ? Visibility.Visible : Visibility.Collapsed;
