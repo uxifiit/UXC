@@ -31,7 +31,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="Padding" Value="5,5,5,0" />
+                    <Setter Property="Padding" Value="2.5,2.5,2.5,2.5" />
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
@@ -44,8 +44,11 @@
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
 
-                            <TextBlock Text="{Binding Name}"
-                                    FontSize="12" />
+                            <TextBlock FontSize="12">
+                                <Run Text="{Binding Project, Mode=OneWay}" />
+                                <Run Text="-" />
+                                <Run Text="{Binding Name, Mode=OneWay}" />
+                            </TextBlock>
 
                             <TextBlock Text="{Binding StartTime, StringFormat='dd MMMM yyyy HH:mm'}"
                                     FontFamily="Segoe UI Semilight"

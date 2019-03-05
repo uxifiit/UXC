@@ -139,7 +139,10 @@ namespace UXC.Sessions
                                                             .Select(kvp => kvp.Value)
                                                             .ToList();
 
-                DefinitionsChanged?.Invoke(this, CollectionChangedEventArgs<SessionDefinition>.Create(addedDefinitions, removedDefinitions));
+                if (addedDefinitions.Any() || removedDefinitions.Any())
+                {
+                    DefinitionsChanged?.Invoke(this, CollectionChangedEventArgs<SessionDefinition>.Create(addedDefinitions, removedDefinitions));
+                }
             }
             else if (currentDefinitions.Any())
             {
