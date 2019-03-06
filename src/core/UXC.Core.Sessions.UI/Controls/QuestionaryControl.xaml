@@ -95,7 +95,7 @@
 
                             <Grid Margin="-5"
                                   Background="Red"
-                                  Opacity="0.1"
+                                  Opacity="0.5"
                                   Visibility="{Binding IsInvalid, Converter={StaticResource BoolToVisibilityConverter}}"
                                   Grid.RowSpan="3" />
 
