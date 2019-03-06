@@ -67,12 +67,13 @@
         ]
     },
     "preSessionSteps": [
-        /* insert session steps */
+        /* insert session preparation steps, for example calibration */
         { 
             "action": { "actionType": "EyeTrackerCalibration" } 
         } 
     ],
     "sessionSteps": [
+        /* insert session recording steps */
         {
             "action": { 
                 "actionType": "Instructions",
@@ -85,63 +86,10 @@
                 ],
                 "showContinue": true
             }
-        },
-        {
-            "action": { "actionType": "EyeTrackerValidation" } 
-        },
-        {
-            "action": {
-                "actionType": "Instructions",
-                "instructions": [
-                    "Search the website of the UXIsk research group for the information page about their eye tracking group lab.",
-                    "Study the webpage about the group lab.",
-                    "",
-                    "When you feel you have found all available information about the lab, press the F10 key.",
-                    "",
-                    "Open the web by pressing the Continue button."
-                ],
-                "showContinue": true
-            }
-        },
-        { 
-            "action": {
-                "actionType": "LaunchProgram",
-                "path": "c:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
-                "arguments": "https://www.pewe.sk/uxi/ --kiosk"
-            },
-            "completion": { "hotkeys": [ "F10" ] } 
-        },
-        {
-            "action": { 
-                "actionType": "Questionary",
-                "id": "Question",
-                "questions": [
-                    {
-                        "actionType": "WriteAnswerQuestion",
-                        "id": "WorkstationsCount",
-                        "question": "How many workstations with an eye tracker are in the laboratory?",
-                        "isRequired": true,
-                        "validAnswerRegexPattern": "[0-9]+"
-                    },
-                    {
-                        "actionType": "ChooseAnswerQuestion",
-                        "id": "OtherSensorTypes",
-                        "question": "What other sensor types are available in the laboratory?",
-                        "limit": null,
-                        "isRequired": true,
-                        "answers": [
-                            "EEG sensor",
-                            "ECG sensor",
-                            "GSR sensor",
-                            "Webcam",
-                            "Hand tracking"
-                        ]
-                    }
-                ]
-            }
         }
     ],
     "postSessionSteps": [
+        /* insert session processing steps */
         {
             "action": {
                 "actionType": "Instructions",
