@@ -11,6 +11,9 @@ namespace UXC.Sessions.Timeline.Actions
 
         public List<QuestionActionSettings> Questions { get; set; }
 
+        // Questioanry requires mouse cursor, so we disable setting this option
+        public override bool? ShowCursor { get { return null; } set { } }
+
         public override SessionStepActionSettings Clone()
         {
             var clone = (QuestionaryActionSettings)base.Clone();

@@ -41,6 +41,8 @@ namespace UXC.Sessions.ViewModels.Timeline
             Questionary = new QuestionaryViewModel(questions);
 
             HasQuestions = Questionary.Questions.Any();
+
+            Cursor = Cursors.Arrow;
         }
 
 

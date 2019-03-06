@@ -12,7 +12,7 @@ namespace UXC.Sessions.Timeline.Actions
         // public int PlanLength { get; set; }
         public List<Point2> CustomPlan { get; set; }
 
-        // Calibration requires mouse cursor, so we disable this option
+        // Calibration requires mouse cursor, so we disable setting this option
         public override bool? ShowCursor { get { return null; } set { } }
 
         public bool IsProfileEnabled { get; set; } = false;
