@@ -1,0 +1,153 @@
+{
+    "project" : "Name of your project",
+    "name" : "Name of the session",
+    "devices" : [
+        /* 
+            Insert device definition for each device type: 
+            { "device": "<device_code>" }
+
+            Replace <device_code> with code for respective device:
+            | Device Code | Device Type     |
+            |-------------|-----------------|
+            | ET          | Eye Tracker     |
+            | SC          | Screencast      |
+            | KB          | Keyboard        |
+            | ME          | Mouse           |
+            | WCV         | Webcam Video    |
+            | WCA         | Webcam Audio    |
+            | EXTEV       | External Events |
+        */
+
+        { "device": "ET" }, 
+        { "device": "WCV" }, 
+        { "device": "SC" },
+        { "device": "KB" }, 
+        { "device": "ME" }
+    ],
+    "recorders" : [
+        /*
+            Insert device data recorders. 
+            { "name": "<recorder_type>" }
+
+            Replace <recorder_type> with code for respective recorder
+            | Recorder Type | Description                                                                        |
+            |---------------|------------------------------------------------------------------------------------|
+            | Local         | Stores data locally in the UXC local app data directory.                           |
+            | Buffer        | Buffers recorded data during the recording for external access through API.        |
+            | UXR           | Uploads results of the Local recorder to the UXR after the recording is completed. |
+
+            Local recorder is default, other recorders are optional and *must* be specified.
+
+            For example, if you want to upload and store session recording in the UXR, 
+            add the following recorder to the list of recorders:
+            
+            { "name": "UXR" }
+        */
+
+        { "name": "Local" }
+    ],
+    "welcome" : {
+        "description" : [
+            "Write your experiment description here.",
+            "The text can be multiline, each string value of the array is a line.",
+            "",
+            "Experiment outline:",
+            "1. Eye tracker setup - calibration & validation",
+            "2. Experiment task",
+            "3. Questionary"
+        ],
+        "id": "Participant",
+        "questions": [
+            {
+                "actionType": "WriteAnswerQuestion",
+                "id": "Name",
+                "question": "Please, enter your name before starting the experiment.",
+                "isRequired": true
+            }
+        ]
+    },
+    "preSessionSteps": [
+        /* insert session steps */
+        { 
+            "action": { "actionType": "EyeTrackerCalibration" } 
+        } 
+    ],
+    "sessionSteps": [
+        {
+            "action": { 
+                "actionType": "Instructions",
+                "instructions": [
+                    "In the next screen you will be presented with similar point animation.",
+                    "",
+                    "Follow the moving point on the screen with your eyes.",
+                    "",
+                    "Start the animation by pressing the Continue button."
+                ],
+                "showContinue": true
+            }
+        },
+        {
+            "action": { "actionType": "EyeTrackerValidation" } 
+        },
+        {
+            "action": {
+                "actionType": "Instructions",
+                "instructions": [
+                    "Search the website of the UXIsk research group for the information page about their eye tracking group lab.",
+                    "Study the webpage about the group lab.",
+                    "",
+                    "When you feel you have found all available information about the lab, press the F10 key.",
+                    "",
+                    "Open the web by pressing the Continue button."
+                ],
+                "showContinue": true
+            }
+        },
+        { 
+            "action": {
+                "actionType": "LaunchProgram",
+                "path": "c:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
+                "arguments": "https://www.pewe.sk/uxi/ --kiosk"
+            },
+            "completion": { "hotkeys": [ "F10" ] } 
+        },
+        {
+            "action": { 
+                "actionType": "Questionary",
+                "id": "Question",
+                "questions": [
+                    {
+                        "actionType": "WriteAnswerQuestion",
+                        "id": "WorkstationsCount",
+                        "question": "How many workstations with an eye tracker are in the laboratory?",
+                        "isRequired": true,
+                        "validAnswerRegexPattern": "[0-9]+"
+                    },
+                    {
+                        "actionType": "ChooseAnswerQuestion",
+                        "id": "OtherSensorTypes",
+                        "question": "What other sensor types are available in the laboratory?",
+                        "limit": null,
+                        "isRequired": true,
+                        "answers": [
+                            "EEG sensor",
+                            "ECG sensor",
+                            "GSR sensor",
+                            "Webcam",
+                            "Hand tracking"
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
+    "postSessionSteps": [
+        {
+            "action": {
+                "actionType": "Instructions",
+                "instructions": "Thank you for participating in the experiment." 
+            },
+            "completion": { "duration": "00:00:03" }
+        }
+    ]
+}
