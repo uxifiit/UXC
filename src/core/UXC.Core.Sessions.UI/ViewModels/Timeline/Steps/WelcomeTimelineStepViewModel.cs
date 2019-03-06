@@ -34,11 +34,6 @@ namespace UXC.Sessions.ViewModels.Timeline
         }
 
 
-        public string Title => String.IsNullOrWhiteSpace(_settings.CustomTitle) 
-                             ? _recording?.Recording.Definition.Project
-                             : _settings.CustomTitle;
-
-
         public Visibility DescriptionVisibility => _settings.HideDescription ? Visibility.Collapsed : Visibility.Visible;
 
 
@@ -55,7 +50,10 @@ namespace UXC.Sessions.ViewModels.Timeline
         {
             base.Execute(recording);
 
-            _recording = recording;
+            if (String.IsNullOrWhiteSpace(Title))
+            {
+                Title = recording.Recording.Definition.Project;
+            }
 
             OnPropertyChanged(nameof(Title));
         }

@@ -4,8 +4,6 @@
     {
         public bool Ignore { get; set; } 
 
-        public string CustomTitle { get; set; }
-
         public bool HideDescription { get; set; }
 
         public Text Description { get; set; }

@@ -71,7 +71,7 @@ namespace UXC.Sessions.ViewModels.Timeline
         public string Title
         {
             get { return title; }
-            private set { Set(ref title, value); }
+            protected set { Set(ref title, value); }
         }
 
 
