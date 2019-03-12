@@ -1,6 +1,12 @@
-using GalaSoft.MvvmLight.CommandWpf;
-using GalaSoft.MvvmLight.Messaging;
-
+/**
+ * UXC
+ * Copyright (c) 2018 The UXC Authors
+ * 
+ * Licensed under GNU General Public License 3.0 only.
+ * Some rights reserved. See COPYING, AUTHORS.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,8 +15,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using UXC.Common;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.CommandWpf;
+using GalaSoft.MvvmLight.Messaging;
+using UXC.Common;
 using UXI.Common.UI;
 using UXC.Core.Managers.Adapters;
 using UXC.Core.Managers;

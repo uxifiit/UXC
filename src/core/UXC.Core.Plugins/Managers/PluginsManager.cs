@@ -1,3 +1,12 @@
+/**
+ * UXC.Core.Plugins
+ * Copyright (c) 2018 The UXC Authors
+ * 
+ * Licensed under GNU General Public License 3.0 only.
+ * Some rights reserved. See COPYING, AUTHORS.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
@@ -22,11 +31,13 @@ namespace UXC.Core.Plugins.Managers
             _modules = modules;
         }
 
+
         protected override bool CanConnect(Plugin plugin)
         {
             return base.CanConnect(plugin)
                 && _modules.Any(m => m.Name == plugin.Module.Name) == false;
         }
+
 
         protected override void OnConnected(Plugin item, bool success)
         {
@@ -38,6 +49,7 @@ namespace UXC.Core.Plugins.Managers
             }
         }
 
+
         protected override void OnConnectedMany(IEnumerable<Plugin> connected)
         {
             if (connected.Any())
@@ -48,30 +60,7 @@ namespace UXC.Core.Plugins.Managers
             }
         }
 
-        //protected override bool ConnectInternal(Plugin item)
-        //{
-        //    base.ConnectInternal(item);
-
-        //    _modules.Connect(item.Module);
-
-        //    return true;
-
-        //    //if (module != null)
-        //    //{
-        //    //    var types = _service.Registrations;
-        //    //    foreach (var type in types)
-        //    //    {
-        //    //        var matchingBindings = module.Bindings.Where(b => b.Service.Equals(type));
-        //    //        if (matchingBindings.Any())
-        //    //        {
-        //    //            _service.NotifyRegisteredTypes(type, kernel.GetAll(type));
-        //    //        }
-        //    //        throw new NotImplementedException();
-        //    //    }
-        //    //}
-
-        //}
-
+        
         protected override bool DisconnectInternal(Plugin item)
         {
             base.DisconnectInternal(item);

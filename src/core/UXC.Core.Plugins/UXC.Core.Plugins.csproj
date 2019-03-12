@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -69,17 +69,21 @@
     <Compile Include="Configuration\IPluginsConfiguration.cs" />
     <Compile Include="Configuration\PluginsConfiguration.cs" />
     <Compile Include="IPluginsService.cs" />
+    <Compile Include="Loaders\ExplicitPluginsLoader.cs" />
     <Compile Include="PluginsLoadingMode.cs" />
     <Compile Include="Managers\IPluginsManager.cs" />
     <Compile Include="Managers\PluginsManager.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="PluginsConstants.cs" />
-    <Compile Include="PluginsLoader.cs" />
+    <Compile Include="Loaders\AssemblyPluginsLoader.cs" />
     <Compile Include="PluginsModule.cs" />
     <Compile Include="PluginsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\UXC Solution.licenseheader">
+      <Link>UXC Solution.licenseheader</Link>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

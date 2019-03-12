@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>UXC.Core.Data.Conversion.GazeToolkit</id>
+    <version>1.2.0</version>
+    <title>UXC.Core.Data.Conversion.GazeToolkit</title>
+    <authors>The UXC Authors</authors>
+    <owners>The UXC Authors</owners>
+    <license type="file">COPYING.LESSER.txt</license>
+    <projectUrl>https://github.com/uxifiit/UXC</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/uxifiit/UXC/master/docs/logo_small.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Helper library for converting UXC gaze data to UXI.GazeToolkit gaze data format.</description>
+    <releaseNotes>Initial release.</releaseNotes>
+    <copyright>Copyright &#x00A9; 2018 The UXC Authors</copyright>
+    <tags>UXC GazeData UXI.GazeToolkit</tags>
+    <dependencies>
+      <dependency id="UXI.GazeToolkit" version="1.0.0" />
+      <dependency id="UXC.Core.Interfaces" version="1.2.0" />
+      <dependency id="UXC.Core.Data" version="1.2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\src\core\UXC.Core.Data.Conversion.GazeToolkit\bin\Release\UXC.Core.Data.Conversion.GazeToolkit.dll" target="lib\net452" />
+    <file src="..\AUTHORS.txt" target="" />
+    <file src="..\src\core\UXC.Core.Data.Conversion.GazeToolkit\COPYING.txt" target="" />
+    <file src="..\src\core\UXC.Core.Data.Conversion.GazeToolkit\COPYING.LESSER.txt" target="" />
+  </files>
+</package>

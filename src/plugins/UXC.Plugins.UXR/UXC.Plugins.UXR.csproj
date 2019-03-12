@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -173,6 +173,9 @@
     <Compile Include="ViewModels\UXRNodeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\UXC Solution.licenseheader">
+      <Link>UXC Solution.licenseheader</Link>
+    </None>
     <None Include="app.config" />
     <Content Include="UXC.Plugins.UXR.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

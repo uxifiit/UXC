@@ -1,3 +1,12 @@
+/**
+ * UXC
+ * Copyright (c) 2018 The UXC Authors
+ * 
+ * Licensed under GNU General Public License 3.0 only.
+ * Some rights reserved. See COPYING, AUTHORS.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
@@ -12,7 +21,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("UXI")]
 [assembly: AssemblyProduct("UXC")]
-[assembly: AssemblyCopyright("Copyright (c) 2018 Faculty of Informatics and Information Technologies, Slovak University of Technology in Bratislava")]
+[assembly: AssemblyCopyright("Copyright (c) 2018 The UXC Authors")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,5 +60,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.4.0")]
+[assembly: AssemblyVersion("1.2.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

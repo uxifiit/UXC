@@ -1,0 +1,5 @@
+# The UXC Authors 
+# This is the official list of project authors for copyright purposes.
+
+Martin Konôpka <martin_konopka@stuba.sk>
+Faculty of Informatics and Information Technologies, Slovak University of Technology in Bratislava

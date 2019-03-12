@@ -1,3 +1,12 @@
+<!--
+UXC
+Copyright (c) 2018 The UXC Authors
+
+Licensed under GNU General Public License 3.0 only.
+Some rights reserved. See COPYING, AUTHORS.
+
+SPDX-License-Identifier: GPL-3.0-only
+-->
 <metro:MetroWindow x:Class="UXC.MainWindow"
                    xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -17,7 +26,7 @@
                    TitleCaps="False" ShowTitleBar="False" ShowMinButton="True" ShowMaxRestoreButton="False" ShowIconOnTitleBar="False">
     <metro:MetroWindow.Resources>
         <DataTemplate x:Key="FlyoutHeaderTemplate">
-            <DockPanel x:Name="dpHeader" Margin="10,35,10,10" VerticalAlignment="Center" LastChildFill="True">
+            <DockPanel x:Name="dpHeader" Margin="0,0,10,0" VerticalAlignment="Center" LastChildFill="True">
                 <Button x:Name="nav" 
                         Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type metro:Flyout}}, Path=CloseCommand, Mode=OneWay}" 
                         DockPanel.Dock="Left" 

@@ -255,9 +255,8 @@
       <HintPath>..\..\..\packages\UXI.OwinServer.2.3.1\lib\net452\UXI.OwinServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UXI.SystemApi, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\UXI.SystemApi.0.2.2\lib\net452\UXI.SystemApi.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UXI.SystemApi, Version=0.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.SystemApi.0.3.0\lib\net452\UXI.SystemApi.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -267,6 +266,8 @@
     <Compile Include="Common\Actions\HideWindowAction.cs" />
     <Compile Include="Common\Behaviors\DragMoveWindowBehavior.cs" />
     <Compile Include="Common\Commands\OpenDirectoryInExplorerCommand.cs" />
+    <Compile Include="Common\Commands\OpenFileCommand.cs" />
+    <Compile Include="Common\Commands\OpenUriCommand.cs" />
     <Compile Include="Common\Converters\ControlServiceStateToBrushConverter.cs" />
     <Compile Include="Common\Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Common\Converters\NullToVisibilityConverter.cs" />
@@ -310,7 +311,6 @@
     <Compile Include="ViewServices\FlyoutView.cs" />
     <Compile Include="ViewServices\ViewsService.cs" />
     <Compile Include="Services\ServerControlService.cs" />
-    <Compile Include="Services\SessionsControlService.cs" />
     <Compile Include="Views\DevicesControl.xaml.cs">
       <DependentUpon>DevicesControl.xaml</DependentUpon>
     </Compile>
@@ -394,15 +394,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Logo_UXIsk.png" />
+    <Resource Include="Resources\Logo_STU_FIIT.png" />
     <Resource Include="Resources\Logo.png" />
     <Resource Include="Resources\Icon.ico" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="..\..\..\AUTHORS.txt">
+      <Link>AUTHORS.txt</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\..\COPYING.txt">
+      <Link>COPYING.txt</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="config.ini">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="..\..\..\UXC Solution.licenseheader">
+      <Link>UXC Solution.licenseheader</Link>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -535,9 +548,7 @@
   <ItemGroup>
     <Resource Include="Resources\Red.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

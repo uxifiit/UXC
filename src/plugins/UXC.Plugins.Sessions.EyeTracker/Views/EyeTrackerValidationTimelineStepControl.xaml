@@ -1,3 +1,12 @@
+<!--
+UXC.Plugins.Sessions.EyeTracker
+Copyright (c) 2018 The UXC Authors
+
+Licensed under GNU General Public License 3.0 only.
+Some rights reserved. See COPYING, AUTHORS.
+
+SPDX-License-Identifier: GPL-3.0-only
+-->
 <UserControl x:Class="UXC.Sessions.Views.Timeline.EyeTrackerValidationTimelineStepControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

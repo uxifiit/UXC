@@ -1,3 +1,12 @@
+<!--
+UXC
+Copyright (c) 2018 The UXC Authors
+
+Licensed under GNU General Public License 3.0 only.
+Some rights reserved. See COPYING, AUTHORS.
+
+SPDX-License-Identifier: GPL-3.0-only
+-->
 <metro:MetroWindow x:Class="UXC.Views.HostWindow"
                    xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"

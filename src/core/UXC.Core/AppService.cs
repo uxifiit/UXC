@@ -1,3 +1,12 @@
+/**
+ * UXC.Core
+ * Copyright (c) 2018 The UXC Authors
+ * 
+ * Licensed under GNU General Public License 3.0 only.
+ * Some rights reserved. See COPYING, AUTHORS.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 using System;
 using System.Collections.Generic;
 using UXI.Common.Helpers;
@@ -8,7 +17,7 @@ using System.Linq;
 using UXC.Core.Modules;
 using UXC.Common.Extensions;
 
-namespace UXC.Core.ViewServices
+namespace UXC.Core
 {
     public class AppService : NotifyStateChangedBase<AppState>, IAppService
     {

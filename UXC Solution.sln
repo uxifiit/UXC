@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Core.Design", "src\core\UXC.Core.Design\UXC.Core.Design.csproj", "{D54B9632-5137-4290-B610-8CA6EC4F90BE}"
 EndProject
@@ -86,12 +86,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Devices.EyeTracker.Cali
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C6518294-AA0E-477D-B296-ACF55C24AC18}"
 	ProjectSection(SolutionItems) = preProject
-		LICENSE.txt = LICENSE.txt
+		AUTHORS.txt = AUTHORS.txt
+		COPYING.txt = COPYING.txt
 		README.md = README.md
+		UXC Solution.licenseheader = UXC Solution.licenseheader
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{65743359-6FF2-4A18-A6D0-83BF311DC6DE}"
 	ProjectSection(SolutionItems) = preProject
+		.nuget\UXC.Core.Data.Conversion.GazeToolkit.nuspec = .nuget\UXC.Core.Data.Conversion.GazeToolkit.nuspec
 		.nuget\UXC.Core.Data.nuspec = .nuget\UXC.Core.Data.nuspec
 		.nuget\UXC.Core.Data.Serialization.nuspec = .nuget\UXC.Core.Data.Serialization.nuspec
 		.nuget\UXC.Core.Interfaces.nuspec = .nuget\UXC.Core.Interfaces.nuspec
@@ -1035,5 +1038,8 @@ Global
 		{5C66F0EE-DE8D-4F2F-A480-071C49ECBB6B} = {E87AC14E-CE35-4783-BC21-FDF8DAFD514B}
 		{1CADE10A-B109-450D-B231-7F8995F1CDBB} = {0EC19E36-1F87-4449-A8E8-94843C3F3E51}
 		{BB34FBE0-398C-4BA1-A238-26DE8CC273DE} = {793DE71C-B6B9-41DA-B57F-2D26B74ADFAC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {672D843D-AD3F-440F-BDEB-18742DB9D306}
 	EndGlobalSection
 EndGlobal

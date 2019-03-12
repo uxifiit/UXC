@@ -1,3 +1,12 @@
+/**
+ * UXC
+ * Copyright (c) 2018 The UXC Authors
+ * 
+ * Licensed under GNU General Public License 3.0 only.
+ * Some rights reserved. See COPYING, AUTHORS.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -32,6 +41,7 @@ using MahApps.Metro.Controls.Dialogs;
 using UXC.Core.Logging;
 using UXC.Plugins.Sessions.Fixations;
 using UXC.Design;
+using UXC.Core;
 
 namespace UXC
 {

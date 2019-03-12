@@ -120,14 +120,21 @@
     <Compile Include="ViewModels\IPointViewModel.cs" />
     <Compile Include="ViewModels\ISettingsSectionViewModel.cs" />
     <Compile Include="ViewModels\IViewModelFactory.cs" />
-    <Compile Include="ViewServices\AppState.cs" />
-    <Compile Include="ViewServices\IAppService.cs" />
+    <Compile Include="AppState.cs" />
+    <Compile Include="IAppService.cs" />
     <Compile Include="ViewServices\INotificationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="README.md" />
+    <None Include="UXC.Core.Interfaces.licenseheader" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="COPYING.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="COPYING.LESSER.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

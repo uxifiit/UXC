@@ -1,5 +1,4 @@
-﻿# Eye Tracker device
-
+﻿# UXC.Devices.EyeTracker
 
 ## Calibration
 

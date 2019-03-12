@@ -2,21 +2,26 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UXC.Core.Data</id>
-    <version>1.0.0</version>
+    <version>1.2.0</version>
     <title>UXC.Core.Data</title>
-    <authors>UXI Dev</authors>
-    <owners>UXI FIIT STUBA</owners>
+    <authors>The UXC Authors</authors>
+    <owners>The UXC Authors</owners>
+    <license type="file">COPYING.LESSER.txt</license>
     <projectUrl>https://github.com/uxifiit/UXC</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Recording data classes of UXC.</description>
+    <iconUrl>https://raw.githubusercontent.com/uxifiit/UXC/master/docs/logo_small.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A UXC core library with class definitions of recording data.</description>
     <releaseNotes>Initial release.</releaseNotes>
-    <copyright>Copyright &#x00A9; 2018 UXI FIIT STUBA</copyright>
-    <tags>Gaze Mouse Keyboard</tags>
+    <copyright>Copyright &#x00A9; 2018 The UXC Authors</copyright>
+    <tags>UXC Data Gaze Mouse Keyboard</tags>
     <dependencies>
-      <dependency id="UXC.Core.Interfaces" version="1.0.1" />
+      <dependency id="UXC.Core.Interfaces" version="1.2.0" />
     </dependencies>
   </metadata>
   <files>
     <file src="..\src\core\UXC.Core.Data\bin\Release\UXC.Core.Data.dll" target="lib\net452" />
+    <file src="..\AUTHORS.txt" target="" />
+    <file src="..\src\core\UXC.Core.Data\COPYING.txt" target="" />
+    <file src="..\src\core\UXC.Core.Data\COPYING.LESSER.txt" target="" />
   </files>
 </package>

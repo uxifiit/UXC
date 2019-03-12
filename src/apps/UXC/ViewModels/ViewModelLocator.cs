@@ -1,3 +1,12 @@
+/**
+ * UXC
+ * Copyright (c) 2018 The UXC Authors
+ * 
+ * Licensed under GNU General Public License 3.0 only.
+ * Some rights reserved. See COPYING, AUTHORS.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +25,7 @@ using System.Windows;
 using UXC.Plugins.UXR.ViewModels;
 using UXC.Plugins.UXR.ViewModels.Uploads;
 using UXC.Core.ViewModels.Services;
+using UXC.Core;
 
 namespace UXC.ViewModels
 {

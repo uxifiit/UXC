@@ -1,3 +1,12 @@
+/**
+ * UXC
+ * Copyright (c) 2018 The UXC Authors
+ * 
+ * Licensed under GNU General Public License 3.0 only.
+ * Some rights reserved. See COPYING, AUTHORS.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -16,23 +25,5 @@ namespace UXC.Common.Converters
         public BoolToTrayIconUriConverter()
             : base(new Uri("/Resources/Green.ico", UriKind.RelativeOrAbsolute), new Uri("/Resources/Red.ico", UriKind.RelativeOrAbsolute))
         { }
-
-        //public static Uri Convert(DeviceState state)
-        //{
-        //    switch (state)
-        //    {
-        //        case DeviceState.Disconnected:
-        //            return new Uri("/Resources/Grey.ico", UriKind.RelativeOrAbsolute);
-        //        case DeviceState.Connected:
-        //            return new Uri("/Resources/Orange.ico", UriKind.RelativeOrAbsolute);
-        //        case DeviceState.Ready:
-        //        case DeviceState.Recording:
-        //            return new Uri("/Resources/Green.ico", UriKind.RelativeOrAbsolute);
-        //        case DeviceState.Error:
-        //            return new Uri("/Resources/Red.ico", UriKind.RelativeOrAbsolute);
-        //        default:
-        //            return new Uri("/Resources/Grey.ico", UriKind.RelativeOrAbsolute);
-        //    }
-        //}
     }
 }

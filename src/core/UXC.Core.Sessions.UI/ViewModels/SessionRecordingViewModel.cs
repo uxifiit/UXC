@@ -1,3 +1,12 @@
+/**
+ * UXC.Core.Sessions.UI
+ * Copyright (c) 2018 The UXC Authors
+ * 
+ * Licensed under GNU General Public License 3.0 only.
+ * Some rights reserved. See COPYING, AUTHORS.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -230,32 +239,6 @@ namespace UXC.Sessions.ViewModels
         private bool TryContinue()
         {
             return Recording.Continue();
-
-            //if (Recording.CanContinue())
-            //{
-            //    Recording.Continue();
-            //    return true;
-            //}
-            //else if (Recording.State == SessionState.Open)
-            //{
-            //    if (Recording.CanStart())
-            //    {
-            //        Recording.Start();
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        ShowDevicesNotReady();
-            //        return false;
-            //        // show message about devices
-            //    }
-            //}
-
-            //return false;
-            //else if (Recording.CanClose())
-            //{
-            //    Recording.Close();
-            //}
         }
 
 

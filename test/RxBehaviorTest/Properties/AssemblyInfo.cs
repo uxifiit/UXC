@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("RxBehaviorTest")]
-[assembly: AssemblyCopyright("Copyright (c) 2018 Faculty of Informatics and Information Technologies, Slovak University of Technology in Bratislava")]
+[assembly: AssemblyCopyright("Copyright (c) 2018 The UXC Authors")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

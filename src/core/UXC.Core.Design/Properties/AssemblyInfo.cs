@@ -1,3 +1,12 @@
+/**
+ * UXC.Core.Design
+ * Copyright (c) 2018 The UXC Authors
+ * 
+ * Licensed under GNU General Public License 3.0 only.
+ * Some rights reserved. See COPYING, AUTHORS.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -8,9 +17,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("UXC.Core.Design")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("UXI Dev")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("UXC.Core.Design")]
-[assembly: AssemblyCopyright("Copyright (c) 2018 Faculty of Informatics and Information Technologies, Slovak University of Technology in Bratislava")]
+[assembly: AssemblyCopyright("Copyright (c) 2018 The UXC Authors")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

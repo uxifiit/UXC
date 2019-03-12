@@ -108,6 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EyeTrackerDevice.ICalibrate.cs" />
+    <None Include="..\..\..\UXC Solution.licenseheader">
+      <Link>UXC Solution.licenseheader</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="README.md" />
   </ItemGroup>

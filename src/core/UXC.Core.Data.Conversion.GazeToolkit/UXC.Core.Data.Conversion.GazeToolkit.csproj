@@ -71,6 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="README.md" />
+    <None Include="UXC.Core.Data.Conversion.GazeToolkit.licenseheader" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UXC.Core.Data\UXC.Core.Data.csproj">
@@ -81,6 +83,12 @@
       <Project>{7b1faa72-4344-4473-865d-c130fa51c6b1}</Project>
       <Name>UXC.Core.Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="COPYING.LESSER.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="COPYING.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

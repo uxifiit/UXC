@@ -1,18 +1,25 @@
+/**
+ * UXC
+ * Copyright (c) 2018 The UXC Authors
+ * 
+ * Licensed under GNU General Public License 3.0 only.
+ * Some rights reserved. See COPYING, AUTHORS.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
-using UXC.Configuration;
+using Ninject;
 using Ninject.Modules;
 using UXC;
+using UXC.Configuration;
 using UXI.Configuration;
 using UXC.Models.Contexts;
 using UXC.Models.Contexts.Design;
-//using UXC.ViewServices;
-using UXC.Core.ViewServices;
-using Ninject;
 using UXI.Configuration.Storages;
 using UXC.Configuration.Design;
 using UXI.App;

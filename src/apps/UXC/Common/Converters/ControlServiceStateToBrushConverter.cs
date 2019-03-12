@@ -1,3 +1,12 @@
+/**
+ * UXC
+ * Copyright (c) 2018 The UXC Authors
+ * 
+ * Licensed under GNU General Public License 3.0 only.
+ * Some rights reserved. See COPYING, AUTHORS.
+ *
+ * SPDX-License-Identifier: GPL-3.0-only
+ */
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,20 +54,6 @@ namespace UXC.Common.Converters
             DependencyProperty.Register(nameof(ErrorBrush), typeof(Brush), typeof(ControlServiceStateToBrushConverter), new PropertyMetadata(new SolidColorBrush()));
 
 
-        //public Brush RecordingBrush
-        //{
-        //    get { return (Brush)GetValue(RecordingBrushProperty); }
-        //    set { SetValue(RecordingBrushProperty, value); }
-        //}
-
-        //// Using a DependencyProperty as the backing store for RecordingBrush.  This enables animation, styling, binding, etc...
-        //public static readonly DependencyProperty RecordingBrushProperty =
-        //    DependencyProperty.Register(nameof(RecordingBrush), typeof(Brush), typeof(DeviceStateToBrushConverter), new PropertyMetadata(new SolidColorBrush()));
-
-
-
-
-
         public Brush DefaultBrush
         {
             get { return (Brush)GetValue(DefaultBrushProperty); }
@@ -69,8 +64,6 @@ namespace UXC.Common.Converters
         public static readonly DependencyProperty DefaultBrushProperty =
             DependencyProperty.Register(nameof(DefaultBrush), typeof(Brush), typeof(ControlServiceStateToBrushConverter), new PropertyMetadata(new SolidColorBrush()));
 
-
-        #region IValueConverter Members
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
@@ -92,7 +85,5 @@ namespace UXC.Common.Converters
         {
             throw new NotImplementedException();
         }
-
-        #endregion
     }
 }
