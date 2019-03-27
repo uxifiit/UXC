@@ -22,7 +22,6 @@ using UXC.Plugins.GazeAccess.Observers;
 
 namespace UXC.Plugins.GazeAccess.Hubs
 {
-    // TODO 13/09/2016 clients do not receive GazeData
     public class GazeHub : Hub
     {
         private readonly EyeTrackerObserver _observer;
