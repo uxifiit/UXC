@@ -1,4 +1,4 @@
-# <img src="docs/logo.png" height="28" /> UXC 
+﻿# <img src="docs/logo.png" height="28" /> UXC 
 
 ###### Client application of the UXI Group Studies infrastructure.
 
@@ -30,9 +30,9 @@ See [project Wiki](https://github.com/uxifiit/UXC/wiki) for documentation, examp
 ### Session recording options
 
 Session recording can be started and controlled in 3 ways:
-* Remotely by the study conductor through the UXR management application,
+* Remotely, by the study conductor through the UXR management application,
 * Locally, using the application user interface, or
-* Through the REST and web socket API by a 3rd party application.
+* Through the REST API or web socket with SignalR by a 3rd party application.
 
 
 ### Supported devices
@@ -132,14 +132,14 @@ See the [AUTHORS.txt](AUTHORS.txt) file for a complete list of The UXC Authors.
 UXC is licensed under the terms of the GNU General Public License version 3 only as published by the [Free Software Foundation](https://www.fsf.org/) - see the [COPYING.txt](COPYING.txt) file for details.
 
 This repository contains additional separate projects that are components of the UXC application. 
-All projects in this repository are licensed under the same terms of the *GNU GPL v3 only* unless an explicit license is located in the project's directory. License located in the project's directory takes precedence over the license of the whole repository.
+All projects in this repository are licensed under the same terms of the GNU GPL v3 only unless an explicit license is located in the project's directory. License located in the project's directory takes precedence over the license of the whole repository.
 
-Following are the projects explicitly licensed under the terms of the LGPL v3 only:
+Following are the projects explicitly licensed under the terms of the GNU LGPL v3 only:
 * `src/core/`
-  + `UXC.Core.Interfaces`
-  + `UXC.Core.Data`
-  + `UXC.Core.Data.Conversion.GazeToolkit`
-  + `UXC.Core.Data.Serialization`
+  + [UXC.Core.Interfaces](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Interfaces)
+  + [UXC.Core.Data](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Data)
+  + [UXC.Core.Data.Conversion.GazeToolkit](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Data.Conversion.GazeToolkit)
+  + [UXC.Core.Data.Serialization](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Data.Serialization)
 
 
 ## Contacts
@@ -147,7 +147,7 @@ Following are the projects explicitly licensed under the terms of the LGPL v3 on
 * UXIsk 
   * User eXperience and Interaction Research Center, Faculty of Informatics and Information Technologies, Slovak University of Technology in Bratislava
   * Web: https://www.uxi.sk/
-* Martin Kon�pka
+* Martin Konôpka
   * E-mail: martin (underscore) konopka (at) stuba (dot) sk
 
 
