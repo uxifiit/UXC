@@ -76,9 +76,8 @@
       <HintPath>..\..\..\packages\UXI.Common.2.3.0\lib\net45\UXI.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UXI.GazeToolkit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\UXI.GazeToolkit.1.0.0\lib\net45\UXI.GazeToolkit.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UXI.GazeToolkit, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.GazeToolkit.1.2.0\lib\net45\UXI.GazeToolkit.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>

@@ -25,6 +25,7 @@ namespace GazeVisualization.Converters
             return timeSpan?.TotalMilliseconds ?? 0d;
         }
 
+
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double? milliseconds = value as double?;

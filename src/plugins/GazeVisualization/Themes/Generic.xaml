@@ -45,12 +45,12 @@ SPDX-License-Identifier: GPL-3.0-only
 
     <DataTemplate DataType="{x:Type options:EyeSelectionOptions}">
         <ComboBox ItemsSource="{Binding Source={StaticResource EyeSelectionStrategyEnumValues}}"
-                  SelectedItem="{Binding Strategy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                  SelectedItem="{Binding EyeSelectionStrategy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type options:NoiseReductionOptions}">
         <ComboBox ItemsSource="{Binding Source={StaticResource NoiseReductionStrategyEnumValues}}"
-                  SelectedItem="{Binding Strategy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                  SelectedItem="{Binding NoiseReductionStrategy, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </DataTemplate>
 
     <DataTemplate DataType="{x:Type options:FixationsClassificationOptions}">

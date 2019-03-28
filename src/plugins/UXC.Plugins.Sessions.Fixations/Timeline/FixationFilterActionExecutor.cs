@@ -58,7 +58,7 @@ namespace UXC.Sessions.Timeline.Executors
                                    .SelectEye(EyeSelectionStrategy.Average)
                                    .ReduceNoise(new ExponentialSmoothingFilter(0.3))
                                    .CalculateVelocities(TimeSpan.FromMilliseconds(20), 60)
-                                   .ClassifyByVelocity(30)
+                                   .ClassifyMovements(30)
                                    .MergeAdjacentFixations(TimeSpan.FromMilliseconds(75), 0.5)
                                    .DiscardShortFixations(TimeSpan.FromMilliseconds(60));
 

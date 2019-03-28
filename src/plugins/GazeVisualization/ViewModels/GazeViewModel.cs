@@ -74,7 +74,12 @@ namespace GazeVisualization.ViewModels
             );
 
             fixations.Switch().Subscribe(
-                g => FixationPoint.UpdatePosition(g.Position.X, g.Position.Y), 
+                g => {
+                    if (g.Position.HasValue)
+                    {
+                        FixationPoint.UpdatePosition(g.Position.Value.X, g.Position.Value.Y);
+                    }
+                }, 
                 () => FixationPoint.IsVisible = false
             );
         }

@@ -72,9 +72,8 @@
       <HintPath>..\..\..\packages\UXI.Common.2.3.0\lib\net45\UXI.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="UXI.SystemApi, Version=0.2.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\UXI.SystemApi.0.2.2\lib\net452\UXI.SystemApi.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UXI.SystemApi, Version=0.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.SystemApi.0.3.0\lib\net452\UXI.SystemApi.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>

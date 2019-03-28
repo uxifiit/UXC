@@ -39,15 +39,15 @@ namespace GazeVisualization
 
     public class EyeSelectionOptions : BaseOptions, IEyeSelectionOptions
     {
-        private EyeSelectionStrategy strategy = EyeSelectionStrategy.Average;
-        public EyeSelectionStrategy Strategy { get { return strategy; } set { strategy = value; OnOptionsChanged(); } }
+        private EyeSelectionStrategy eyeSelectionStrategy = EyeSelectionStrategy.Average;
+        public EyeSelectionStrategy EyeSelectionStrategy { get { return eyeSelectionStrategy; } set { eyeSelectionStrategy = value; OnOptionsChanged(); } }
     }
 
 
     public class NoiseReductionOptions : BaseOptions, INoiseReductionOptions
     {
-        private NoiseReductionStrategy strategy = NoiseReductionStrategy.Exponential;
-        public NoiseReductionStrategy Strategy { get { return strategy; } set { strategy = value; OnOptionsChanged(); } }
+        private NoiseReductionStrategy noiseReductionStrategy = NoiseReductionStrategy.Exponential;
+        public NoiseReductionStrategy NoiseReductionStrategy { get { return noiseReductionStrategy; } set { noiseReductionStrategy = value; OnOptionsChanged(); } }
     }
 
 

@@ -18,42 +18,42 @@ namespace UXC.Core.Data.Conversion.GazeToolkit
 {
     public static class UXCGazeDataEx
     {
-        public static UXI.GazeToolkit.GazeDataValidity ToToolkit(this GazeDataValidity validity)
-        {
-            switch (validity)
-            {
-                case GazeDataValidity.Both:
-                    return UXI.GazeToolkit.GazeDataValidity.Both;
-                case GazeDataValidity.Left:
-                    return UXI.GazeToolkit.GazeDataValidity.Left;
-                case GazeDataValidity.ProbablyLeft:
-                    return UXI.GazeToolkit.GazeDataValidity.ProbablyLeft;
-                case GazeDataValidity.ProbablyRight:
-                    return UXI.GazeToolkit.GazeDataValidity.ProbablyRight;
-                case GazeDataValidity.Right:
-                    return UXI.GazeToolkit.GazeDataValidity.Right;
-                case GazeDataValidity.UnknownWhichOne:
-                    return UXI.GazeToolkit.GazeDataValidity.UnknownWhichOne;
-                case GazeDataValidity.None:
-                default:
-                    return UXI.GazeToolkit.GazeDataValidity.None;
-            }
-        }
+        //public static UXI.GazeToolkit.GazeDataValidity ToToolkit(this GazeDataValidity validity)
+        //{
+        //    switch (validity)
+        //    {
+        //        case GazeDataValidity.Both:
+        //            return UXI.GazeToolkit.GazeDataValidity.Both;
+        //        case GazeDataValidity.Left:
+        //            return UXI.GazeToolkit.GazeDataValidity.Left;
+        //        case GazeDataValidity.ProbablyLeft:
+        //            return UXI.GazeToolkit.GazeDataValidity.ProbablyLeft;
+        //        case GazeDataValidity.ProbablyRight:
+        //            return UXI.GazeToolkit.GazeDataValidity.ProbablyRight;
+        //        case GazeDataValidity.Right:
+        //            return UXI.GazeToolkit.GazeDataValidity.Right;
+        //        case GazeDataValidity.UnknownWhichOne:
+        //            return UXI.GazeToolkit.GazeDataValidity.UnknownWhichOne;
+        //        case GazeDataValidity.None:
+        //        default:
+        //            return UXI.GazeToolkit.GazeDataValidity.None;
+        //    }
+        //}
 
 
-        public static UXI.GazeToolkit.EyeGazeDataValidity ToToolkit(this EyeGazeDataValidity validity)
+        public static UXI.GazeToolkit.EyeValidity ToToolkit(this EyeGazeDataValidity validity)
         {
             switch (validity)
             {
                 case EyeGazeDataValidity.Probably:
-                    return UXI.GazeToolkit.EyeGazeDataValidity.Probably;
+                    return UXI.GazeToolkit.EyeValidity.Probably;
                 case EyeGazeDataValidity.Unknown:
-                    return UXI.GazeToolkit.EyeGazeDataValidity.Unknown;
+                    return UXI.GazeToolkit.EyeValidity.Unknown;
                 case EyeGazeDataValidity.Valid:
-                    return UXI.GazeToolkit.EyeGazeDataValidity.Valid;
+                    return UXI.GazeToolkit.EyeValidity.Valid;
                 case EyeGazeDataValidity.Invalid:
                 default:
-                    return UXI.GazeToolkit.EyeGazeDataValidity.Invalid;
+                    return UXI.GazeToolkit.EyeValidity.Invalid;
             }
         }
 
@@ -64,21 +64,19 @@ namespace UXC.Core.Data.Conversion.GazeToolkit
             (
                 gazeData.LeftEye.ToToolkit(),
                 gazeData.RightEye.ToToolkit(),
-                gazeData.TrackerTicks,
-                gazeData.Timestamp.TimeOfDay
+                gazeData.Timestamp
             );
         }
 
 
-        public static UXI.GazeToolkit.EyeGazeData ToToolkit(this EyeGazeData gazeData)
+        public static UXI.GazeToolkit.EyeData ToToolkit(this EyeGazeData gazeData)
         {
-            return new UXI.GazeToolkit.EyeGazeData
+            return new UXI.GazeToolkit.EyeData
             (
                 gazeData.Validity.ToToolkit(),
                 gazeData.GazePoint2D.ToToolkit(),
                 gazeData.GazePoint3D.ToToolkit(),
                 gazeData.EyePosition3D.ToToolkit(),
-                gazeData.EyePosition3DRelative.ToToolkit(),
                 gazeData.PupilDiameter
             );
         }
