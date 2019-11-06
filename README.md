@@ -1,5 +1,7 @@
 ﻿# <img src="docs/logo.png" height="28" /> UXC 
 
+[![Build Status](https://dev.azure.com/uxifiit/UXC/_apis/build/status/uxifiit.UXC?branchName=master)](https://dev.azure.com/uxifiit/UXC/_build/latest?definitionId=7&branchName=master)
+
 ###### Client application of the UXI Group Studies infrastructure.
 
 UXC is an application for Microsoft Windows for conducting user studies with eye tracking.
