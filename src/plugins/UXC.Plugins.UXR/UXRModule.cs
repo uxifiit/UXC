@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Ninject;
 using Ninject.Modules;
 using UXC.Core;
+using UXC.Core.Common;
 using UXC.Plugins.UXR.Configuration;
 using UXC.Plugins.UXR.Models;
 using UXC.Plugins.UXR.Models.Uploads;

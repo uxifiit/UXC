@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UXC.Core.Data.Conversion.GazeToolkit</id>
-    <version>1.3.0</version>
+    <version>1.4.0</version>
     <title>UXC.Core.Data.Conversion.GazeToolkit</title>
     <authors>The UXC Authors</authors>
     <owners>The UXC Authors</owners>
@@ -15,9 +15,9 @@
     <copyright>Copyright &#x00A9; 2018 The UXC Authors</copyright>
     <tags>UXC GazeData UXI.GazeToolkit</tags>
     <dependencies>
-      <dependency id="UXI.GazeToolkit" version="1.2.0" />
-      <dependency id="UXC.Core.Interfaces" version="1.2.0" />
-      <dependency id="UXC.Core.Data" version="1.2.0" />
+      <dependency id="UXI.GazeToolkit" version="2.0.0" />
+      <dependency id="UXC.Core.Interfaces" version="1.4.0" />
+      <dependency id="UXC.Core.Data" version="1.4.0" />
     </dependencies>
   </metadata>
   <files>

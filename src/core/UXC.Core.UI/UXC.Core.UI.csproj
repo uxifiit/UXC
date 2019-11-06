@@ -101,13 +101,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UXI.Common, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\UXI.Common.2.3.0\lib\net45\UXI.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UXI.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.Common.3.0.0\lib\net45\UXI.Common.dll</HintPath>
     </Reference>
-    <Reference Include="UXI.Common.UI, Version=2.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\UXI.Common.UI.2.3.2\lib\net452\UXI.Common.UI.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UXI.Common.UI, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.Common.UI.3.0.0\lib\net452\UXI.Common.UI.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -159,7 +157,9 @@
     <None Include="..\..\..\UXC Solution.licenseheader">
       <Link>UXC Solution.licenseheader</Link>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UXC.Core.Interfaces\UXC.Core.Interfaces.csproj">

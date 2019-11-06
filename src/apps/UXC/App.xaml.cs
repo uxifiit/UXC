@@ -34,7 +34,6 @@ using UXI.Common.Extensions;
 using UXC.Devices.KeyboardMouse.Module;
 using UXC.Devices.Streamers.Module;
 using UXC.Plugins.DefaultAPI;
-using UXI.App;
 using UXI.SystemApi;
 using System.Diagnostics;
 using MahApps.Metro.Controls.Dialogs;
@@ -42,6 +41,7 @@ using UXC.Core.Logging;
 using UXC.Plugins.Sessions.Fixations;
 using UXC.Design;
 using UXC.Core;
+using UXC.Common;
 
 namespace UXC
 {
