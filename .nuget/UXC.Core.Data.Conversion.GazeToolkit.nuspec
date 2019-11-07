@@ -10,6 +10,7 @@
     <projectUrl>https://github.com/uxifiit/UXC</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/uxifiit/UXC/master/docs/logo_small.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <repository type="git" url="https://github.com/uxifiit/UXC" branch="$branch$" commit="$commit$" />
     <description>Helper library for converting UXC gaze data to UXI.GazeToolkit gaze data format.</description>
     <releaseNotes>Initial release.</releaseNotes>
     <copyright>Copyright &#x00A9; 2018 The UXC Authors</copyright>
@@ -21,7 +22,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\src\core\UXC.Core.Data.Conversion.GazeToolkit\bin\Release\UXC.Core.Data.Conversion.GazeToolkit.dll" target="lib\net452" />
+    <file src="..\src\core\UXC.Core.Data.Conversion.GazeToolkit\bin\$configuration$\UXC.Core.Data.Conversion.GazeToolkit.dll" target="lib\net452" />
     <file src="..\AUTHORS.txt" target="" />
     <file src="..\src\core\UXC.Core.Data.Conversion.GazeToolkit\COPYING.txt" target="" />
     <file src="..\src\core\UXC.Core.Data.Conversion.GazeToolkit\COPYING.LESSER.txt" target="" />

@@ -10,6 +10,7 @@
     <projectUrl>https://github.com/uxifiit/UXC</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/uxifiit/UXC/master/docs/logo_small.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <repository type="git" url="https://github.com/uxifiit/UXC" branch="$branch$" commit="$commit$" />
     <description>A UXC core library with interfaces and base classes for the UXC application.</description>
     <releaseNotes>Initial release.</releaseNotes>
     <copyright>Copyright &#x00A9; 2018 The UXC Authors</copyright>
@@ -21,7 +22,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\src\core\UXC.Core.Interfaces\bin\Release\UXC.Core.Interfaces.dll" target="lib\net452" />
+    <file src="..\src\core\UXC.Core.Interfaces\bin\$configuration$\UXC.Core.Interfaces.dll" target="lib\net452" />
     <file src="..\AUTHORS.txt" target="" />
     <file src="..\src\core\UXC.Core.Interfaces\COPYING.txt" target="" />
     <file src="..\src\core\UXC.Core.Interfaces\COPYING.LESSER.txt" target="" />
