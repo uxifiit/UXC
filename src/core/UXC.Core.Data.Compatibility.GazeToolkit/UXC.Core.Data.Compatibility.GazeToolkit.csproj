@@ -7,8 +7,8 @@
     <ProjectGuid>{08165E62-E64A-4EE6-80DE-67B3B3B510F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UXC.Core.Data.Conversion.GazeToolkit</RootNamespace>
-    <AssemblyName>UXC.Core.Data.Conversion.GazeToolkit</AssemblyName>
+    <RootNamespace>UXC.Core.Data.Compatibility.GazeToolkit</RootNamespace>
+    <AssemblyName>UXC.Core.Data.Compatibility.GazeToolkit</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -71,7 +71,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="README.md" />
-    <None Include="UXC.Core.Data.Conversion.GazeToolkit.licenseheader" />
+    <None Include="UXC.Core.Data.Compatibility.GazeToolkit.licenseheader" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UXC.Core.Data\UXC.Core.Data.csproj">

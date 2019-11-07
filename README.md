@@ -140,7 +140,7 @@ Following are the projects explicitly licensed under the terms of the GNU LGPL v
 * `src/core/`
   + [UXC.Core.Interfaces](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Interfaces)
   + [UXC.Core.Data](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Data)
-  + [UXC.Core.Data.Conversion.GazeToolkit](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Data.Conversion.GazeToolkit)
+  + [UXC.Core.Data.Compatibility.GazeToolkit](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Data.Compatibility.GazeToolkit)
   + [UXC.Core.Data.Serialization](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Data.Serialization)
 
 

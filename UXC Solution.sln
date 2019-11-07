@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.329
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Core.Design", "src\core\UXC.Core.Design\UXC.Core.Design.csproj", "{D54B9632-5137-4290-B610-8CA6EC4F90BE}"
 EndProject
@@ -78,7 +78,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Plugins.Sessions.Fixati
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagnostics", "Diagnostics", "{793DE71C-B6B9-41DA-B57F-2D26B74ADFAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Core.Data.Conversion.GazeToolkit", "src\core\UXC.Core.Data.Conversion.GazeToolkit\UXC.Core.Data.Conversion.GazeToolkit.csproj", "{08165E62-E64A-4EE6-80DE-67B3B3B510F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Core.Data.Compatibility.GazeToolkit", "src\core\UXC.Core.Data.Compatibility.GazeToolkit\UXC.Core.Data.Compatibility.GazeToolkit.csproj", "{08165E62-E64A-4EE6-80DE-67B3B3B510F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Plugins.Sessions.EyeTracker", "src\plugins\UXC.Plugins.Sessions.EyeTracker\UXC.Plugins.Sessions.EyeTracker.csproj", "{5C66F0EE-DE8D-4F2F-A480-071C49ECBB6B}"
 EndProject
@@ -94,7 +94,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{65743359-6FF2-4A18-A6D0-83BF311DC6DE}"
 	ProjectSection(SolutionItems) = preProject
-		.nuget\UXC.Core.Data.Conversion.GazeToolkit.nuspec = .nuget\UXC.Core.Data.Conversion.GazeToolkit.nuspec
+		.nuget\UXC.Core.Data.Compatibility.GazeToolkit.nuspec = .nuget\UXC.Core.Data.Compatibility.GazeToolkit.nuspec
 		.nuget\UXC.Core.Data.nuspec = .nuget\UXC.Core.Data.nuspec
 		.nuget\UXC.Core.Data.Serialization.nuspec = .nuget\UXC.Core.Data.Serialization.nuspec
 		.nuget\UXC.Core.Interfaces.nuspec = .nuget\UXC.Core.Interfaces.nuspec

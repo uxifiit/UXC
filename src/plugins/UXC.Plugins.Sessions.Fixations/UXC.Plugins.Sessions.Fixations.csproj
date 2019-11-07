@@ -89,9 +89,9 @@
     <Compile Include="ViewModels\FixationFilterTimelineStepViewModelFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\core\UXC.Core.Data.Conversion.GazeToolkit\UXC.Core.Data.Conversion.GazeToolkit.csproj">
+    <ProjectReference Include="..\..\core\UXC.Core.Data.Compatibility.GazeToolkit\UXC.Core.Data.Compatibility.GazeToolkit.csproj">
       <Project>{08165e62-e64a-4ee6-80de-67b3b3b510f3}</Project>
-      <Name>UXC.Core.Data.Conversion.GazeToolkit</Name>
+      <Name>UXC.Core.Data.Compatibility.GazeToolkit</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core\UXC.Core.Data.Serialization\UXC.Core.Data.Serialization.csproj">
       <Project>{7C6C4C53-0543-4F60-B95A-34F0452A1E26}</Project>

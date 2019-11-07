@@ -111,9 +111,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\core\UXC.Core.Data.Conversion.GazeToolkit\UXC.Core.Data.Conversion.GazeToolkit.csproj">
+    <ProjectReference Include="..\..\core\UXC.Core.Data.Compatibility.GazeToolkit\UXC.Core.Data.Compatibility.GazeToolkit.csproj">
       <Project>{08165e62-e64a-4ee6-80de-67b3b3b510f3}</Project>
-      <Name>UXC.Core.Data.Conversion.GazeToolkit</Name>
+      <Name>UXC.Core.Data.Compatibility.GazeToolkit</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core\UXC.Core.Data\UXC.Core.Data.csproj">
       <Project>{2bad0840-a3cd-40ef-a5bd-f23ef0cdc644}</Project>

@@ -1,4 +1,4 @@
-# UXC.Core.Data.Conversion.GazeToolkit
+# UXC.Core.Data.Compatibility.GazeToolkit
 
 ###### Helper library for converting UXC gaze data to UXI.GazeToolkit gaze data format.
 
@@ -12,7 +12,7 @@ See AUTHORS for a complete list of The UXC Authors.
 
 ## License
 
-UXC.Core.Data.Conversion.GazeToolkit is licensed under the terms of the GNU Lesser General Public License version 3 only as published by the [Free Software Foundation](https://www.fsf.org/) - see the [COPYING.txt](COPYING.txt) and the [COPYING.LESSER.txt](COPYING.LESSER.txt) files for details.
+UXC.Core.Data.Compatibility.GazeToolkit is licensed under the terms of the GNU Lesser General Public License version 3 only as published by the [Free Software Foundation](https://www.fsf.org/) - see the [COPYING.txt](COPYING.txt) and the [COPYING.LESSER.txt](COPYING.LESSER.txt) files for details.
 
 
 ## Contacts

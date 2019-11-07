@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>UXC.Core.Data.Conversion.GazeToolkit</id>
+    <id>UXC.Core.Data.Compatibility.GazeToolkit</id>
     <version>1.4.0</version>
-    <title>UXC.Core.Data.Conversion.GazeToolkit</title>
+    <title>UXC.Core.Data.Compatibility.GazeToolkit</title>
     <authors>The UXC Authors</authors>
     <owners>The UXC Authors</owners>
     <license type="file">COPYING.LESSER.txt</license>
@@ -22,9 +22,9 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\src\core\UXC.Core.Data.Conversion.GazeToolkit\bin\$configuration$\UXC.Core.Data.Conversion.GazeToolkit.dll" target="lib\net452" />
+    <file src="..\src\core\UXC.Core.Data.Compatibility.GazeToolkit\bin\$configuration$\UXC.Core.Data.Compatibility.GazeToolkit.dll" target="lib\net452" />
     <file src="..\AUTHORS.txt" target="" />
-    <file src="..\src\core\UXC.Core.Data.Conversion.GazeToolkit\COPYING.txt" target="" />
-    <file src="..\src\core\UXC.Core.Data.Conversion.GazeToolkit\COPYING.LESSER.txt" target="" />
+    <file src="..\src\core\UXC.Core.Data.Compatibility.GazeToolkit\COPYING.txt" target="" />
+    <file src="..\src\core\UXC.Core.Data.Compatibility.GazeToolkit\COPYING.LESSER.txt" target="" />
   </files>
 </package>

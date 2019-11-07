@@ -1,5 +1,5 @@
 /**
- * UXC.Core.Data.Conversion.GazeToolkit
+ * UXC.Core.Data.Compatibility.GazeToolkit
  * Copyright (c) 2018 The UXC Authors
  * 
  * Licensed under GNU Lesser General Public License 3.0 only.
@@ -14,11 +14,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UXC.Core.Data.Conversion.GazeToolkit")]
+[assembly: AssemblyTitle("UXC.Core.Data.Compatibility.GazeToolkit")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UXC.Core.Data.Conversion.GazeToolkit")]
+[assembly: AssemblyProduct("UXC.Core.Data.Compatibility.GazeToolkit")]
 [assembly: AssemblyCopyright("Copyright (c) 2018 The UXC Authors")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
