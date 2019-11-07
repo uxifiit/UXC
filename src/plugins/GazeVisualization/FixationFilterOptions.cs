@@ -32,8 +32,8 @@ namespace GazeVisualization
 
     public class FillInGapsOptions : BaseOptions, IFillInGapsOptions
     {
-        private TimeSpan maxGap = TimeSpan.FromMilliseconds(75);
-        public TimeSpan MaxGap { get { return maxGap; } set { maxGap = value; OnOptionsChanged(); } }
+        private TimeSpan maxGapDuration = TimeSpan.FromMilliseconds(75);
+        public TimeSpan MaxGapDuration { get { return maxGapDuration; } set { maxGapDuration = value; OnOptionsChanged(); } }
     }
 
 
@@ -58,8 +58,8 @@ namespace GazeVisualization
         private int? dataFrequency = DEFAULT_FREQUENCY;
         public int? DataFrequency { get { return dataFrequency; } set { dataFrequency = value; OnOptionsChanged(); } }
 
-        private TimeSpan timeWindowSide = TimeSpan.FromMilliseconds(20);
-        public TimeSpan TimeWindowSide { get { return timeWindowSide; } set { timeWindowSide = value; OnOptionsChanged(); } }
+        private TimeSpan timeWindowHalfDuration = TimeSpan.FromMilliseconds(20);
+        public TimeSpan TimeWindowHalfDuration { get { return timeWindowHalfDuration; } set { timeWindowHalfDuration = value; OnOptionsChanged(); } }
 
         private double velocityThreshold = 30d;
         public double VelocityThreshold { get { return velocityThreshold; } set { velocityThreshold = value; OnOptionsChanged(); } }
