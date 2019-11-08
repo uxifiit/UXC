@@ -57,7 +57,6 @@
     <Compile Include="Input\KeyboardEventType.cs" />
     <Compile Include="Input\KeyboardEventData.cs" />
     <Compile Include="Input\MouseEventData.cs" />
-    <Compile Include="Input\MouseCoordinatesData.cs" />
     <Compile Include="Input\MouseButton.cs" />
     <Compile Include="Input\MouseEventType.cs" />
     <Compile Include="Point3.cs" />

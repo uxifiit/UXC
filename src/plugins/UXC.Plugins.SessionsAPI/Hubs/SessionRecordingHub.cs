@@ -35,21 +35,11 @@ namespace UXC.Plugins.SessionsAPI.Hubs
         }
 
 
-        //public bool Start()
-        //{
-        //    return _service.Start();
-        //}
-
-
-        //public bool Stop()
-        //{
-        //    return _service.Stop();
-        //}
-
         public bool Continue()
         {
             return _service.Continue();
         }
+
 
         public bool ContinueStep(SessionStep step)
         {

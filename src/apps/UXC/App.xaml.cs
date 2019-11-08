@@ -154,7 +154,8 @@ namespace UXC
                 plugins.Plugins.Add(new GazeAccessModule());
                 plugins.Plugins.Add(new SessionsAPIModule());
                 plugins.Plugins.Add(new UXRModule());
-                plugins.Plugins.Add(new SessionFixationsModule());
+                // TODO Serialization DELETE
+                //plugins.Plugins.Add(new SessionFixationsModule());
                 plugins.Plugins.Add(new SessionEyeTrackerModule());
 
                 if (config.Experimental)

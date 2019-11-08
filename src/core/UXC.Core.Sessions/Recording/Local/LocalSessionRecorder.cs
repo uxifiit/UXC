@@ -29,6 +29,8 @@ using UXC.Observers;
 using UXC.Sessions.Serialization;
 using UXI.Common;
 using UXI.Common.Extensions;
+using UXI.Serialization;
+using UXI.Serialization.Reactive;
 
 namespace UXC.Sessions.Recording.Local
 {
@@ -36,7 +38,7 @@ namespace UXC.Sessions.Recording.Local
     {
         private readonly SessionRecording _recording;
         private readonly IObserversManager _observers;
-        private readonly IDataSerializationFactory _writerFactory;
+        private readonly DataIO _io;
         private readonly Configuration.LocalSessionRecorderConfiguration _configuration;
 
         private readonly SerialDisposable _dataObserverSubscriber = new SerialDisposable();
@@ -48,11 +50,11 @@ namespace UXC.Sessions.Recording.Local
 
         private bool _isRecording = false;
 
-        public LocalSessionRecorder(SessionRecording recording, IObserversManager observers, IDataSerializationFactory writerFactory, ISessionsConfiguration configuration)
+        public LocalSessionRecorder(SessionRecording recording, IObserversManager observers, DataIO io, ISessionsConfiguration configuration)
         {
             _recording = recording;
             _observers = observers;
-            _writerFactory = writerFactory;
+            _io = io;
             _configuration = new Configuration.LocalSessionRecorderConfiguration(configuration);
         }
 
@@ -75,7 +77,7 @@ namespace UXC.Sessions.Recording.Local
             AddConfigurations(_recording, _paths);
 
             var scheduler = new EventLoopScheduler();
-            var deviceObserver = new LocalSessionDeviceRecorder(_recording, _writerFactory, _paths, _result, scheduler);
+            var deviceObserver = new LocalSessionDeviceRecorder(_recording, _io, _paths, _result, scheduler);
 
             _observers.Connect(deviceObserver);
             _dataObserverSubscriber.Disposable = Disposable.Create(() =>
@@ -83,12 +85,13 @@ namespace UXC.Sessions.Recording.Local
                 _observers.Disconnect(deviceObserver);
             });
 
-            string sessionEventsPath = _paths.BuildFilePath("session", _writerFactory.FileExtension);
+            string sessionEventsPath = _paths.BuildFilePath("session", "json"); // FileFormat.JSON.Extension ?
 
-            _sessionEventsSubscriber.Disposable = _recording.Events
-                                                            .AttachWriter(sessionEventsPath, _writerFactory)
-                                                            .Finally(Close)
-                                                            .ObserveOn(scheduler: scheduler).Subscribe();
+            _sessionEventsSubscriber.Disposable = _io.WriteOutput(_recording.Events, sessionEventsPath, FileFormat.JSON, null)
+                                                     .Finally(Close)
+                                                     .ObserveOn(scheduler: scheduler)
+                                                     .Subscribe();
+
             _schedulerDisposable.Disposable = scheduler;
 
             _result.Paths.Add(sessionEventsPath);
@@ -140,8 +143,6 @@ namespace UXC.Sessions.Recording.Local
                 if (_recording.StartedAt.HasValue
                     && _recording.StartedAt.Value > DateTime.MinValue)
                 {
-                    //var result = new LocalSessionRecordingResult(_recording, _paths.RootPath, Paths);
-                    //_recording.Results.Add(result);
                     Closed?.Invoke(this, _result);
                 }
                 else 
@@ -164,25 +165,19 @@ namespace UXC.Sessions.Recording.Local
             }
         }
 
-        private void SaveData(string name, object data)
+        private void SaveData<T>(string name, T data)
         {
             try
             {
-                string settingsPath = _paths.BuildFilePath(name, _writerFactory.FileExtension);
+                string settingsPath = _paths.BuildFilePath(name, "json");
 
-                using (var streamWriter = new StreamWriter(settingsPath, true, new UTF8Encoding(false)))
-                {
-                    using (var writer = _writerFactory.CreateWriterForType(streamWriter, data.GetType()))
-                    {
-                        writer.Write(data);
-                        writer.Close();
-                    }
-                }
+                _io.WriteOutput<T>(new T[] { data }, settingsPath, FileFormat.JSON);
 
                 _result.Paths.Add(settingsPath);
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex);
                 Debugger.Break();
             }
         }

@@ -93,10 +93,12 @@ namespace UXC.Sessions
 
             definition.SessionSteps.Add(new SessionStep() { Action = new ShowDesktopActionSettings() { MinimizeAll = false }, Completion = new SessionStepCompletionSettings() { Hotkeys = new List<Hotkey>() { Hotkey.F10 } } });
 
-            if (hasEyeTracker)
-            {
-                definition.PostSessionSteps.Add(new SessionStep() { Action = new FixationFilterActionSettings() });
-            }
+
+            // TODO Serialization DELETE
+            //if (hasEyeTracker)
+            //{
+            //    definition.PostSessionSteps.Add(new SessionStep() { Action = new FixationFilterActionSettings() });
+            //}
 
             return definition;
         }

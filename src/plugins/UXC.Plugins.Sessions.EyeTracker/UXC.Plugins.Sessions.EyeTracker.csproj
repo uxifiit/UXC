@@ -146,6 +146,7 @@
     <None Include="..\..\..\UXC Solution.licenseheader">
       <Link>UXC Solution.licenseheader</Link>
     </None>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

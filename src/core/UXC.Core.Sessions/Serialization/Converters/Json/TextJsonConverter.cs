@@ -16,10 +16,12 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UXC.Sessions.Common;
 using UXC.Sessions.Timeline.Actions;
+using UXI.Serialization.Formats.Json.Extensions;
+using UXI.Serialization.Formats.Json.Converters;
 
 namespace UXC.Sessions.Serialization.Converters.Json
 {
-    public class TextJsonConverter : JsonConverter<Text>
+    public class TextJsonConverter : GenericJsonConverter<Text>
     {
         protected override Text Convert(JToken token, JsonSerializer serializer)
         {
@@ -31,35 +33,39 @@ namespace UXC.Sessions.Serialization.Converters.Json
             }
             else if (token.Type == JTokenType.Array)
             {
-                var jArray = (JArray)token;
-                lines = jArray.Select(e => e.Value<string>()).ToList();
+                var array = (JArray)token;
+                lines = array.Select(e => e.Value<string>()).ToList();
             }
             else if (token.Type == JTokenType.Object) 
             {
-                var jObject = (JObject)token;
-                lines = jObject.GetValue(nameof(Text.Lines), StringComparison.CurrentCultureIgnoreCase).ToObject<List<string>>();
+                var obj = (JObject)token;
+                lines = obj.GetValue<List<string>>(nameof(Text.Lines), serializer);
             }
 
             return new Text() { Lines = lines };
         }
 
+
         public override bool CanWrite => true;
 
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+
+        protected override JToken ConvertBack(Text value, JsonSerializer serializer)
         {
             Text text = value as Text;
 
             if (text != null)
             {
-                writer.WriteStartArray();
+                JArray array = new JArray();
 
                 foreach (var line in text.Lines)
                 {
-                    writer.WriteValue(line);
+                    array.Add(line);
                 }
 
-                writer.WriteEndArray();
+                return array;
             }
+            
+            return JValue.CreateNull();
         }
     }
 }

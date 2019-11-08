@@ -43,6 +43,9 @@
       <HintPath>..\..\..\packages\AutoMapper.4.2.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="CsvHelper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\CsvHelper.9.2.3\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
       <Private>True</Private>
@@ -55,9 +58,8 @@
       <HintPath>..\..\..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
@@ -114,13 +116,16 @@
     <Reference Include="UXI.Configuration, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\UXI.Configuration.3.0.0\lib\net452\UXI.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="UXI.Serialization, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.Serialization.2.0.1\lib\net45\UXI.Serialization.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiRoutes.cs" />
     <Compile Include="Controllers\LocalDateTimeJsonConverterAttribute.cs" />
     <Compile Include="Controllers\SessionRecordingSettingsController.cs" />
-    <Compile Include="Controllers\SessionRecordingDataBufferController.cs" />
+    <Compile Include="Controllers\DELETE_SessionRecordingDataBufferController.cs" />
     <Compile Include="Controllers\SessionRecordingDataController.cs" />
     <Compile Include="Controllers\SessionDefinitionController.cs" />
     <Compile Include="Controllers\SessionRecordingController.cs" />
@@ -130,21 +135,20 @@
     <Compile Include="Entities\SessionRecordingInfo.cs" />
     <Compile Include="Entities\SessionStepExecutionInfo.cs" />
     <Compile Include="ExternalSessionDefinitions.cs" />
-    <Compile Include="Hubs\SessionRecordingDataBufferHub.cs" />
+    <Compile Include="Hubs\DELETE_SessionRecordingDataBufferHub.cs" />
     <Compile Include="Hubs\SessionDefinitionHub.cs" />
     <Compile Include="Hubs\SessionRecordingHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recording\Configuration\BufferSessionRecorderConfiguration.cs" />
-    <Compile Include="Recording\InMemoryRecordingDataAccessBuffer2.cs" />
-    <Compile Include="Recording\InMemoryRecordingDataSource.cs" />
-    <Compile Include="Recording\InMemoryDataBufferWriter.cs" />
-    <Compile Include="Recording\InMemorySessionDeviceRecorder.cs" />
-    <Compile Include="Recording\InMemorySessionRecorder.cs" />
-    <Compile Include="Recording\InMemorySessionRecorderFactory.cs" />
-    <Compile Include="Recording\InMemoryRecordingDataAccessBuffer.cs" />
-    <Compile Include="Recording\RecordingDataPart.cs" />
+    <Compile Include="Recording\Configuration\DELETE_BufferSessionRecorderConfiguration.cs" />
+    <Compile Include="Recording\DELETE_InMemoryRecordingDataSource.cs" />
+    <Compile Include="Recording\DELETE_InMemoryDataBufferWriter.cs" />
+    <Compile Include="Recording\DELETE_InMemorySessionDeviceRecorder.cs" />
+    <Compile Include="Recording\DELETE_InMemorySessionRecorder.cs" />
+    <Compile Include="Recording\DELETE_InMemorySessionRecorderFactory.cs" />
+    <Compile Include="Recording\DELETE_InMemoryRecordingDataAccessBuffer.cs" />
+    <Compile Include="Recording\DELETE_RecordingDataPart.cs" />
     <Compile Include="Recording\SessionRecordingResults.cs" />
-    <Compile Include="Services\SessionRecordingDataBufferService.cs" />
+    <Compile Include="Services\DELETE_SessionRecordingDataBufferService.cs" />
     <Compile Include="Services\SessionRecordingResultsControlService.cs" />
     <Compile Include="Services\SessionRecordingResultsService.cs" />
     <Compile Include="Services\SessionDefinitionsService.cs" />

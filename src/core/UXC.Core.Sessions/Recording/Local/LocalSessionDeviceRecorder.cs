@@ -22,6 +22,8 @@ using UXC.Core.Data.Serialization;
 using UXC.Devices.Adapters;
 using UXC.Observers;
 using UXC.Sessions.Serialization;
+using UXI.Serialization;
+using UXI.Serialization.Reactive;
 
 namespace UXC.Sessions.Recording.Local
 {
@@ -31,7 +33,7 @@ namespace UXC.Sessions.Recording.Local
 
         private readonly List<DeviceType> _devices;
         private readonly SessionRecordingPathsBuilder _paths;
-        private readonly IDataSerializationFactory _writerFactory;
+        private readonly DataIO _io;
         private readonly LocalSessionRecordingResult _result;
         private readonly IObservable<SessionRecordingEvent> _sessionEvents;
         private readonly IObservable<SessionRecordingEvent> _sessionRecordingEvents;
@@ -40,15 +42,17 @@ namespace UXC.Sessions.Recording.Local
         internal LocalSessionDeviceRecorder
         (
             SessionRecording recording, 
-            IDataSerializationFactory writerFactory, 
+            DataIO io, 
             SessionRecordingPathsBuilder paths, 
             LocalSessionRecordingResult result,
             IScheduler scheduler
         )
         {
+            // recording.Definition.SerializationFormat
+            //FileFormat format = _io.Formats.Keys.Where(f => f.ToString().Equals())
             _sessionEvents = recording.Events;
             _devices = recording.SelectedDevices.ToList();
-            _writerFactory = writerFactory;
+            _io = io;
             _paths = paths;
             _result = result;
             _scheduler = scheduler;
@@ -58,46 +62,39 @@ namespace UXC.Sessions.Recording.Local
 
         public IDisposable Connect(IObservableDevice device)
         {
-            string extension = _writerFactory.FileExtension;
+            //string extension = _writerFactory.FileExtension;
+            FileFormat targetFormat = FileFormat.CSV;
+            string extension = targetFormat.ToString().ToLower();
 
             IDisposable data = Disposable.Empty;
             if (device.DataType.IsSubclassOf(typeof(DeviceData)))
             {
                 string deviceDataPath = _paths.BuildDeviceFilePath(device.DeviceType, "data", extension);
-                data = RecordForSessionWithWriter(device.Data, deviceDataPath);
-                             //.TakeUntilOtherCompletes(_sessionRecordingEvents)
-                             //.AttachWriter(deviceDataPath, _writerFactory, device.RecordingDataType, DATA_BUFFER_SIZE)
-                             //.ObserveOn(scheduler: _scheduler)
-                             //.Subscribe();
+                data = RecordForSessionWithWriter(device.Data, deviceDataPath, targetFormat); // TODO Serialization add DataType, otherwise it will always be only DeviceData.
+                             
                 _result.Paths.Add(deviceDataPath);
             }
 
 
-            string deviceStatesPath = _paths.BuildDeviceFilePath(device.DeviceType, "states", extension);
-            IDisposable states = RecordForSessionWithWriter(device.States, deviceStatesPath);
-                                       //.TakeUntilOtherCompletes(_sessionRecordingEvents)
-                                       //.AttachWriter(deviceStatesPath, _writerFactory)
-                                       //.ObserveOn(scheduler: _scheduler)
-                                       //.Subscribe();
+            string deviceStatesPath = _paths.BuildDeviceFilePath(device.DeviceType, "states", "json");  // TODO Serialization hard-coded
+            IDisposable states = RecordForSessionWithWriter(device.States, deviceStatesPath, FileFormat.JSON);
+                                       
             _result.Paths.Add(deviceStatesPath);
 
 
-            string deviceLogsPath = _paths.BuildDeviceFilePath(device.DeviceType, "log", extension);
-            IDisposable logs = RecordForSessionWithWriter(device.Logs, deviceLogsPath);
-                                     //.TakeUntilOtherCompletes(_sessionRecordingEvents)
-                                     //.AttachWriter(deviceLogsPath, _writerFactory)
-                                     //.ObserveOn(scheduler: _scheduler)
-                                     //.Subscribe();
+            string deviceLogsPath = _paths.BuildDeviceFilePath(device.DeviceType, "log", "json");
+            IDisposable logs = RecordForSessionWithWriter(device.Logs, deviceLogsPath, FileFormat.JSON);
+                                    
             _result.Paths.Add(deviceLogsPath);
 
             return new CompositeDisposable(data, states, logs);
         }
 
 
-        private IDisposable RecordForSessionWithWriter<T>(IObservable<T> observable, string path)
+        private IDisposable RecordForSessionWithWriter<T>(IObservable<T> observable, string path, FileFormat format)
         {
             return observable.TakeUntilOtherCompletes(_sessionRecordingEvents)
-                             .AttachWriter(path, _writerFactory)
+                             .AttachWriter(path, _io, format)
                              .ObserveOn(scheduler: _scheduler)
                              .Subscribe();
         }

@@ -134,23 +134,25 @@ namespace UXC.Plugins.SessionsAPI
             Bind<SessionRecordingHub>().ToSelf();
             //Bind<SessionRecordingSettingsHub>().ToSelf();
 
-            BindInMemorySessionRecording();
+            // TODO Serialization DELETE
+            // BindInMemorySessionRecording();
         }
 
 
-        private void BindInMemorySessionRecording()
-        {
-            Bind<InMemoryRecordingDataSource>().ToSelf().InSingletonScope();
+        // TODO Serialization DELETE
+        //private void BindInMemorySessionRecording()
+        //{
+        //    Bind<InMemoryRecordingDataSource>().ToSelf().InSingletonScope();
 
-            Bind<ISessionRecorderFactory>().To<InMemorySessionRecorderFactory>().InSingletonScope();
+        //    Bind<ISessionRecorderFactory>().To<InMemorySessionRecorderFactory>().InSingletonScope();
 
-            Bind<SessionRecordingDataBufferService>().ToSelf()
-                                      .WhenInjectedExactlyInto(typeof(SessionRecordingDataBufferController), typeof(SessionRecordingDataBufferHub))
-                                      .InSingletonScope();
+        //    Bind<SessionRecordingDataBufferService>().ToSelf()
+        //                              .WhenInjectedExactlyInto(typeof(SessionRecordingDataBufferController), typeof(SessionRecordingDataBufferHub))
+        //                              .InSingletonScope();
 
-            Bind<SessionRecordingDataBufferController>().ToSelf();
+        //    Bind<SessionRecordingDataBufferController>().ToSelf();
 
-            Bind<SessionRecordingDataBufferHub>().ToSelf();
-        }
+        //    Bind<SessionRecordingDataBufferHub>().ToSelf();
+        //}
     }
 }

@@ -34,6 +34,7 @@ namespace UXC.Sessions.Serialization.Converters.Json
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var device = (DeviceType)value;
+
             writer.WriteValue(device.Code);
         }
 

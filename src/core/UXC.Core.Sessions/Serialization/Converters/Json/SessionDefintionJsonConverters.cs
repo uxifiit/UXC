@@ -15,13 +15,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using UXC.Core.Data.Serialization.Formats.Json.Converters;
 using UXC.Sessions.Timeline;
 
 namespace UXC.Sessions.Serialization.Converters.Json
 {
     public class SessionDefinitionJsonConverters : IEnumerable<JsonConverter>
     {
-        public static IEnumerable<JsonConverter> Converters { get; } = new List<JsonConverter>(PointsJsonConverters.Converters)
+        public static IEnumerable<JsonConverter> Converters { get; } = new List<JsonConverter>(PointsJsonConverters.Converters) // TODO Serialization 
         {
             new StringEnumConverter(camelCaseText: false),
             new DeviceTypeJsonConverter(),

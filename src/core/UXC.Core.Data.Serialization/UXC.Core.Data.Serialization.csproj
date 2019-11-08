@@ -39,6 +39,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\CsvHelper.9.2.3\lib\net45\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Reactive.Core, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
@@ -71,12 +77,37 @@
     <Reference Include="UXI.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\UXI.Common.3.0.0\lib\net45\UXI.Common.dll</HintPath>
     </Reference>
+    <Reference Include="UXI.Serialization, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.Serialization.2.0.1\lib\net45\UXI.Serialization.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BufferedDataWriter.cs" />
+    <Compile Include="DeviceDataImpl.cs" />
     <Compile Include="Extensions\IDataSerializationFactoryEx.cs" />
     <Compile Include="Extensions\IDataReaderEx.cs" />
+    <Compile Include="Formats\Csv\Converters\DeviceDataCsvConverter.cs" />
+    <Compile Include="Formats\Csv\Converters\ExternalEventDataCsvConverter.cs" />
+    <Compile Include="Formats\Csv\Converters\EyeGazeDataCsvConverter.cs" />
+    <Compile Include="Formats\Csv\Converters\GazeDataCsvConverter.cs" />
+    <Compile Include="Formats\Csv\Converters\KeyboardEventDataCsvConverter.cs" />
+    <Compile Include="Formats\Csv\Converters\MouseEventDataCsvConverter.cs" />
+    <Compile Include="Formats\Csv\Converters\Point2CsvConverter.cs" />
+    <Compile Include="Formats\Csv\Converters\Point3CsvConverter.cs" />
+    <Compile Include="Formats\Csv\TypeConverters\DateTimeTypeConverter.cs" />
+    <Compile Include="Formats\Csv\UXCDataCsvConvertersSerializationConfiguration.cs" />
+    <Compile Include="Formats\Json\Converters\DataJsonConverters.cs" />
+    <Compile Include="Formats\Json\Converters\DeviceDataJsonConverter.cs" />
+    <Compile Include="Formats\Json\Converters\ExternalEventDataJsonConverter.cs" />
+    <Compile Include="Formats\Json\Converters\EyeGazeDataJsonConverter.cs" />
+    <Compile Include="Formats\Json\Converters\GazeDataJsonConverter.cs" />
+    <Compile Include="Formats\Json\Converters\KeyboardEventDataJsonConverter.cs" />
+    <Compile Include="Formats\Json\Converters\MouseEventDataJsonConverter.cs" />
+    <Compile Include="Formats\Json\Converters\Point2JsonConverter.cs" />
+    <Compile Include="Formats\Json\Converters\Point3JsonConverter.cs" />
+    <Compile Include="Formats\Json\Converters\PointsJsonConverters.cs" />
+    <Compile Include="Formats\Json\UXCDataJsonConvertersSerializationConfiguration.cs" />
     <Compile Include="IDataReader.cs" />
     <Compile Include="IDataWriter.cs" />
     <Compile Include="IDataSerializationFactory.cs" />
@@ -103,6 +134,7 @@
   <ItemGroup>
     <None Include="COPYING.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

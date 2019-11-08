@@ -19,6 +19,13 @@ using UXC.Sessions.Recording.Local;
 using UXC.Sessions.Serialization.Converters.Json;
 using UXC.Sessions.Timeline.Actions;
 using UXC.Sessions.Helpers;
+using UXI.Serialization;
+using UXI.Serialization.Formats.Json;
+using UXC.Core.Data.Serialization.Formats.Csv;
+using UXC.Core.Data.Serialization.Formats.Json;
+using UXI.Serialization.Formats.Csv;
+using UXI.Serialization.Formats.Json.Configurations;
+using Ninject;
 
 namespace UXC.Sessions
 {
@@ -39,7 +46,7 @@ namespace UXC.Sessions
                 Bind<Newtonsoft.Json.JsonConverter>().ToConstant(converter);
             }
 
-            BindDataJsonSerialization();
+            BindDataSerialization();
             BindLocalSessionDefinitions();
 
             RegisterTimelineSteps();
@@ -67,15 +74,27 @@ namespace UXC.Sessions
         }
 
 
-        private void BindDataJsonSerialization()
+        private void BindDataSerialization()
         {
-            foreach (var converter in DataJsonConverters.Converters)
-            {
-                Bind<Newtonsoft.Json.JsonConverter>().ToConstant(converter)
-                                                     .WhenInjectedExactlyInto<JsonSerializationFactory>();
-            }
+            //foreach (var converter in DataJsonConverters.Converters)
+            //{
+            //    Bind<Newtonsoft.Json.JsonConverter>().ToConstant(converter)
+            //                                         .WhenInjectedExactlyInto<JsonSerializationFactory>();
+            //}
 
-            Bind<IDataSerializationFactory>().To<JsonSerializationFactory>().InSingletonScope();
+            Bind<ISerializationConfiguration>().To<JsonConvertersSerializationConfiguration>()
+                                               .WhenInjectedInto<ISerializationFactory>();
+            Bind<ISerializationConfiguration>().To<UXCDataCsvConvertersSerializationConfiguration>()
+                                               .WhenInjectedInto<ISerializationFactory>();
+            Bind<ISerializationConfiguration>().To<UXCDataJsonConvertersSerializationConfiguration>()
+                                               .WhenInjectedInto<ISerializationFactory>();
+
+            Bind<ISerializationFactory, JsonSerializationFactory>().ToMethod(s => new JsonSerializationFactory(s.Kernel.GetAll<ISerializationConfiguration>()));
+            Bind<ISerializationFactory, CsvSerializationFactory>().ToMethod(s => new CsvSerializationFactory(s.Kernel.GetAll<ISerializationConfiguration>()));
+
+            Bind<DataIO>().ToMethod(s => new DataIO(s.Kernel.GetAll<ISerializationFactory>())).InSingletonScope();
+
+            //Bind<IDataSerializationFactory>().To<JsonSerializationFactory>().InSingletonScope();
         }
 
 
@@ -83,6 +102,8 @@ namespace UXC.Sessions
         {
             Bind<IProcessService>().To<ProcessService>().InSingletonScope();
         }
+
+        // TODO Serialization DELETE
         //private void BindCsvSerialization()
         //{
         //    // add other class maps

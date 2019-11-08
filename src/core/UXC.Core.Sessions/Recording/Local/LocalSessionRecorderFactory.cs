@@ -16,6 +16,7 @@ using UXC.Core.Data.Serialization;
 using UXC.Core.Managers;
 using UXC.Sessions.Serialization;
 using UXI.Common.Extensions;
+using UXI.Serialization;
 
 namespace UXC.Sessions.Recording.Local
 {
@@ -23,12 +24,12 @@ namespace UXC.Sessions.Recording.Local
     {
         private readonly ISessionsConfiguration _configuration;
         private readonly IObserversManager _observers;
-        private readonly List<IDataSerializationFactory> _writers;
+        private readonly DataIO _io;
 
-        public LocalSessionRecorderFactory(IObserversManager observers, IEnumerable<IDataSerializationFactory> writers, ISessionsConfiguration configuration)
+        public LocalSessionRecorderFactory(IObserversManager observers, DataIO io, ISessionsConfiguration configuration)
         {
             _observers = observers;
-            _writers = writers.ToList();
+            _io = io;
             _configuration = configuration;
         }
 
@@ -37,17 +38,19 @@ namespace UXC.Sessions.Recording.Local
         public ISessionRecorder Create(SessionRecording recording)
         {
             var definition = recording.Definition;
-            IDataSerializationFactory writerFactory = _writers.FirstOrDefault(w => w.FormatName.Equals(definition.SerializationFormat, StringComparison.InvariantCultureIgnoreCase));
 
-            if (writerFactory == null)
-            {
-                // get any writer if the specified format was not found
-                writerFactory = _writers.FirstOrDefault();
-            }
+           // IDataSerializationFactory writerFactory = _writers.FirstOrDefault(w => w.FormatName.Equals(definition.SerializationFormat, StringComparison.InvariantCultureIgnoreCase));
 
-            writerFactory.ThrowIfNull(() => new ArgumentOutOfRangeException(nameof(definition.SerializationFormat), "No writer for session recording found."));
+            //if (writerFactory == null)
+            //{
+            //    // get any writer if the specified format was not found
+            //    writerFactory = _writers.FirstOrDefault();
+            //}
 
-            return new LocalSessionRecorder(recording, _observers, writerFactory, _configuration);
+            // TODO Serialization - check supported formats
+            //writerFactory.ThrowIfNull(() => new ArgumentOutOfRangeException(nameof(definition.SerializationFormat), "No writer for session recording found."));
+
+            return new LocalSessionRecorder(recording, _observers, _io, _configuration);
         }
     }
 }

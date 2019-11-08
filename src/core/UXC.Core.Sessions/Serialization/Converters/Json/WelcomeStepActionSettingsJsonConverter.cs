@@ -16,10 +16,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UXC.Sessions.Common;
 using UXC.Sessions.Timeline.Actions;
+using UXI.Serialization.Formats.Json.Converters;
 
 namespace UXC.Sessions.Serialization.Converters.Json
 {
-    public class WelcomeStepActionSettingsJsonConverter : JsonConverter<WelcomeActionSettings>
+    public class WelcomeStepActionSettingsJsonConverter : GenericJsonConverter<WelcomeActionSettings>
     {
         protected override WelcomeActionSettings Convert(JToken token, JsonSerializer serializer)
         {

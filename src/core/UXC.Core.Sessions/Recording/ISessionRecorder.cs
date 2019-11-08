@@ -19,7 +19,7 @@ namespace UXC.Sessions.Recording
     public interface ISessionRecorder : IConfigurable, IDisposable
     {
         void Record();
-        //void Close();
+
         event EventHandler<ISessionRecordingResult> Closed;
     }
 }

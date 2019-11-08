@@ -24,6 +24,8 @@ namespace UXC.Sessions
         private static int _idCounter = 1;
         private readonly static object _idCounterLock = new object();
 
+        public const string DefaultSerializationFormat = "JSON";
+
         public static SessionDefinition Create()
         {
             lock (_idCounterLock)
@@ -48,7 +50,7 @@ namespace UXC.Sessions
 
         public string Source { get; set; } // UXR, Local, External system
 
-        public string SerializationFormat { get; set; } = "JSON";
+        public string SerializationFormat { get; set; } = DefaultSerializationFormat;
 
         public List<SessionRecorderDefinition> Recorders { get; set; } = new List<SessionRecorderDefinition>();
 
