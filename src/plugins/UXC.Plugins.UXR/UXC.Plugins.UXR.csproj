@@ -126,8 +126,7 @@
       <HintPath>..\..\..\packages\UXI.ZIP.3.0.0\lib\net452\UXI.ZIP.dll</HintPath>
     </Reference>
     <Reference Include="UXR.Studies.Api.Client, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\UXR.Studies.Api.Client.0.5.0\lib\net452\UXR.Studies.Api.Client.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\..\packages\UXR.Studies.Api.Client.1.0.0\lib\net452\UXR.Studies.Api.Client.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
