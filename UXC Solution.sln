@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UXC.Core.Design", "src\core\UXC.Core.Design\UXC.Core.Design.csproj", "{D54B9632-5137-4290-B610-8CA6EC4F90BE}"
 EndProject
@@ -87,6 +87,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C6518294-AA0E-477D-B296-ACF55C24AC18}"
 	ProjectSection(SolutionItems) = preProject
 		AUTHORS.txt = AUTHORS.txt
+		azure-pipelines.yml = azure-pipelines.yml
 		COPYING.txt = COPYING.txt
 		README.md = README.md
 		UXC Solution.licenseheader = UXC Solution.licenseheader
