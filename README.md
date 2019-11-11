@@ -76,7 +76,7 @@ To build the UXC and other projects in this repository, follow these steps:
     + Download [NuGet Windows Commandline](https://www.nuget.org/downloads), v4.9.x were tested.
 	+ Create new environment variable with name `nuget` and its path set to the `nuget.exe` executable, e.g., `C:\Program Files (x86)\NuGet\nuget.exe`.
     + Test the path in a new command line window with `echo %nuget%`.
-	+ Run the `build.bat` script for Visual Studio 2015, or `build.2017.bat` for 2017 version.
+	+ Run the `build.bat` script.
 * Locate build output of the UXC in the `/src/apps/UXC/build/Release/` directory.
 
 Before running the UXC application, follow these steps to set it up:
@@ -100,7 +100,7 @@ Source code folder `src` structure:
   + `devices` - libraries implementing communication with recording devices
   + `plugins` - optional plugins for the application
 * `test` - source code of testing projects
-  
+
 
 ## Contributing
 
@@ -140,7 +140,7 @@ Following are the projects explicitly licensed under the terms of the GNU LGPL v
 * `src/core/`
   + [UXC.Core.Interfaces](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Interfaces)
   + [UXC.Core.Data](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Data)
-  + [UXC.Core.Data.Conversion.GazeToolkit](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Data.Conversion.GazeToolkit)
+  + [UXC.Core.Data.Compatibility.GazeToolkit](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Data.Compatibility.GazeToolkit)
   + [UXC.Core.Data.Serialization](https://github.com/uxifiit/UXC/tree/master/src/core/UXC.Core.Data.Serialization)
 
 

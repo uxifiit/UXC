@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UXC.Core.Data.Serialization</id>
-    <version>1.2.0</version>
+    <version>1.4.0</version>
     <title>UXC.Core.Data.Serialization</title>
     <authors>The UXC Authors</authors>
     <owners>The UXC Authors</owners>
@@ -10,18 +10,19 @@
     <projectUrl>https://github.com/uxifiit/UXC</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/uxifiit/UXC/master/docs/logo_small.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <repository type="git" url="https://github.com/uxifiit/UXC" branch="$branch$" commit="$commit$" />
     <description>A UXC core library for serialization of recording data defined in the UXC.Core.Data library.</description>
     <releaseNotes>Initial release.</releaseNotes>
     <copyright>Copyright &#x00A9; 2018 The UXC Authors</copyright>
     <tags>UXC Data DataReader DataWriter</tags>
     <dependencies>
-      <dependency id="UXI.Common" version="2.3.0" />
-      <dependency id="UXC.Core.Data" version="1.2.0" />
-      <dependency id="UXC.Core.Interfaces" version="1.2.0" />
+      <dependency id="UXI.Common" version="3.0.0" />
+      <dependency id="UXC.Core.Data" version="1.4.0" />
+      <dependency id="UXC.Core.Interfaces" version="1.4.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\src\core\UXC.Core.Data.Serialization\bin\Release\UXC.Core.Data.Serialization.dll" target="lib\net452" />
+    <file src="..\src\core\UXC.Core.Data.Serialization\bin\$configuration$\UXC.Core.Data.Serialization.dll" target="lib\net452" />
     <file src="..\AUTHORS.txt" target="" />
     <file src="..\src\core\UXC.Core.Data.Serialization\COPYING.txt" target="" />
     <file src="..\src\core\UXC.Core.Data.Serialization\COPYING.LESSER.txt" target="" />

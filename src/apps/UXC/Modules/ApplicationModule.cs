@@ -22,8 +22,8 @@ using UXC.Models.Contexts;
 using UXC.Models.Contexts.Design;
 using UXI.Configuration.Storages;
 using UXC.Configuration.Design;
-using UXI.App;
 using UXC.Design.Configuration;
+using UXC.Common;
 
 namespace UXC.Modules
 {

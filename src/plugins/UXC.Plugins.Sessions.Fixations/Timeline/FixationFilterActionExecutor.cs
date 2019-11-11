@@ -16,7 +16,7 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UXC.Core.Data;
-using UXC.Core.Data.Conversion.GazeToolkit;
+using UXC.Core.Data.Compatibility.GazeToolkit;
 using UXC.Core.Data.Serialization;
 using UXC.Sessions.Recording.Local;
 using UXC.Sessions.Timeline.Actions;

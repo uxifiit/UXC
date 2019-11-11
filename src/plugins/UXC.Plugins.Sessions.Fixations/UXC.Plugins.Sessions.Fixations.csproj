@@ -72,12 +72,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UXI.Common, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\UXI.Common.2.3.0\lib\net45\UXI.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UXI.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.Common.3.0.0\lib\net45\UXI.Common.dll</HintPath>
     </Reference>
-    <Reference Include="UXI.GazeToolkit, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\UXI.GazeToolkit.1.2.0\lib\net45\UXI.GazeToolkit.dll</HintPath>
+    <Reference Include="UXI.GazeToolkit, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.GazeToolkit.2.0.0\lib\net45\UXI.GazeToolkit.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
@@ -90,9 +89,9 @@
     <Compile Include="ViewModels\FixationFilterTimelineStepViewModelFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\core\UXC.Core.Data.Conversion.GazeToolkit\UXC.Core.Data.Conversion.GazeToolkit.csproj">
+    <ProjectReference Include="..\..\core\UXC.Core.Data.Compatibility.GazeToolkit\UXC.Core.Data.Compatibility.GazeToolkit.csproj">
       <Project>{08165e62-e64a-4ee6-80de-67b3b3b510f3}</Project>
-      <Name>UXC.Core.Data.Conversion.GazeToolkit</Name>
+      <Name>UXC.Core.Data.Compatibility.GazeToolkit</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core\UXC.Core.Data.Serialization\UXC.Core.Data.Serialization.csproj">
       <Project>{7C6C4C53-0543-4F60-B95A-34F0452A1E26}</Project>

@@ -51,9 +51,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UXI.Common, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\UXI.Common.2.3.0\lib\net45\UXI.Common.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="UXI.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.Common.3.0.0\lib\net45\UXI.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

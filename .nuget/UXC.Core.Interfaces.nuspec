@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>UXC.Core.Interfaces</id>
-    <version>1.2.0</version>
+    <version>1.4.0</version>
     <title>UXC.Core.Interfaces</title>
     <authors>The UXC Authors</authors>
     <owners>The UXC Authors</owners>
@@ -10,18 +10,19 @@
     <projectUrl>https://github.com/uxifiit/UXC</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/uxifiit/UXC/master/docs/logo_small.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <repository type="git" url="https://github.com/uxifiit/UXC" branch="$branch$" commit="$commit$" />
     <description>A UXC core library with interfaces and base classes for the UXC application.</description>
     <releaseNotes>Initial release.</releaseNotes>
     <copyright>Copyright &#x00A9; 2018 The UXC Authors</copyright>
     <tags>UXC Devices Managers Observers Configuration ViewModels</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="9.0.1" />
-      <dependency id="UXI.Common" version="2.3.0" />
-      <dependency id="UXI.Configuration" version="2.1.3" />
+      <dependency id="UXI.Common" version="3.0.0" />
+      <dependency id="UXI.Configuration" version="3.0.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\src\core\UXC.Core.Interfaces\bin\Release\UXC.Core.Interfaces.dll" target="lib\net452" />
+    <file src="..\src\core\UXC.Core.Interfaces\bin\$configuration$\UXC.Core.Interfaces.dll" target="lib\net452" />
     <file src="..\AUTHORS.txt" target="" />
     <file src="..\src\core\UXC.Core.Interfaces\COPYING.txt" target="" />
     <file src="..\src\core\UXC.Core.Interfaces\COPYING.LESSER.txt" target="" />

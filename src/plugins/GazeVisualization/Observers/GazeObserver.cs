@@ -19,7 +19,7 @@ using UXC.Core.Devices;
 using UXC.Core.Data;
 using UXC.Devices.Adapters;
 using UXC.Observers;
-using UXC.Core.Data.Conversion.GazeToolkit;
+using UXC.Core.Data.Compatibility.GazeToolkit;
 
 namespace GazeVisualization.Observers
 {
