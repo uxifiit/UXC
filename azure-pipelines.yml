@@ -46,12 +46,12 @@ steps:
     versioningScheme: 'off'
     buildProperties: 'commit=$(Build.SourceVersion);branch=$(Build.SourceBranchName)'
 
-# - task: NuGetCommand@2
-#   displayName: 'nuget push'
-#   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-#   inputs:
-#     command: 'push'
-#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-#     nuGetFeedType: 'internal'
-#     publishVstsFeed: '875e4574-b18a-49ff-8cf1-55b220af2355/f25beb4b-f7d5-4466-9073-a54052469941'
-#     allowPackageConflicts: true
+- task: NuGetCommand@2
+  displayName: 'nuget push'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: '905a1e2c-1aff-45b3-bc72-dba43be0a133/990007cf-a847-406c-9fa5-dec22ee2ccdc'
+    allowPackageConflicts: true
