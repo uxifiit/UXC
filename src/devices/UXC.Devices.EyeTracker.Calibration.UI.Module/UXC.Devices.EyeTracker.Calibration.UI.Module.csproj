@@ -52,7 +52,12 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="UXI.Common.UI, Version=2.3.2.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="UXI.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.Common.3.0.0\lib\net45\UXI.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="UXI.Common.UI, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\UXI.Common.UI.3.0.0\lib\net452\UXI.Common.UI.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EyeTrackerUIModule.cs" />
