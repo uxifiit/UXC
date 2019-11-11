@@ -117,18 +117,6 @@ namespace UXC.Plugins.SessionsAPI
                 // GET api/session/recording/data/2017-10-26T15_23_42/fixation
                 public const string ACTION_DOWNLOAD_FIXATIONS = PARAM_RECORDING_ID + "/fixation";
             }
-
-            // TODO Serialization DELETE
-            //public static class DataBuffer
-            //{
-            //    public const string PREFIX = Recording.PREFIX + "/buffer";
-
-            //    public const string PARAM_DEVICETYPE = "{device:regex([a-zA-Z]+)}";
-
-            //    // GET api/session/recording/recent/buffer/ET
-            //    // GET api/session/recording/2017-10-26T15_23_42/buffer/ET
-            //    public const string ACTION_DATA = PARAM_RECORDING_ID + "/" + PARAM_DEVICETYPE;
-            //}
         }
     }
 }
