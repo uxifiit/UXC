@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace UXC.Core.Devices
 {
-    public struct DeviceStateChange
+    public class DeviceStateChange
     {
         public DeviceStateChange(DeviceState state, DateTime timestamp)
         {

@@ -114,15 +114,14 @@ namespace UXC.Sessions.Serialization
         //}
 
 
-        public static IObservable<T> AttachWriter<T>(this IObservable<T> data, string path, DataIO io, FileFormat format)
+        public static IObservable<object> AttachWriter(this IObservable<object> data, string path, Type dataType, DataIO io, FileFormat format)
         {
             //   return AttachWriter(data, path, io, format, typeof(T));
-            return Observable.Create<T>(o =>
+            return Observable.Create<object>(o =>
             {
                 var streamWriter = new StreamWriter(path, true, new UTF8Encoding(false));
 
-                var dataWriter = io.GetOutputDataWriter(streamWriter, format, typeof(T), null);
-                //var dataWriter = factory.CreateWriterForType(streamWriter, targetDataType);
+                var dataWriter = io.GetOutputDataWriter(streamWriter, format, dataType, null);
 
                 return new CompositeDisposable
                 (

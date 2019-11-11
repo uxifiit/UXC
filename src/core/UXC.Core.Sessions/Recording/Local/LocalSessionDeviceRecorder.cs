@@ -70,20 +70,20 @@ namespace UXC.Sessions.Recording.Local
             if (device.DataType.IsSubclassOf(typeof(DeviceData)))
             {
                 string deviceDataPath = _paths.BuildDeviceFilePath(device.DeviceType, "data", extension);
-                data = RecordForSessionWithWriter(device.Data, deviceDataPath, targetFormat); // TODO Serialization add DataType, otherwise it will always be only DeviceData.
+                data = RecordForSessionWithWriter(device.Data, deviceDataPath, device.DataType, targetFormat);
                              
                 _result.Paths.Add(deviceDataPath);
             }
 
 
             string deviceStatesPath = _paths.BuildDeviceFilePath(device.DeviceType, "states", "json");  // TODO Serialization hard-coded
-            IDisposable states = RecordForSessionWithWriter(device.States, deviceStatesPath, FileFormat.JSON);
+            IDisposable states = RecordForSessionWithWriter(device.States, deviceStatesPath, typeof(DeviceStateChange), FileFormat.JSON);
                                        
             _result.Paths.Add(deviceStatesPath);
 
 
             string deviceLogsPath = _paths.BuildDeviceFilePath(device.DeviceType, "log", "json");
-            IDisposable logs = RecordForSessionWithWriter(device.Logs, deviceLogsPath, FileFormat.JSON);
+            IDisposable logs = RecordForSessionWithWriter(device.Logs, deviceLogsPath, typeof(Core.LogMessage), FileFormat.JSON);
                                     
             _result.Paths.Add(deviceLogsPath);
 
@@ -91,10 +91,10 @@ namespace UXC.Sessions.Recording.Local
         }
 
 
-        private IDisposable RecordForSessionWithWriter<T>(IObservable<T> observable, string path, FileFormat format)
+        private IDisposable RecordForSessionWithWriter(IObservable<object> observable, string path, Type dataType, FileFormat format)
         {
             return observable.TakeUntilOtherCompletes(_sessionRecordingEvents)
-                             .AttachWriter(path, _io, format)
+                             .AttachWriter(path, dataType, _io, format)
                              .ObserveOn(scheduler: _scheduler)
                              .Subscribe();
         }

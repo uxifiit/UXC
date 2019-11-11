@@ -76,25 +76,14 @@ namespace UXC.Sessions
 
         private void BindDataSerialization()
         {
-            //foreach (var converter in DataJsonConverters.Converters)
-            //{
-            //    Bind<Newtonsoft.Json.JsonConverter>().ToConstant(converter)
-            //                                         .WhenInjectedExactlyInto<JsonSerializationFactory>();
-            //}
-
-            Bind<ISerializationConfiguration>().To<JsonConvertersSerializationConfiguration>()
-                                               .WhenInjectedInto<ISerializationFactory>();
-            Bind<ISerializationConfiguration>().To<UXCDataCsvConvertersSerializationConfiguration>()
-                                               .WhenInjectedInto<ISerializationFactory>();
-            Bind<ISerializationConfiguration>().To<UXCDataJsonConvertersSerializationConfiguration>()
-                                               .WhenInjectedInto<ISerializationFactory>();
+            Bind<ISerializationConfiguration>().ToMethod(s => new JsonConvertersSerializationConfiguration(s.Kernel.GetAll<Newtonsoft.Json.JsonConverter>()));
+            Bind<ISerializationConfiguration>().To<UXCDataCsvConvertersSerializationConfiguration>();
+            Bind<ISerializationConfiguration>().To<UXCDataJsonConvertersSerializationConfiguration>();
 
             Bind<ISerializationFactory, JsonSerializationFactory>().ToMethod(s => new JsonSerializationFactory(s.Kernel.GetAll<ISerializationConfiguration>()));
             Bind<ISerializationFactory, CsvSerializationFactory>().ToMethod(s => new CsvSerializationFactory(s.Kernel.GetAll<ISerializationConfiguration>()));
 
             Bind<DataIO>().ToMethod(s => new DataIO(s.Kernel.GetAll<ISerializationFactory>())).InSingletonScope();
-
-            //Bind<IDataSerializationFactory>().To<JsonSerializationFactory>().InSingletonScope();
         }
 
 
@@ -102,18 +91,5 @@ namespace UXC.Sessions
         {
             Bind<IProcessService>().To<ProcessService>().InSingletonScope();
         }
-
-        // TODO Serialization DELETE
-        //private void BindCsvSerialization()
-        //{
-        //    // add other class maps
-
-        //    foreach (var classMap in DataClassMaps.Maps)
-        //    {
-        //        Bind<CsvHelper.Configuration.ClassMap>().ToConstant(classMap).WhenInjectedExactlyInto<CsvSerializationFactory>();
-        //    }
-
-        //    Bind<IDataSerializationFactory>().To<CsvSerializationFactory>().InSingletonScope();
-        //}
     }
 }

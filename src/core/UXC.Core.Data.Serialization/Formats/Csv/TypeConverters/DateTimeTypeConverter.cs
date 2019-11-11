@@ -11,7 +11,6 @@ namespace UXC.Core.Data.Serialization.Formats.Csv.TypeConverters
 {
     class DateTimeTypeConverter : ITypeConverter
     {
-
         public DateTimeTypeConverter()
         {
         }
