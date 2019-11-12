@@ -38,9 +38,9 @@ namespace UXC.Core.Data.Serialization.Formats.Csv
         {
         }
 
-        protected override CsvSerializerContext Configure(CsvSerializerContext serializer, DataAccess access, object settings)
+        protected override CsvSerializerContext Configure(CsvSerializerContext serializer, DataAccess access, Type targetType, object settings)
         {
-            serializer = base.Configure(serializer, access, settings);
+            serializer = base.Configure(serializer, access, targetType, settings);
 
             serializer.Configuration.TypeConverterCache.AddConverter<DateTime>(new DateTimeTypeConverter());
 
