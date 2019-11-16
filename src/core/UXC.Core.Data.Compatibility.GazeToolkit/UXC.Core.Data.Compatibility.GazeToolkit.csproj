@@ -65,7 +65,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GazeToolkitDataConverter.cs" />
+    <Compile Include="GazeToolkitToUXCEx.cs" />
+    <Compile Include="UXCToGazeToolkitEx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

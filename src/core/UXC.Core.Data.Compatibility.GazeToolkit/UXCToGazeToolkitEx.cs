@@ -1,6 +1,6 @@
 /**
  * UXC.Core.Data.Compatibility.GazeToolkit
- * Copyright (c) 2018 The UXC Authors
+ * Copyright (c) 2019 The UXC Authors
  * 
  * Licensed under GNU Lesser General Public License 3.0 only.
  * Some rights reserved. See COPYING, AUTHORS.
@@ -16,7 +16,7 @@ using UXC.Core.Data;
 
 namespace UXC.Core.Data.Compatibility.GazeToolkit
 {
-    public static class UXCGazeDataEx
+    public static class UXCToGazeToolkitEx
     {
         public static UXI.GazeToolkit.EyeValidity ToToolkit(this EyeGazeDataValidity validity)
         {
