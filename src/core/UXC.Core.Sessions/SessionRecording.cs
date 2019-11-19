@@ -527,7 +527,14 @@ namespace UXC.Sessions
                         {
                             previous.Result = SessionStepResult.Skipped;
                         }
-                        _events.OnNext(new SessionStepCompletedEvent(previous, DateTime.Now, State));
+
+                        DateTime completionTimestamp = DateTime.Now;
+                        if (value != null)
+                        {
+                            completionTimestamp = value.StartedAt.Subtract(TimeSpan.FromMilliseconds(1));
+                        }
+
+                        _events.OnNext(new SessionStepCompletedEvent(previous, completionTimestamp, State));
                     }
 
                     if (value != null)
