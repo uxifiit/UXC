@@ -1,4 +1,13 @@
-﻿using CsvHelper;
+﻿/**
+ * UXC.Core.Data.Serialization
+ * Copyright (c) 2019 The UXC Authors
+ * 
+ * Licensed under GNU Lesser General Public License 3.0 only.
+ * Some rights reserved. See COPYING, COPYING.LESSER, AUTHORS.
+ *
+ * SPDX-License-Identifier: LGPL-3.0-only
+ */
+using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using System;

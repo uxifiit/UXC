@@ -1,9 +1,9 @@
 ﻿/**
  * UXC.Core.Data.Serialization
- * Copyright (c) 2018 The UXC Authors
+ * Copyright (c) 2019 The UXC Authors
  * 
- * Licensed under GNU General Public License 3.0 only.
- * Some rights reserved. See COPYING, AUTHORS.
+ * Licensed under GNU Lesser General Public License 3.0 only.
+ * Some rights reserved. See COPYING, COPYING.LESSER, AUTHORS.
  *
  * SPDX-License-Identifier: LGPL-3.0-only
  */
@@ -41,7 +41,6 @@ namespace UXC.Core.Data.Serialization.Formats.Csv.Converters
             DateTime? validTill;
 
             if (
-
                     TryGetMember<DeviceData>(reader, serializer, naming, out deviceData)
                  && reader.TryGetField<string>(naming.Get(nameof(ExternalEventData.Source)), out source)
                  && reader.TryGetField<string>(naming.Get(nameof(ExternalEventData.EventName)), out eventName)

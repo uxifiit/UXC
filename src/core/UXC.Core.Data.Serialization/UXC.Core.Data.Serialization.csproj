@@ -83,10 +83,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BufferedDataWriter.cs" />
     <Compile Include="DeviceDataImpl.cs" />
-    <Compile Include="Extensions\IDataSerializationFactoryEx.cs" />
-    <Compile Include="Extensions\IDataReaderEx.cs" />
     <Compile Include="Formats\Csv\Converters\DeviceDataCsvConverter.cs" />
     <Compile Include="Formats\Csv\Converters\ExternalEventDataCsvConverter.cs" />
     <Compile Include="Formats\Csv\Converters\EyeGazeDataCsvConverter.cs" />
@@ -108,9 +105,6 @@
     <Compile Include="Formats\Json\Converters\Point3JsonConverter.cs" />
     <Compile Include="Formats\Json\Converters\PointsJsonConverters.cs" />
     <Compile Include="Formats\Json\UXCDataJsonConvertersSerializationConfiguration.cs" />
-    <Compile Include="IDataReader.cs" />
-    <Compile Include="IDataWriter.cs" />
-    <Compile Include="IDataSerializationFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
