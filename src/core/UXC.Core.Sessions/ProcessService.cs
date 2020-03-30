@@ -36,11 +36,7 @@ namespace UXC.Sessions
 
         private string GetKey(string tag)
         {
-            string key = tag?.Trim();
-
-            return String.IsNullOrWhiteSpace(key)
-                 ? String.Empty
-                 : key;
+            return tag?.Trim() ?? String.Empty;
         }
 
 

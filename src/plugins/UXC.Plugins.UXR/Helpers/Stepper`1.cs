@@ -27,34 +27,33 @@ namespace UXC.Plugins.UXR.Helpers
             stepFunc.ThrowIfNull(nameof(stepFunc));
 
             _initialValue = initialValue;
-            current = initialValue;
+            Current = initialValue;
             _stepFunc = stepFunc;
         }
 
 
-        private T current;
-        public T Current => current;
+        public T Current { get; private set; }
 
 
         object IEnumerator.Current
         {
             get
             {
-                return current;
+                return Current;
             }
         }
 
 
         public bool MoveNext()
         {
-            current = _stepFunc.Invoke(current);
+            Current = _stepFunc.Invoke(Current);
             return true;
         }
 
 
         public void Reset()
         {
-            current = _initialValue;
+            Current = _initialValue;
         }
 
 
