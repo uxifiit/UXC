@@ -63,7 +63,7 @@ namespace UXC.Plugins.SessionsAPI.Entities
         public string Name { get; set; }
 
         [DataMember]
-        public Dictionary<string, object> Configuration { get; set; } = new Dictionary<string, object>();
+        public Dictionary<string, object> Configuration { get; set; } = new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase);
     }
 
 
@@ -74,6 +74,6 @@ namespace UXC.Plugins.SessionsAPI.Entities
         public string Device { get; set; }
 
         [DataMember]
-        public Dictionary<string, object> Configuration { get; set; } = new Dictionary<string, object>();
+        public Dictionary<string, object> Configuration { get; set; } = new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase);
     }
 }

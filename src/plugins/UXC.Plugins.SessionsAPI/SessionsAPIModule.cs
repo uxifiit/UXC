@@ -59,7 +59,7 @@ namespace UXC.Plugins.SessionsAPI
                            return new SessionDeviceDefinition
                            (
                                device, 
-                               configuration: info.Configuration?.ToDictionary(c => c.Key, c => c.Value) ?? new Dictionary<string, object>()
+                               info.Configuration?.ToDictionary(c => c.Key, c => c.Value)
                            );
                        }
                        return null;

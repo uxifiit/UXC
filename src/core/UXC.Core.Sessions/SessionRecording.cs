@@ -84,16 +84,16 @@ namespace UXC.Sessions
             RecorderConfigurations = ValidateRecorders(definition.Recorders).DefaultIfEmpty(DefaultRecorderDefinition).ToDictionary
             (
                 d => d.Name,
-                d => (IDictionary<string, object>)d.Configuration.ToDictionary(r => r.Key, r => r.Value),
+                d => (IDictionary<string, object>)d.Configuration.ToDictionary(r => r.Key, r => r.Value, StringComparer.CurrentCultureIgnoreCase),
                 StringComparer.CurrentCultureIgnoreCase
             );
 
             DeviceConfigurations = ValidateDevices(definition.Devices).ToDictionary
             (
                 d => d.Device,
-                d => (IDictionary<string, object>)d.Configuration.ToDictionary(c => c.Key, c => c.Value)
+                d => (IDictionary<string, object>)d.Configuration.ToDictionary(c => c.Key, c => c.Value, StringComparer.CurrentCultureIgnoreCase)
             );
-            
+
             _stateMachine = CreateStateMachine();
         }
 

@@ -25,7 +25,7 @@ namespace UXC.Sessions
         {
             Device = device;
             Configuration = configuration != null && configuration.Any()
-                            ? new ReadOnlyDictionary<string, object>(configuration?.ToDictionary(kvp => kvp.Key, kvp => kvp.Value))
+                            ? new ReadOnlyDictionary<string, object>(configuration?.ToDictionary(kvp => kvp.Key, kvp => kvp.Value, StringComparer.CurrentCultureIgnoreCase))
                             : EmptyConfiguration;
         }
 
@@ -64,7 +64,7 @@ namespace UXC.Sessions
         {
             Name = name;
             Configuration = configuration != null && configuration.Any()
-                            ? new ReadOnlyDictionary<string, object>(configuration?.ToDictionary(kvp => kvp.Key, kvp => kvp.Value))
+                            ? new ReadOnlyDictionary<string, object>(configuration?.ToDictionary(kvp => kvp.Key, kvp => kvp.Value, StringComparer.CurrentCultureIgnoreCase))
                             : EmptyConfiguration;
         }
 

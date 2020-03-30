@@ -19,7 +19,7 @@ namespace UXC.Plugins.SessionsAPI.Recording
 {
     public class SessionRecordingResults
     {
-        private readonly Dictionary<string, LocalSessionRecordingResult> _results = new Dictionary<string, LocalSessionRecordingResult>();
+        private readonly Dictionary<string, LocalSessionRecordingResult> _results = new Dictionary<string, LocalSessionRecordingResult>(StringComparer.CurrentCultureIgnoreCase);
 
         public SessionRecordingResults()
         {

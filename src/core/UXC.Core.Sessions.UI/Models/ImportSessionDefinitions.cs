@@ -24,7 +24,7 @@ namespace UXC.Sessions
     class ImportSessionDefinitions : ISessionDefinitionsSource
     {
         private readonly ILocalSessionDefinitionsService _service;
-        private Dictionary<string, SessionDefinition> _definitions = new Dictionary<string, SessionDefinition>();
+        private Dictionary<string, SessionDefinition> _definitions = new Dictionary<string, SessionDefinition>(StringComparer.CurrentCultureIgnoreCase);
 
         public ImportSessionDefinitions(ILocalSessionDefinitionsService service)
         {
@@ -91,7 +91,7 @@ namespace UXC.Sessions
 
         private Dictionary<string, SessionDefinition> LoadDefinitionFiles(IEnumerable<FileInfo> files, CancellationToken cancellationToken)
         {
-            var definitions = new Dictionary<string, SessionDefinition>();
+            var definitions = new Dictionary<string, SessionDefinition>(StringComparer.CurrentCultureIgnoreCase);
             SessionDefinition definition;
 
             foreach (var file in files.Where(f => f.Exists))
@@ -115,6 +115,7 @@ namespace UXC.Sessions
                 definition = _service.LoadFromFile(file.FullName);
                 definition.CreatedAt = file.LastWriteTime;
 
+                // force default Local recorder
                 if (definition.Recorders.Any(r => r.Name.Equals("Local", StringComparison.CurrentCultureIgnoreCase)) == false)
                 {
                     definition.Recorders.Add(new SessionRecorderDefinition("Local"));

@@ -100,6 +100,7 @@ namespace UXC.Plugins.SessionsAPI.Services
 
             var definition = _mapper.Map<SessionDefinition>(session);
 
+            // force default Local recorder
             if (definition.Recorders.Any(r => r.Name.Equals("Local", StringComparison.CurrentCultureIgnoreCase)) == false)
             {
                 definition.Recorders.Add(new SessionRecorderDefinition("Local"));
