@@ -45,6 +45,7 @@ namespace UXC.Sessions.Recording
 
             return recording.RecorderConfigurations
                             .Where(r => _factories.ContainsKey(r.Key))
+                            .Where(r => (r.Value.ContainsKey("disable") == false) || (r.Value["disable"].Equals(true) == false))
                             .Select(r => 
                             {
                                 var recorder = _factories[r.Key].Create(recording);
