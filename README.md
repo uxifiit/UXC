@@ -4,7 +4,7 @@
 
 ###### Client application of the UXI Group Studies infrastructure.
 
-UXC is an application for Microsoft Windows for conducting user studies with eye tracking.
+UXC is an application for conducting user studies with eye tracking for Microsoft Windows.
 UXC client and UXR web management applications form the UXI Group Studies infrastructure for conducting group eye tracking studies. 
 This project is developed at [User eXperience and Interaction Research Center](https://www.uxi.sk/) of [Faculty of Informatics and Information Technologies, Slovak University of Technology in Bratislava](http://fiit.stuba.sk/).
 
